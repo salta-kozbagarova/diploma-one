@@ -1,1 +1,0 @@
-export {fakeBackendProvider} from './fake-backend'

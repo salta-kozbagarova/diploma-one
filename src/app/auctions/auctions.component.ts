@@ -24,9 +24,10 @@ export class AuctionsComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     $(document).ready(function(){
-      $('.category').hover(function(){
+      $('body').on('mouseenter', '.category', function() {
         $(this).find('.icon-sm').css({height: '52px',width: '52px'});
-      }, function() {
+      });
+      $('body').on('mouseleave', '.category', function() {
         $(this).find('.icon-sm').css({height: '50px',width: '50px'});
       });
     });

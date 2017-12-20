@@ -10,10 +10,6 @@ export class AuctionService {
 
   private auctionUrl = '/api/auction';  // URL to web api
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
-
   constructor(private http: HttpClient) { }
 
   getCategories(): Observable<Category[]> {
