@@ -4,7 +4,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 
 import { AuthenticationService } from '../_services/';
 
-import { User } from '../_models';
+import { User, SigninForm } from '../_models';
 
 @Component({
   selector: 'app-login',
@@ -13,23 +13,22 @@ import { User } from '../_models';
 })
 export class LoginComponent implements OnInit {
 
-  private router: Router;
-  public form: FormGroup;
-  public username: AbstractControl;
+  public signinForm: FormGroup;
+  public login: AbstractControl;
   public password: AbstractControl;
 
   constructor(
-            router: Router,
-            private authenticationService: AuthenticationService,
-            fb: FormBuilder) {
+              private router: Router,
+              private authenticationService: AuthenticationService,
+              private fb: FormBuilder) {
     this.router = router;
-    this.form = fb.group({
-        'username': ['', Validators.compose([Validators.required])],
+    this.signinForm = fb.group({
+        'login': ['', Validators.compose([Validators.required])],
         'password': ['', Validators.compose([Validators.required, Validators.minLength(3)])]
     });
 
-    this.username = this.form.controls['username'];
-    this.password = this.form.controls['password'];
+    this.login = this.signinForm.controls['login'];
+    this.password = this.signinForm.controls['password'];
   }
 
   ngOnInit() {
@@ -51,8 +50,8 @@ export class LoginComponent implements OnInit {
 //               }
 //           });
 //   }
-  public onSubmit(values: User): void {
-    if (this.form.valid) {
+  public onSubmit(values: SigninForm): void {
+    if (this.signinForm.valid) {
       this.authenticationService.login(values).subscribe(
         data => {
           console.log('login ok');

@@ -1,14 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map'
 
-import { User } from '../_models';
+import { User, SigninForm, AuthUser } from '../_models';
 
 @Injectable()
 export class AuthenticationService {
 
   public token: string;
+
+  @Output() currentUser: EventEmitter<AuthUser> = new EventEmitter();
 
   constructor(private http: Http) {
     // set token if saved in local storage
@@ -16,8 +18,8 @@ export class AuthenticationService {
     this.token = currentUser && currentUser.token;
   }
 
-  login(user: User): Observable<boolean> {
-    return this.http.post('/api/authenticate', JSON.stringify(user))
+  login(signinForm: SigninForm): Observable<boolean> {
+    return this.http.post('/api/authenticate', JSON.stringify(signinForm))
       .map((response: Response) => {
         // login successful if there's a jwt token in the response
         let token = response.json() && response.json().token;
@@ -25,14 +27,15 @@ export class AuthenticationService {
         if (token) {
           // set token property
           this.token = token;
-
+          var authUser = new AuthUser(signinForm.login, null, token);
           // store username and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('user', JSON.stringify({ username: user.username, token: token }));
-
+          localStorage.setItem('user', JSON.stringify(authUser));
+          this.currentUser.emit(authUser);
           // return true to indicate successful login
           return true;
         } else {
           // return false to indicate failed login
+          this.currentUser.emit(null);
           return false;
         }
       });
@@ -42,9 +45,10 @@ export class AuthenticationService {
     // clear token remove user from local storage to log user out
     this.token = null;
     localStorage.removeItem('user');
+    this.currentUser.emit(null);
   }
 
-  getCurrentUser(): User {
+  getCurrentUser(): AuthUser {
     return JSON.parse(localStorage.getItem('user'));
   }
 }

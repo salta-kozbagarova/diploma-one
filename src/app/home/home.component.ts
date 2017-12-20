@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { User } from '../_models/';
+import { User, AuthUser } from '../_models/';
 import { UserService, AuthenticationService } from '../_services/';
 
 @Component({
@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
 
   users: User[] = [];
 
-  currentUser: User;
+  currentUser: AuthUser;
 
   public username: string = "hhhh";
 

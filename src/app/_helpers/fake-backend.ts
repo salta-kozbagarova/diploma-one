@@ -1,11 +1,21 @@
 import { Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod } from '@angular/http';
+import { HttpClient, HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
+
+import{ Category } from '../_models';
 
 export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOptions) {
     // configure fake backend
     backend.connections.subscribe((connection: MockConnection) => {
-        let testUser = { username: 'test', password: 'test', firstName: 'Test', lastName: 'User' };
-
+        let testUser = { username: 'test', password: 'test', firstName: 'Test', lastName: 'User', login: 'test' };
+        let categories: Category[] = [
+            {name: 'Автомобиль', image: 'car.png', link: 'cars'},
+            {name: 'Недвижимость', image: 'realty.jpg', link: 'realties'},
+            {name: 'Электроника', image: 'electronics.png', link: 'electronics'},
+            {name: 'Одежда', image: 'clothes.png', link: 'clothes'},
+            {name: 'Искусство', image: 'art.png', link: 'art'},
+            {name: 'Прочее', image: 'other.jpg', link: 'other'}
+        ];
         // wrap in timeout to simulate server api call
         setTimeout(() => {
 
@@ -15,7 +25,7 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                 let params = JSON.parse(connection.request.getBody());
 
                 // check user credentials and return fake jwt token if valid
-                if (params.username === testUser.username && params.password === testUser.password) {
+                if (params.login === testUser.login && params.password === testUser.password) {
                     connection.mockRespond(new Response(
                         new ResponseOptions({ status: 200, body: { token: 'fake-jwt-token' } })
                     ));
@@ -40,6 +50,29 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                         new ResponseOptions({ status: 401 })
                     ));
                 }
+            }
+
+            if (connection.request.url.endsWith('/api/auction/cars') && connection.request.method === RequestMethod.Post) {
+                // get parameters from post request
+                let params = JSON.parse(connection.request.getBody());
+
+                // check user credentials and return fake jwt token if valid
+                if (params.login === testUser.login && params.password === testUser.password) {
+                    connection.mockRespond(new Response(
+                        new ResponseOptions({ status: 200, body: { token: 'fake-jwt-token' } })
+                    ));
+                } else {
+                    connection.mockRespond(new Response(
+                        new ResponseOptions({ status: 200 })
+                    ));
+                }
+            }
+
+            if (connection.request.url.endsWith('/api/auction/categories') && connection.request.method === RequestMethod.Get) {
+                // check user credentials and return fake jwt token if valid
+                connection.mockRespond(new Response(
+                    new ResponseOptions({ status: 200, body: categories })
+                ));
             }
 
         }, 500);
