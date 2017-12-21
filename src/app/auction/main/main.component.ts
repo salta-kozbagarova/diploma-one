@@ -4,14 +4,14 @@ import { Category } from '../_models';
 
 declare var $:any;
 @Component({
-  selector: 'app-auctions',
-  templateUrl: './auctions.component.html',
-  styleUrls: ['./auctions.component.css']
+  selector: 'app-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.css']
 })
-export class AuctionsComponent implements OnInit, AfterViewInit {
-
+export class MainComponent implements OnInit, AfterViewInit {
+  
   categories: Category[];
-
+  
   constructor(private auctionService: AuctionService) { }
 
   ngOnInit() {
@@ -32,5 +32,4 @@ export class AuctionsComponent implements OnInit, AfterViewInit {
       });
     });
   }
-
 }

@@ -8,8 +8,9 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/materialize';
 import 'rxjs/add/operator/dematerialize';
 
-import{ Category, AuthUser, AdBanner } from '../_models';
- 
+import{ Category, AdBanner } from '../auction/_models';
+import{ AuthUser } from '../_models';
+
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
  
@@ -21,19 +22,19 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             { username: 'test', password: 'test', firstName: 'Test', lastName: 'User', login: 'test' }
         ];
         let categories: Category[] = [
-            {name: 'Автомобиль', image: 'car.png', link: 'cars'},
-            {name: 'Недвижимость', image: 'realty.jpg', link: 'realties'},
-            {name: 'Электроника', image: 'electronics.png', link: 'electronics'},
-            {name: 'Одежда', image: 'clothes.png', link: 'clothes'},
-            {name: 'Искусство', image: 'art.png', link: 'art'},
-            {name: 'Прочее', image: 'other.jpg', link: 'other'}
+            {name: 'Автомобиль', image: 'car.png', link: 'cars', createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false },
+            {name: 'Недвижимость', image: 'realty.jpg', link: 'realties', createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false },
+            {name: 'Электроника', image: 'electronics.png', link: 'electronics', createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false },
+            {name: 'Одежда', image: 'clothes.png', link: 'clothes', createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false },
+            {name: 'Искусство', image: 'art.png', link: 'art', createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false },
+            {name: 'Прочее', image: 'other.jpg', link: 'other', createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false }
         ];
 
         let adBanners: AdBanner[] = [
-            {id: 1, name: "smth", image: "ad6.jpeg"},
-            {id: 2, name: "smth", image: "ad7.jpeg"},
-            {id: 3, name: "smth", image: "ad8.jpeg"},
-            {id: 4, name: "smth", image: "ad9.jpg"}
+            {id: 1, name: "smth", image: "ad6.jpeg", createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false},
+            {id: 2, name: "smth", image: "ad7.jpeg", createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false},
+            {id: 3, name: "smth", image: "ad8.jpeg", createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false},
+            {id: 4, name: "smth", image: "ad9.jpg", createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false}
         ];
  
         // wrap in delayed observable to simulate server api call

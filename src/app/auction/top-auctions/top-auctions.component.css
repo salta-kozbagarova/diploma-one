@@ -1,0 +1,52 @@
+.img-fit{
+    height: 100%;
+    width: 100%;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.auction-card{
+    font-size: 13px;
+    display: inline-block; /* TODO: */
+}
+.auction-card .card-body, .auction-card li{
+    padding: .5rem;
+}
+.icon-kzt{
+    background-image: url("/assets/icons/coin-stack.svg");
+    background-repeat: no-repeat;
+    display: inline-block;
+    background-size: 100%;
+    height: 16px;
+    width: 16px;
+}
+.auction-card i{
+    padding: 0;
+}
+
+#clockdiv{
+	font-family: sans-serif;
+	color: #fff;
+	display: inline-block;
+	font-weight: bold;
+	text-align: center;
+	font-size: 13px;
+}
+
+#clockdiv > div{
+	padding: 3px;
+	border-radius: 3px;
+	background: rgb(230, 75, 75);
+	display: inline-block;
+}
+
+#clockdiv div > span{
+	padding: 5px 15px;
+	border-radius: 3px;
+	background: rgb(206, 15, 15);
+	display: inline-block;
+}
+
+.smalltext{
+	padding-top: 1px;
+	font-size: 11px;
+}

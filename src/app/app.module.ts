@@ -4,8 +4,7 @@ import { FormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
  
 // used to create fake backend
-import { fakeBackendProvider } from './_interceptors';
-import { JwtInterceptor } from './_interceptors';
+import { fakeBackendProvider, JwtInterceptor } from './_interceptors';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -13,16 +12,13 @@ import { LoginComponent } from './login/login.component';
 
 import { routing }        from './app.routing';
 import { AuthGuard } from './_guards';
-import { AuthenticationService, UserService, AuctionService, AdBannerService } from './_services';
+import { AuthenticationService, UserService } from './_services';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdminComponent } from './admin/admin.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { AuctionComponent } from './auction/auction.component';
-import { AuctionsComponent } from './auctions/auctions.component';
-import { AdBannerComponent } from './ad-banner/ad-banner.component';
 
 @NgModule({
   declarations: [
@@ -32,10 +28,7 @@ import { AdBannerComponent } from './ad-banner/ad-banner.component';
     AdminComponent,
     HeaderComponent,
     FooterComponent,
-    PageNotFoundComponent,
-    AuctionComponent,
-    AuctionsComponent,
-    AdBannerComponent
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -48,8 +41,6 @@ import { AdBannerComponent } from './ad-banner/ad-banner.component';
     AuthGuard,
     AuthenticationService,
     UserService,
-    AuctionService,
-    AdBannerService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,

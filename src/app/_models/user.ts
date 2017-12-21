@@ -1,7 +1,10 @@
-export class User{
+import { Role } from "./index";
+
+export class User {
     username: string;
     password: string;
     firstName: string;
     lastName: string;
     login: string;
+    roles: Role[];
 }
