@@ -69,7 +69,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         data => {
           console.log('login ok');
           $("#authModal").modal('hide');
-          this.router.navigate(['/']);
+          //this.router.navigate(['/']);
         },
         error => {
           console.log('login not ok');

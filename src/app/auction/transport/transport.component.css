@@ -1,0 +1,16 @@
+.sort-block{
+    width: 100%;
+    border: .05rem solid #ccc;
+    border-bottom: none;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    padding: .5rem;
+}
+
+.sort-block .sort-text{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    cursor: pointer;
+}
