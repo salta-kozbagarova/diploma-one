@@ -1,7 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { AuctionComponent } from './auction.component';
-import { CarComponent } from './car/car.component';
 
 const auctionRoutes: Routes = [
     {
@@ -10,7 +9,7 @@ const auctionRoutes: Routes = [
         children: [
             { path: '', redirectTo: 'main', pathMatch: 'full' },
             { path: 'main', component: MainComponent },
-            { path: 'cars', component: CarComponent }
+            { path: 'transports', loadChildren: 'app/auction/transport/transport.module#TransportModule' }
         ]
     }
 ];

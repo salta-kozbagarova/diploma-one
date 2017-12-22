@@ -1,35 +1,14 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { AuctionService } from '../_services';
-import { Category } from '../_models';
 
-declare var $:any;
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
-export class MainComponent implements OnInit, AfterViewInit {
+export class MainComponent implements OnInit {
   
-  categories: Category[];
-  
-  constructor(private auctionService: AuctionService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.getCategories();
-  }
-
-  getCategories(){
-    this.auctionService.getCategories().subscribe(categories => this.categories = categories);
-  }
-
-  ngAfterViewInit() {
-    $(document).ready(function(){
-      $('body').on('mouseenter', '.category', function() {
-        $(this).find('.icon-sm').css({height: '52px',width: '52px'});
-      });
-      $('body').on('mouseleave', '.category', function() {
-        $(this).find('.icon-sm').css({height: '50px',width: '50px'});
-      });
-    });
   }
 }

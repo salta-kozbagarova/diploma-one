@@ -1,5 +1,6 @@
 import { Model } from "../../_interfaces";
 import { User } from "../../_models";
+import { environment } from "../../../environments/environment";
 
 export class ProductImage implements Model {
     productId: number;
@@ -10,4 +11,8 @@ export class ProductImage implements Model {
     updatedAt: string;
     isActive: boolean;
     isDeleted: boolean;
+
+    // get image(){
+    //     return environment.imageUrl + this._image;
+    // }
 }

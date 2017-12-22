@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { AuctionService } from '../_services';
+import { Auction } from '../_models';
 
+declare var $:any;
 @Component({
   selector: 'app-top-auctions',
   templateUrl: './top-auctions.component.html',
@@ -9,52 +11,33 @@ import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 export class TopAuctionsComponent implements OnInit, AfterViewInit {
 
   title: string = 'Топ аукционы';
-
-  constructor() { }
+  topAuctions: Auction[];
+  constructor(private auctionService: AuctionService) { }
 
   ngOnInit() {
+    this.getTop();
   }
-  ngAfterViewInit(){
-    function getTimeRemaining(endtime) {
-      var t = Date.parse(endtime) - Date.parse(new Date().toString());
-      var seconds = Math.floor((t / 1000) % 60);
-      var minutes = Math.floor((t / 1000 / 60) % 60);
-      var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
-      var days = Math.floor(t / (1000 * 60 * 60 * 24));
-      return {
-        'total': t,
-        'days': days,
-        'hours': hours,
-        'minutes': minutes,
-        'seconds': seconds
-      };
-    }
-    
-    function initializeClock(id, endtime) {
-      var clock = document.getElementById(id);
-      var daysSpan = clock.querySelector('.days');
-      var hoursSpan = clock.querySelector('.hours');
-      var minutesSpan = clock.querySelector('.minutes');
-      var secondsSpan = clock.querySelector('.seconds');
-    
-      function updateClock() {
-        var t = getTimeRemaining(endtime);
-    
-        daysSpan.innerHTML = t.days.toString();
-        hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-        minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-        secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
-    
-        if (t.total <= 0) {
-          clearInterval(timeinterval);
-        }
-      }
-    
-      updateClock();
-      var timeinterval = setInterval(updateClock, 1000);
-    }
-    
-    var deadline = new Date(Date.parse(new Date().toString()) + 15 * 24 * 60 * 60 * 1000);
-    initializeClock('clockdiv', deadline);
+
+  ngAfterViewInit() {
+    $(document).ready(function(){
+      $('body').on('mouseenter', '.auction-card', function() {
+        $(this).css({
+          '-webkit-transform': 'scale(1.03)',
+          '-moz-transform': 'scale(1.03)',
+          '-o-transform': 'scale(1.03)'
+        });
+      });
+      $('body').on('mouseleave', '.auction-card', function() {
+        $(this).css({
+          '-webkit-transform': 'scale(1)',
+          '-moz-transform': 'scale(1)',
+          '-o-transform': 'scale(1)'
+        });
+      });
+    });
+  }
+
+  getTop(){
+    this.auctionService.getTop().subscribe(top => this.topAuctions = top);
   }
 }

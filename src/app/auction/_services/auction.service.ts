@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs/observable/of';
-import { Category } from '../_models';
+import { Category, Car, Auction } from '../_models';
 import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable()
@@ -17,6 +17,30 @@ export class AuctionService {
         .pipe(
           tap(heroes => this.log(`fetched categories`)),
           catchError(this.handleError('getCategories', []))
+        );
+  }
+
+  getSubcategoriesFor(category: Category): Observable<Category[]> {
+    return this.http.get<Category[]>(this.auctionUrl+'/categories?parent='+category.id)
+        .pipe(
+          tap(heroes => this.log(`fetched categories for ` + category.name)),
+          catchError(this.handleError('getSubcategoriesFor', []))
+        );
+  }
+
+  getCars(): Observable<Auction[]> {
+    return this.http.get<Auction[]>(this.auctionUrl+'/cars')
+        .pipe(
+          tap(heroes => this.log(`fetched cars`)),
+          catchError(this.handleError('getCars', []))
+        );
+  }
+
+  getTop(): Observable<Auction[]> {
+    return this.http.get<Auction[]>(this.auctionUrl+'/top')
+        .pipe(
+          tap(heroes => this.log(`fetched top`)),
+          catchError(this.handleError('getTop', []))
         );
   }
 

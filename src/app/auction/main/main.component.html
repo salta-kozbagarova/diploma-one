@@ -1,36 +1,3 @@
 <app-ad-banner></app-ad-banner>
-<div class="row">
-  <div class="col-md-12">
-    <div class="card mt-1 categories">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-2 text-center" *ngFor="let category of categories">
-            <a class="category" [routerLink]="category.link">
-              <div><img src="/assets/images/categories/{{category.image}}" alt="..." class="rounded-circle icon-sm"></div>
-              <div>{{category.name}}</div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<app-categories></app-categories>
 <app-top-auctions></app-top-auctions>
-<div class="row">
-  <div class="col-md-12">
-    <div class="card mt-1">
-      <div class="card-body">
-        Here's the place for some filters
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <div class="card mt-1">
-      <div class="card-body" style="height:500px;">
-        Here's the auction
-      </div>
-    </div>
-  </div>
-</div>

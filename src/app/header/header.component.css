@@ -10,3 +10,6 @@
 .dropdown-menu a{
     font-size: 0.875rem;
 }
+#signup, #signin{
+    cursor: pointer;
+}

@@ -1,38 +1,23 @@
 <h5 class="mt-3">{{title}}</h5>
 <hr>
 <div class="row">
-  <div class="col-md-12">
-    <div class="card mt-1 auction-card" style="width: 15rem;">
-      <img class="card-img-top" src="/assets/images/product/car/car1.jpg" alt="Card image cap" class="img-fit">
+  <div class="col-md-3" *ngFor="let topAuction of topAuctions">
+    <div class="card mt-1 auction-card">
+      <div class="card-img">
+          <img class="card-img-top" src="data:image/jpeg;base64,{{topAuction.image}}" class="img-fit">
+      </div>
       <div class="card-body">
-        <h6 class="card-title">Mercedes benz S class 350</h6>
+        <b class="card-title mb-0">{{topAuction.name}}</b>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item"><i class="icon-kzt"></i><span>Текущая ставка: 5200000тг</span></li>
+        <li class="list-group-item"><span class="icon-kzt"></span><span class="ml-2">Текущая цена: <b>{{topAuction.currentPrice}}₸</b></span></li>
         <li class="list-group-item">
-          <p class="text-center">До завершения торгов</p>
-          <div id="clockdiv" class="mx-auto">
-            <div>
-              <span class="days"></span>
-              <div class="smalltext">Дней</div>
-            </div>
-            <div>
-              <span class="hours"></span>
-              <div class="smalltext">Часов</div>
-            </div>
-            <div>
-              <span class="minutes"></span>
-              <div class="smalltext">Минут</div>
-            </div>
-            <div>
-              <span class="seconds"></span>
-              <div class="smalltext">Секунд</div>
-            </div>
-          </div>
+          <p class="text-center mb-1">До завершения торгов</p>
+          <app-countdown [deadline]="topAuction.endDate" [id]="topAuction.id"></app-countdown>
         </li>
       </ul>
       <div class="card-body">
-        <a href="#" class="card-link">Перейти</a>
+        <a href="#" class="card-link btn btn-outline-primary btn-sm">Перейти</a>
       </div>
     </div>
   </div>

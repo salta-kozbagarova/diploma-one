@@ -1,0 +1,19 @@
+.icon-sm{
+    height: 50px;
+    width: 50px;
+    background-color: #fff;
+}
+.category{
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+}
+.category div{
+    color: #419bf4;
+}
+.categories{
+    background-color: #F0F8FF;
+}
+.categories .card-body{
+    padding: 15px;
+}

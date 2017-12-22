@@ -1,0 +1,28 @@
+.countdown{
+	font-family: sans-serif;
+	color: #fff;
+	display: inline-block;
+	font-weight: bold;
+	text-align: center;
+	font-size: 13px;
+}
+
+.countdown > div{
+	margin: 2px 2px;
+	padding: 3px;
+	border-radius: 3px;
+	background: rgb(230, 75, 75);
+	display: inline-block;
+}
+
+.countdown div > span{
+	padding: 5px 15px;
+	border-radius: 3px;
+	background: rgb(206, 15, 15);
+	display: inline-block;
+}
+
+.smalltext{
+	padding-top: 1px;
+	font-size: 11px;
+}
