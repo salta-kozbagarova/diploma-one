@@ -1,18 +1,22 @@
-<div id="{{id}}" class="countdown mx-auto">
-  <div>
-    <span class="days"></span>
-    <div class="smalltext">Дней</div>
-  </div>
-  <div>
-    <span class="hours"></span>
-    <div class="smalltext">Часов</div>
-  </div>
-  <div>
-    <span class="minutes"></span>
-    <div class="smalltext">Минут</div>
-  </div>
-  <div>
-    <span class="seconds"></span>
-    <div class="smalltext">Секунд</div>
+<div class="row">
+  <div class="col-md-12">
+    <div id="{{id}}" class="countdown mx-auto d-flex justify-content-center {{color}}" [class.mini]="mini===true">
+      <div>
+        <span class="days"></span>
+        <div class="smalltext">Дней</div>
+      </div>
+      <div>
+        <span class="hours"></span>
+        <div class="smalltext">Часов</div>
+      </div>
+      <div>
+        <span class="minutes"></span>
+        <div class="smalltext">Минут</div>
+      </div>
+      <div>
+        <span class="seconds"></span>
+        <div class="smalltext">Секунд</div>
+      </div>
+    </div>
   </div>
 </div>

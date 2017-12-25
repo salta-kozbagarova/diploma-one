@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuctionService } from '../_services';
+import { Auction } from '../_models';
 
 @Component({
   selector: 'app-transport',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransportComponent implements OnInit {
 
-  constructor() { }
+  transports: Auction[];
+
+  constructor(private auctionService: AuctionService) { }
 
   ngOnInit() {
+    this.getTransports();
   }
-
+  getTransports(){
+    this.auctionService.getTransports().subscribe(data => this.transports = data);
+  }
 }

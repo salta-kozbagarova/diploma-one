@@ -7,8 +7,8 @@
         <div class="sort-block">
             <div class="row">
                 <div class="col-md-8">
-                    <span class="sort-text">Дата торгов</span>
-                    <span class="sort-text">Цена</span>
+                    <span class="sort-text">Дата торгов <i class="fa fa-arrows-v text-primary" aria-hidden="true"></i></span>
+                    <span class="sort-text">Цена <i class="fa fa-arrows-v text-primary" aria-hidden="true"></i></span>
                 </div>
                 <div class="col-md-4">
                     <div class="input-group input-group-sm d-sm-flex">
@@ -23,46 +23,51 @@
     </div>
 </div>
 
-<div class="row my-1">
+<div class="row my-1" *ngFor="let transport of transports">
     <div class="col-md-12">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Special title treatment</h4>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row my-1">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Special title treatment</h4>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row my-1">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Special title treatment</h4>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row my-1">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Special title treatment</h4>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div class="card list-card">
+            <div class="row">
+                <div class="col-md-2 d-flex justify-content-center align-items-center">
+                    <img class="card-img-top" src="data:image/jpeg;base64,{{transport.image}}" alt="Card image cap">
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body"> 
+                        <a class="card-title mb-0">{{transport.name}}</a>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card-text">
+                                    <i class="fa fa-map-marker text-primary" aria-hidden="true"></i> Казахстан, Астана, район Сарыарка
+                                </div>
+                                <div class="card-text">
+                                    <i class="fa fa-calendar text-primary" aria-hidden="true"></i> Дата начала торгов: {{transport.createdAt}}
+                                </div>
+                                <div class="card-text">
+                                    <i class="fa fa-calendar text-primary" aria-hidden="true"></i> Дата окончания торгов: {{transport.endDate}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-text">
+                                    <i class="fa fa-users text-primary" aria-hidden="true"></i> Количество участников: {{transport.participantsCount}}
+                                </div>
+                                <div class="card-text">
+                                    <i class="fa fa-phone text-primary" aria-hidden="true"></i> +77758451414
+                                </div>
+                                <div class="card-text">
+                                    <i class="fa fa-eye text-primary" aria-hidden="true"></i> Просмотрено: {{transport.seen}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 third-col">
+                    <div class="card-body">
+                        <div class="card-text"><i class="fa fa-arrow-up text-primary" aria-hidden="true"></i>Аукцион {{transport.auctionType.name}}</div>
+                        <div class="card-text"><span class="icon-kzt"></span>Текущая цена: <b>{{transport.currentPrice}}₸</b></div>
+                        <app-countdown [deadline]="transport.endDate" [id]="transport.id" [mini]="true" [color]="'green'"></app-countdown>
+                        <a href="#" class="btn btn-sm btn-outline-primary mt-1">Перейти</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

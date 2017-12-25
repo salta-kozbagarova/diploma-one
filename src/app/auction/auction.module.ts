@@ -28,6 +28,6 @@ import { CategoriesComponent } from './categories/categories.component';
     AdBannerService
   ],
   bootstrap: [AuctionComponent],
-  exports: [AdBannerComponent]
+  exports: [AdBannerComponent, CountdownComponent]
 })
 export class AuctionModule { }

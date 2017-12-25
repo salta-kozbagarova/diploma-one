@@ -8,7 +8,8 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/materialize';
 import 'rxjs/add/operator/dematerialize';
 
-import{ Category, AdBanner, Auction, AuctionType, Car, ProductImage } from '../auction/_models';
+import{ Category, AdBanner, Auction, AuctionType, ProductImage } from '../auction/_models';
+import{ Car } from '../auction/transport/_models';
 import{ AuthUser } from '../_models';
 
 @Injectable()
@@ -39,7 +40,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         ];
 
         let transportCats: Category[] = [
-            {id: 7, name: 'Легковые с пробегом', image: 'car-old.svg', link: 'cars', parentId: 1, subcategories: null, createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false },
+            {id: 7, name: 'Легковые с пробегом', image: 'car-old.svg', link: 'used-cars', parentId: 1, subcategories: null, createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false },
             {id: 8, name: 'Легковые новые', image: 'car.svg', link: 'cars', parentId: 1, subcategories: null, createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false },
             {id: 9, name: 'Мототехника', image: 'motor-bike.svg', link: 'cars', parentId: 1, subcategories: null, createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false },
             {id: 10, name: 'Грузовые автомобили', image: 'truck.svg', link: 'cars', parentId: 1, subcategories: null, createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false },
@@ -54,7 +55,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             {id: 4, name: "smth", image: "ad9.jpg", createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false}
         ];
 
-        let carAuctions : Auction[] = [
+        let carAuctions : any[] = [
             {
                 id: 1,
                 endDate: '1515219700000',
@@ -89,14 +90,14 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                             name: 'Astana',
                             region: null
                         },
-                        createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false
+                        createdBy: users[0], updatedBy: users[0], createdAt: '1513769887000', updatedAt: '1513769887000', isActive: true, isDeleted: false
                     }
                 ],
-                seen: 15,
+                seen: 458,
                 participants: null,
-                participantsCount: 0,
+                participantsCount: 385,
                 comments: null,
-                createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false
+                createdBy: users[0], updatedBy: users[0], createdAt: '1513942687000', updatedAt: '1513942687000', isActive: true, isDeleted: false
             },
             {
                 id: 2,
@@ -132,14 +133,14 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                             name: 'Astana',
                             region: null
                         },
-                        createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false
+                        createdBy: users[0], updatedBy: users[0], createdAt: '1513942687000', updatedAt: '1513942687000', isActive: true, isDeleted: false
                     }
                 ],
                 seen: 15,
                 participants: null,
                 participantsCount: 0,
                 comments: null,
-                createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false
+                createdBy: users[0], updatedBy: users[0], createdAt: '1513942687000', updatedAt: '1513942687000', isActive: true, isDeleted: false
             },
             {
                 id: 3,
@@ -225,7 +226,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 participants: null,
                 participantsCount: 0,
                 comments: null,
-                createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false
+                createdBy: users[0], updatedBy: users[0], createdAt: '1513942687000', updatedAt: '1513942687000', isActive: true, isDeleted: false
             },
             {
                 id: 5,
@@ -268,7 +269,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 participants: null,
                 participantsCount: 0,
                 comments: null,
-                createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false
+                createdBy: users[0], updatedBy: users[0], createdAt: '1513942687000', updatedAt: '1513942687000', isActive: true, isDeleted: false
             },
             {
                 id: 6,
@@ -311,7 +312,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 participants: null,
                 participantsCount: 0,
                 comments: null,
-                createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false
+                createdBy: users[0], updatedBy: users[0], createdAt: '1513942687000', updatedAt: '1513942687000', isActive: true, isDeleted: false
             }
         ];
  
@@ -410,11 +411,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 }
             }
 
-            if (request.url.endsWith('/api/auction/cars') && request.method === 'POST') {
-                // get parameters from post request
-                return Observable.of(new HttpResponse({ status: 200, body: carAuctions }));
-            }
-
             if (request.url.endsWith('/api/auction/categories') && request.method === 'GET') {
                 // check user credentials and return fake jwt token if valid
                 return Observable.of(new HttpResponse({ status: 200, body: categories }));
@@ -434,7 +430,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 }
                 // let matchedUsers = users.filter(user => { return user.id === id; });
                 // let user = matchedUsers.length ? matchedUsers[0] : null;
-                console.log('in backend ' + id);
                 return Observable.of(new HttpResponse({ status: 200, body: transportCats }));
             }
 
@@ -445,6 +440,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
             if (request.url.endsWith('/api/auction/top') && request.method === 'GET') {
                 // get parameters from post request
+                return Observable.of(new HttpResponse({ status: 200, body: carAuctions }));
+            }
+            
+            if (request.url.endsWith('/api/auction/transports') && request.method === 'GET') {
+                // get parameters from post request
+                console.log('request for transport back');
                 return Observable.of(new HttpResponse({ status: 200, body: carAuctions }));
             }
  

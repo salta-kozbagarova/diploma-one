@@ -24,6 +24,27 @@ export class Auction implements Model {
     isActive: boolean;
     isDeleted: boolean;
 
+    public constructor(id, endDate, auctionType, startPrice, currencySign, name, image, products, seen, participants,
+                            participantsCount, comments, createdBy, updatedBy, createdAt, updatedAt){
+        
+    }
+
+    getFormattedDate?(date: string): string{
+        var d = new Date(date);
+        var year = d.getFullYear();
+        var month = d.getMonth().toString();
+        month = month.length == 1 ? '0' + month : month;
+        var day = d.getDate().toString();
+        day = day.length == 1 ? '0' + day : day;
+        var h = d.getHours().toString();
+        h = h.length == 1 ? '0' + h : h;
+        var m = d.getMinutes().toString();
+        m = m.length == 1 ? '0' + m : m;
+        var s = d.getSeconds().toString();
+        s = s.length == 1 ? '0' + s : s;
+        return year + '.' + month + '.' + day + ' ' + h + ':' + m + ':' + s;
+    }
+
     // get startPrice(): string{
     //     return this._startPrice + environment.currencySign;
     // }
@@ -39,4 +60,9 @@ export class Auction implements Model {
     // set currentPrice(currentPrice: string){
     //     this._currentPrice = currentPrice;
     // }
+
+    static fromJson(json: string){
+        var obj = JSON.parse(json);
+        return new Auction()
+    }
 }

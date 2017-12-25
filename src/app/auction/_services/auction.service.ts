@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs/observable/of';
-import { Category, Car, Auction } from '../_models';
+import { Category, Auction } from '../_models';
+import { Car } from '../transport/_models';
 import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable()
@@ -28,11 +29,11 @@ export class AuctionService {
         );
   }
 
-  getCars(): Observable<Auction[]> {
-    return this.http.get<Auction[]>(this.auctionUrl+'/cars')
+  getTransports(): Observable<Auction[]> {
+    return this.http.get<Auction[]>(this.auctionUrl+'/transports')
         .pipe(
-          tap(heroes => this.log(`fetched cars`)),
-          catchError(this.handleError('getCars', []))
+          tap(heroes => this.log(`fetched transports`)),
+          catchError(this.handleError('getTransports', []))
         );
   }
 

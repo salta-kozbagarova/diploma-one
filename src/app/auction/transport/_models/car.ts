@@ -1,8 +1,8 @@
-import { Product } from "../_interfaces";
-import { ProductImage } from "./index";
-import { Country, Region, City, User } from "../../_models";
+import { Transport } from "../_interfaces";
+import { ProductImage } from "../../_models";
+import { Country, Region, City, User } from "../../../_models";
 
-export class Car implements Product {
+export class Car implements Transport {
     id: number;
     name: string;
     description: string;

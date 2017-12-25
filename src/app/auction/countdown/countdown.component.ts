@@ -9,7 +9,8 @@ export class CountdownComponent implements OnInit, AfterViewInit {
 
   @Input() deadline: string;
   @Input() id: string;
-  
+  @Input() color: string;
+  @Input() mini: boolean;
   constructor() { }
 
   ngOnInit() {
