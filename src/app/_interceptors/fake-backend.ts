@@ -20,9 +20,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // array in local storage for registered users
         let users: any[] = [
-            { username: 'test', password: 'test', firstName: 'Test', lastName: 'User', login: 'test' }
+            { id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User', login: 'test', roles: 'admin', phonenumbers: [{user_id: 1, phone: '+77751112233', is_main: true}] }
         ];
-        let categories: Category[] = [
+        let categories: any[] = [
             {id: 1, name: 'Транспорт', image: 'car.png', link: 'transports', parentId: null,
                 subcategories: [
                     {id: 7, name: 'Легковые с пробегом', image: 'car.png', link: 'cars', parentId: 1, subcategories: null, createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false },
@@ -39,7 +39,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             {id: 6, name: 'Прочее', image: 'other.jpg', link: 'other', parentId: null, subcategories: null, createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false }
         ];
 
-        let transportCats: Category[] = [
+        let transportCats: any[] = [
             {id: 7, name: 'Легковые с пробегом', image: 'car-old.svg', link: 'used-cars', parentId: 1, subcategories: null, createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false },
             {id: 8, name: 'Легковые новые', image: 'car.svg', link: 'cars', parentId: 1, subcategories: null, createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false },
             {id: 9, name: 'Мототехника', image: 'motor-bike.svg', link: 'cars', parentId: 1, subcategories: null, createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false },
@@ -48,7 +48,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             {id: 12, name: 'Прочий транспорт', image: 'loader.svg', link: 'cars', parentId: 1, subcategories: null, createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false }
         ]
 
-        let adBanners: AdBanner[] = [
+        let adBanners: any[] = [
             {id: 1, name: "smth", image: "ad6.jpeg", createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false},
             {id: 2, name: "smth", image: "ad7.jpeg", createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false},
             {id: 3, name: "smth", image: "ad8.jpeg", createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false},
@@ -74,22 +74,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                         name: 'Mercedes benz S class 350',
                         description: 'good car',
                         images: null,
-                        country: {
-                            id: 1,
-                            name: 'Kazakhstan',
-                            regions: null
-                        },
-                        region: {
-                            id: 1,
-                            name: '',
-                            country: null,
-                            cities: null
-                        },
-                        city: {
-                            id: 1,
-                            name: 'Astana',
-                            region: null
-                        },
                         createdBy: users[0], updatedBy: users[0], createdAt: '1513769887000', updatedAt: '1513769887000', isActive: true, isDeleted: false
                     }
                 ],
@@ -97,6 +81,22 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 participants: null,
                 participantsCount: 385,
                 comments: null,
+                country: {
+                    id: 1,
+                    name: 'Казахстан',
+                    regions: null
+                },
+                region: {
+                    id: 1,
+                    name: 'Акмолинская область',
+                    country: null,
+                    cities: null
+                },
+                city: {
+                    id: 1,
+                    name: 'Астана',
+                    region: null
+                },
                 createdBy: users[0], updatedBy: users[0], createdAt: '1513942687000', updatedAt: '1513942687000', isActive: true, isDeleted: false
             },
             {
@@ -117,22 +117,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                         name: 'Audi A3',
                         description: 'good car',
                         images: null,
-                        country: {
-                            id: 1,
-                            name: 'Kazakhstan',
-                            regions: null
-                        },
-                        region: {
-                            id: 1,
-                            name: '',
-                            country: null,
-                            cities: null
-                        },
-                        city: {
-                            id: 1,
-                            name: 'Astana',
-                            region: null
-                        },
                         createdBy: users[0], updatedBy: users[0], createdAt: '1513942687000', updatedAt: '1513942687000', isActive: true, isDeleted: false
                     }
                 ],
@@ -140,6 +124,22 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 participants: null,
                 participantsCount: 0,
                 comments: null,
+                country: {
+                    id: 1,
+                    name: 'Казахстан',
+                    regions: null
+                },
+                region: {
+                    id: 1,
+                    name: 'Акмолинская область',
+                    country: null,
+                    cities: null
+                },
+                city: {
+                    id: 1,
+                    name: 'Астана',
+                    region: null
+                },
                 createdBy: users[0], updatedBy: users[0], createdAt: '1513942687000', updatedAt: '1513942687000', isActive: true, isDeleted: false
             },
             {
@@ -160,22 +160,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                         name: 'Волга 21',
                         description: 'good car',
                         images: null,
-                        country: {
-                            id: 1,
-                            name: 'Kazakhstan',
-                            regions: null
-                        },
-                        region: {
-                            id: 1,
-                            name: '',
-                            country: null,
-                            cities: null
-                        },
-                        city: {
-                            id: 1,
-                            name: 'Astana',
-                            region: null
-                        },
                         createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false
                     }
                 ],
@@ -183,6 +167,22 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 participants: null,
                 participantsCount: 0,
                 comments: null,
+                country: {
+                    id: 1,
+                    name: 'Kazakhstan',
+                    regions: null
+                },
+                region: {
+                    id: 1,
+                    name: '',
+                    country: null,
+                    cities: null
+                },
+                city: {
+                    id: 1,
+                    name: 'Astana',
+                    region: null
+                },
                 createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false
             },
             {
@@ -203,22 +203,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                         name: 'Renault Captur',
                         description: 'good car',
                         images: null,
-                        country: {
-                            id: 1,
-                            name: 'Kazakhstan',
-                            regions: null
-                        },
-                        region: {
-                            id: 1,
-                            name: '',
-                            country: null,
-                            cities: null
-                        },
-                        city: {
-                            id: 1,
-                            name: 'Astana',
-                            region: null
-                        },
                         createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false
                     }
                 ],
@@ -226,6 +210,22 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 participants: null,
                 participantsCount: 0,
                 comments: null,
+                country: {
+                    id: 1,
+                    name: 'Kazakhstan',
+                    regions: null
+                },
+                region: {
+                    id: 1,
+                    name: '',
+                    country: null,
+                    cities: null
+                },
+                city: {
+                    id: 1,
+                    name: 'Astana',
+                    region: null
+                },
                 createdBy: users[0], updatedBy: users[0], createdAt: '1513942687000', updatedAt: '1513942687000', isActive: true, isDeleted: false
             },
             {
@@ -246,22 +246,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                         name: 'Волга 21',
                         description: 'good car',
                         images: null,
-                        country: {
-                            id: 1,
-                            name: 'Kazakhstan',
-                            regions: null
-                        },
-                        region: {
-                            id: 1,
-                            name: '',
-                            country: null,
-                            cities: null
-                        },
-                        city: {
-                            id: 1,
-                            name: 'Astana',
-                            region: null
-                        },
                         createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false
                     }
                 ],
@@ -269,6 +253,22 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 participants: null,
                 participantsCount: 0,
                 comments: null,
+                country: {
+                    id: 1,
+                    name: 'Казахстан',
+                    regions: null
+                },
+                region: {
+                    id: 1,
+                    name: 'Акмолинская область',
+                    country: null,
+                    cities: null
+                },
+                city: {
+                    id: 1,
+                    name: 'Астана',
+                    region: null
+                },
                 createdBy: users[0], updatedBy: users[0], createdAt: '1513942687000', updatedAt: '1513942687000', isActive: true, isDeleted: false
             },
             {
@@ -289,22 +289,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                         name: 'Renault Captur',
                         description: 'good car',
                         images: null,
-                        country: {
-                            id: 1,
-                            name: 'Kazakhstan',
-                            regions: null
-                        },
-                        region: {
-                            id: 1,
-                            name: '',
-                            country: null,
-                            cities: null
-                        },
-                        city: {
-                            id: 1,
-                            name: 'Astana',
-                            region: null
-                        },
                         createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false
                     }
                 ],
@@ -312,6 +296,22 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 participants: null,
                 participantsCount: 0,
                 comments: null,
+                country: {
+                    id: 1,
+                    name: 'Казахстан',
+                    regions: null
+                },
+                region: {
+                    id: 1,
+                    name: 'Акмолинская область',
+                    country: null,
+                    cities: null
+                },
+                city: {
+                    id: 1,
+                    name: 'Астана',
+                    region: null
+                },
                 createdBy: users[0], updatedBy: users[0], createdAt: '1513942687000', updatedAt: '1513942687000', isActive: true, isDeleted: false
             }
         ];

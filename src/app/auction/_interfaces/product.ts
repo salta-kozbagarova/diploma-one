@@ -1,18 +1,10 @@
-import { User, Country, Region, City } from "../../_models";
+import { User } from "../../_models";
 import { ProductImage } from "../_models";
+import { Model } from "../../_interfaces";
 
-export interface Product {
+export interface Product extends Model {
     id: number;
     name: string;
     description: string;
     images: ProductImage[];
-    country: Country;
-    region: Region;
-    city: City;
-    createdBy: User;
-    updatedBy: User;
-    createdAt: string;
-    updatedAt: string;
-    isActive: boolean;
-    isDeleted: boolean;
 }

@@ -37,13 +37,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="card-text">
-                                    <i class="fa fa-map-marker text-primary" aria-hidden="true"></i> Казахстан, Астана, район Сарыарка
+                                    <i class="fa fa-map-marker text-primary" aria-hidden="true"></i> {{transport.country.name}}, {{transport.region.name}}, {{transport.city.name}}
                                 </div>
                                 <div class="card-text">
-                                    <i class="fa fa-calendar text-primary" aria-hidden="true"></i> Дата начала торгов: {{transport.createdAt}}
+                                    <i class="fa fa-calendar text-primary" aria-hidden="true"></i> Дата начала торгов: {{transport.createdAt | date:'yyyy.MM.dd HH:mm'}}
                                 </div>
                                 <div class="card-text">
-                                    <i class="fa fa-calendar text-primary" aria-hidden="true"></i> Дата окончания торгов: {{transport.endDate}}
+                                    <i class="fa fa-calendar text-primary" aria-hidden="true"></i> Дата окончания торгов: {{transport.endDate | date:'yyyy.MM.dd HH:mm'}}
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -51,7 +51,7 @@
                                     <i class="fa fa-users text-primary" aria-hidden="true"></i> Количество участников: {{transport.participantsCount}}
                                 </div>
                                 <div class="card-text">
-                                    <i class="fa fa-phone text-primary" aria-hidden="true"></i> +77758451414
+                                    <i class="fa fa-phone text-primary" aria-hidden="true"></i> {{transport.author}}
                                 </div>
                                 <div class="card-text">
                                     <i class="fa fa-eye text-primary" aria-hidden="true"></i> Просмотрено: {{transport.seen}}
