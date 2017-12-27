@@ -15,34 +15,18 @@ export class AuctionService {
 
   getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.auctionUrl+'/categories')
-        .pipe(
-          tap(heroes => this.log(`fetched categories`)),
-          catchError(this.handleError('getCategories', []))
-        );
-  }
-
-  getSubcategoriesFor(category: Category): Observable<Category[]> {
-    return this.http.get<Category[]>(this.auctionUrl+'/categories?parent='+category.id)
-        .pipe(
-          tap(heroes => this.log(`fetched categories for ` + category.name)),
-          catchError(this.handleError('getSubcategoriesFor', []))
-        );
-  }
-
-  getTransports(): Observable<Auction[]> {
-    return this.http.get<Auction[]>(this.auctionUrl+'/transports')
-        .pipe(
-          tap(heroes => this.log(`fetched transports`)),
-          catchError(this.handleError('getTransports', []))
-        );
+      .pipe(
+        tap(heroes => this.log(`fetched categories`)),
+        catchError(this.handleError('getCategories', []))
+      );
   }
 
   getTop(): Observable<Auction[]> {
     return this.http.get<Auction[]>(this.auctionUrl+'/top')
-        .pipe(
-          tap(heroes => this.log(`fetched top`)),
-          catchError(this.handleError('getTop', []))
-        );
+      .pipe(
+        tap(heroes => this.log(`fetched top`)),
+        catchError(this.handleError('getTop', []))
+      );
   }
 
   /** Log a HeroService message with the MessageService */

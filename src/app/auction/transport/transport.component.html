@@ -7,12 +7,12 @@
         <div class="sort-block">
             <div class="row">
                 <div class="col-md-8">
-                    <span class="sort-text">Дата торгов <i class="fa fa-arrows-v text-primary" aria-hidden="true"></i></span>
-                    <span class="sort-text">Цена <i class="fa fa-arrows-v text-primary" aria-hidden="true"></i></span>
+                    <span class="sort-text" (click)="sortParam='date'">Дата торгов <i class="fa fa-arrows-v text-primary" aria-hidden="true"></i></span>
+                    <span class="sort-text" (click)="sortParam='price'">Цена <i class="fa fa-arrows-v text-primary" aria-hidden="true"></i></span>
                 </div>
                 <div class="col-md-4">
                     <div class="input-group input-group-sm d-sm-flex">
-                        <input type="text" id="search" class="form-control" placeholder="Искать в торгах..." aria-label="Искать в торгах...">
+                        <input type="text" #searchBox id="search" class="form-control" (keyup)="search(searchBox.value)" placeholder="Искать в торгах..." aria-label="Искать в торгах...">
                         <span class="input-group-btn">
                             <button class="btn btn-primary" type="button">Найти</button>
                         </span>
@@ -23,7 +23,7 @@
     </div>
 </div>
 
-<div class="row my-1" *ngFor="let transport of transports">
+<div class="row my-1" *ngFor="let transport of transports | sort:sortParam">
     <div class="col-md-12">
         <div class="card list-card">
             <div class="row">

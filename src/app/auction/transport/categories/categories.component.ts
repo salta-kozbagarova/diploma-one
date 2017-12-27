@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { AuctionService } from '../../_services';
+import { TransportService } from '../_services';
 import { Category } from '../../_models';
 
 declare var $:any;
@@ -12,16 +12,14 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
 
   categories: Category[];
 
-  testCat: Category = {id: 1, name: 'Транспорт', image: 'car.png', link: 'transports', parentId: null, subcategories: null, createdBy: null, updatedBy: null, createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false};
-
-  constructor(private auctionService: AuctionService) { }
+  constructor(private transportService: TransportService) { }
 
   ngOnInit() {
     this.getCategories();
   }
 
   getCategories(){
-    this.auctionService.getSubcategoriesFor(this.testCat).subscribe(categories => this.categories = categories);
+    this.transportService.getCategories().subscribe(categories => this.categories = categories);
   }
 
   ngAfterViewInit() {
