@@ -4,19 +4,18 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class SortPipe implements PipeTransform {
     private asc: boolean;
     constructor(){
-        this.asc = false;
         console.log('construct');
     }
 
-    transform(objects: any[], arg: string): any {
+    transform(objects: any[], param: string, asc: boolean): any {
         if(objects){
-            if(arg == 'date'){
+            if(param == 'date'){
                 objects = objects.sort((a, b) => {return (a.endDate > b.endDate) ? 1 : (a.endDate < b.endDate ? -1 : 0)});
-                this.asc = !this.asc;
+                this.asc = asc;
                 return this.asc ? objects : objects.reverse();
-            } else if(arg == 'price'){
+            } else if(param == 'price'){
                 objects.sort((a, b) => {return (a.currentPrice > b.currentPrice) ? 1 : 0});
-                this.asc = !this.asc;
+                this.asc = asc;
                 return this.asc ? objects : objects.reverse();
             }
         }

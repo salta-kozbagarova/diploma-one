@@ -14,6 +14,7 @@ export class TransportComponent implements OnInit {
   transports: Auction[];
   private searchTerms = new Subject<string>();
   sortParam: string;
+  sortAsc = false;
 
   constructor(private transportService: TransportService) { }
 
@@ -34,5 +35,14 @@ export class TransportComponent implements OnInit {
 
   getTransports(){
     this.transportService.getTransports().subscribe(data => this.transports = data);
+  }
+
+  sort(param: string){
+    if(this.sortParam !== param){
+      this.sortAsc = true;
+    } else{
+      this.sortAsc = this.sortAsc !== null ? !this.sortAsc : false;
+    }
+    this.sortParam = param;
   }
 }
