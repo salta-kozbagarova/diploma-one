@@ -1,4 +1,4 @@
-import { AuctionType, AuctionComment } from "./index";
+import { AuctionType, AuctionComment, Category } from "./index";
 import { Product } from "../_interfaces";
 import { Model } from "../../_interfaces";
 import { User, Country, Region, City } from "../../_models";
@@ -17,6 +17,7 @@ export class Auction implements Model {
     participants: User[];
     participantsCount: number;
     comments: AuctionComment[];
+    category: Category;
     country: Country;
     region: Region;
     city: City;
@@ -29,6 +30,10 @@ export class Auction implements Model {
 
     get author(): User{
         return this.createdBy;
+    }
+
+    hasPhoto(): boolean{
+        return this.image !== null;
     }
 
     // getFormattedDate?(date: string): string{

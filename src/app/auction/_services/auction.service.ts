@@ -29,6 +29,14 @@ export class AuctionService {
       );
   }
 
+  getByParams(options: {}): Observable<Auction[]> {
+    return this.http.get<Auction[]>(this.auctionUrl, options)
+      .pipe(
+        tap(heroes => this.log(`fetched top`)),
+        catchError(this.handleError('getTop', []))
+      );
+  }
+
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
     console.log('AuctionService: ' + message);

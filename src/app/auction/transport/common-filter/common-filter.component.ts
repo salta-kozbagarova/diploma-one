@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 
-declare var $: any;
+declare var $:any;
 @Component({
   selector: 'app-common-filter',
   templateUrl: './common-filter.component.html',
@@ -8,21 +8,25 @@ declare var $: any;
 })
 export class CommonFilterComponent implements OnInit, AfterViewInit {
 
+  resultCount: number;
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(){
     $(document).ready(function(){
-      $('.span2').slider({
-        min: 5000,
-        max: 80000000,
-        step: 100,
-        value: [750000, 5500000],
-        selection: 'before',
-        tooltip: 'show'
+      $('.priceFilter').slider({
+        min: 0,
+        max: 85000000,
+        step: 10000,
+        value: [0,85000000]
       });
     });
+  }
+
+  showResult(){
+    console.log('this is result');
   }
 }

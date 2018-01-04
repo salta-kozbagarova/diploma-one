@@ -3,9 +3,86 @@
     <div class="card mt-1">
       <div class="card-body">
         <div class="row">
-          <div class="col-md-12">
-            Here's the place for some common filters
-            <input type="text" class="span2">
+          <div class="col-md-4">
+            <div class="input-group input-group-sm mb-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id=""><i class="fa fa-search text-primary" aria-hidden="true"></i></span>
+              </div>
+              <input type="text" class="form-control" placeholder="Поиск по тексту">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group input-group-sm mb-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id=""><i class="fa fa-map-marker text-primary" aria-hidden="true" style="font-size:19px;font-weight:bold;"></i></span>
+              </div>
+              <select class="custom-select custom-select-sm col-md-8" id="location">
+                <option selected>Весь Казахстан</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+              <select class="custom-select custom-select-sm col-md-4" id="radius">
+                <option selected>+ 0 км</option>
+                <option value="1">+ 5 км</option>
+                <option value="2">+ 10 км</option>
+                <option value="3">+ 30 км</option>
+                <option value="1">+ 50 км</option>
+                <option value="2">+ 80 км</option>
+                <option value="3">+ 100 км</option>
+                <option value="3">+ 200 км</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group input-group-sm mb-2">
+              <select class="custom-select custom-select-sm" id="category">
+                <option selected>Транспорт</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+              <select class="custom-select custom-select-sm" id="subcategory">
+                <option selected>Все</option>
+                <option value="1">+ 5 км</option>
+                <option value="2">+ 10 км</option>
+                <option value="3">+ 30 км</option>
+                <option value="1">+ 50 км</option>
+                <option value="2">+ 80 км</option>
+                <option value="3">+ 100 км</option>
+                <option value="3">+ 200 км</option>
+              </select>
+              <div class="input-group-append">
+                <span class="input-group-text" id=""><i class="fa fa-bars text-primary" aria-hidden="true"></i></span>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <input type="text" class="priceFilter">
+          </div>
+          <div class="col-md-2">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="photo">
+              <label class="custom-control-label" for="photo">Только с фото</label>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="searchmore">
+              <label class="custom-control-label" for="searchmore">Искать в заголовке и в описании</label>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-1">
+          <div class="col-auto ml-auto">
+            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-outline-danger">Сбросить</button>
+              <button *ngIf="resultCount > 0; else nothingFound" type="button" class="btn btn-outline-primary" (click)="showResult();">Показать</button>
+              <ng-template #nothingFound><button type="button" class="btn btn-outline-info" (click)="showResult();">Ничего не найдено</button></ng-template>
+            </div>
           </div>
         </div>
       </div>

@@ -12,10 +12,10 @@
                 </div>
                 <div class="col-md-4">
                     <div class="input-group input-group-sm d-sm-flex">
-                        <input type="text" #searchBox id="search" class="form-control" (keyup)="search(searchBox.value)" placeholder="Искать в торгах..." aria-label="Искать в торгах...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-primary" type="button">Найти</button>
-                        </span>
+                        <input type="text" #searchBox id="search" class="form-control form-control-sm" (keyup)="search(searchBox.value)" placeholder="Искать в торгах..." aria-label="Искать в торгах...">
+                        <div class="input-group-append">
+                            <button class="btn btn-sm btn-primary" type="button">Найти</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -62,10 +62,26 @@
                 </div>
                 <div class="col-md-3 third-col">
                     <div class="card-body">
-                        <div class="card-text"><i class="fa fa-arrow-up text-primary" aria-hidden="true"></i>Аукцион {{transport.auctionType.name}}</div>
-                        <div class="card-text"><span class="icon-kzt"></span>Текущая цена: <b>{{transport.currentPrice}}₸</b></div>
-                        <app-countdown [deadline]="transport.endDate" [id]="transport.id" [mini]="true" [color]="'green'"></app-countdown>
-                        <a href="#" class="btn btn-sm btn-outline-primary mt-1">Перейти</a>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card-text"><i class="fa fa-arrow-up text-primary" aria-hidden="true"></i>Аукцион {{transport.auctionType.name}}</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card-text"><span class="icon-kzt"></span>Текущая цена: <b>{{transport.currentPrice}}₸</b></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <app-countdown [deadline]="transport.endDate" [id]="transport.id" [mini]="true" [color]="'green'"></app-countdown>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto ml-auto">
+                                <a href="#" class="btn btn-sm btn-outline-primary mt-1">Перейти</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
