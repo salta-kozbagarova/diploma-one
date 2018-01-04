@@ -12,7 +12,7 @@ import { LoginComponent } from './login/login.component';
 
 import { routing }        from './app.routing';
 import { AuthGuard } from './_guards';
-import { AuthenticationService, UserService } from './_services';
+import { AuthenticationService, UserService, AddressService } from './_services';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdminComponent } from './admin/admin.component';
@@ -47,7 +47,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
       multi: true
     },
     // providers used to create fake backend
-    fakeBackendProvider
+    fakeBackendProvider,
+    AddressService
   ],
   bootstrap: [AppComponent]
 })

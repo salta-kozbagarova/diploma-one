@@ -342,6 +342,221 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 createdBy: users[0], updatedBy: users[0], createdAt: '1513942687000', updatedAt: '1513942687000', isActive: true, isDeleted: false
             }
         ];
+
+        let addresses: any = {
+            countries: [
+                {
+                    id: 1,
+                    name: 'Казахстан',
+                    regions: [
+                        {
+                            id: 2,
+                            name: 'Акмолинская область',
+                            cities: [
+                                {
+                                    id: 16,
+                                    name: 'Астана'
+                                },
+                                {
+                                    id: 17,
+                                    name: 'Кокшетау'
+                                },
+                                {
+                                    id: 18,
+                                    name: 'Степногорск'
+                                },
+                                {
+                                    id: 19,
+                                    name: 'Акколь'
+                                },
+                                {
+                                    id: 20,
+                                    name: 'Аршалы'
+                                },
+                                {
+                                    id: 21,
+                                    name: 'Астраханка'
+                                },
+                                {
+                                    id: 22,
+                                    name: 'Атбасар'
+                                },
+                                {
+                                    id: 23,
+                                    name: 'Макинск'
+                                },
+                                {
+                                    id: 24,
+                                    name: 'Щучинск'
+                                },
+                                {
+                                    id: 25,
+                                    name: 'Егиндыколь'
+                                },
+                                {
+                                    id: 26,
+                                    name: 'Степняк'
+                                },
+                                {
+                                    id: 27,
+                                    name: 'Ерейментау'
+                                },
+                                {
+                                    id: 28,
+                                    name: 'Есиль'
+                                },
+                                {
+                                    id: 29,
+                                    name: 'Жаксы'
+                                },
+                                {
+                                    id: 30,
+                                    name: 'Державинск'
+                                },
+                                {
+                                    id: 31,
+                                    name: 'Зеренда'
+                                },
+                                {
+                                    id: 32,
+                                    name: 'Коргалжын'
+                                },
+                                {
+                                    id: 33,
+                                    name: 'Балкашино'
+                                },
+                                {
+                                    id: 34,
+                                    name: 'Акмол'
+                                },
+                                {
+                                    id: 35,
+                                    name: 'Шортанды'
+                                }
+                            ]
+                        },
+                        {
+                            id: 3,
+                            name: 'Актюбинская область',
+                            cities: [
+                                {
+                                    id: 36,
+                                    name: 'Актобе'
+                                },
+                                {
+                                    id: 37,
+                                    name: 'Алга'
+                                },
+                                {
+                                    id: 38,
+                                    name: 'Жем'
+                                },
+                                {
+                                    id: 39,
+                                    name: 'Кандыагаш'
+                                },
+                                {
+                                    id: 40,
+                                    name: 'Темир'
+                                },
+                                {
+                                    id: 41,
+                                    name: 'Хромтау'
+                                },
+                                {
+                                    id: 42,
+                                    name: 'Шалкар'
+                                },
+                                {
+                                    id: 43,
+                                    name: 'Эмба'
+                                },
+                                {
+                                    id: 44,
+                                    name: 'Комсомольское'
+                                },
+                                {
+                                    id: 45,
+                                    name: 'Карауылкельды'
+                                },
+                                {
+                                    id: 46,
+                                    name: 'Иргиз'
+                                },
+                                {
+                                    id: 47,
+                                    name: 'Бадамша'
+                                },
+                                {
+                                    id: 48,
+                                    name: 'Мартук'
+                                },
+                                {
+                                    id: 49,
+                                    name: 'Уил'
+                                },
+                                {
+                                    id: 50,
+                                    name: 'Шубаркудук'
+                                },
+                                {
+                                    id: 51,
+                                    name: 'Кобда'
+                                }
+                            ]
+                        },
+                        {
+                            id: 4,
+                            name: 'Алматинская область'
+                        },
+                        {
+                            id: 5,
+                            name: 'Атырауская область'
+                        },
+                        {
+                            id: 6,
+                            name: 'Восточно-Казахстанская область'
+                        },
+                        {
+                            id: 7,
+                            name: 'Жамбылская область'
+                        },
+                        {
+                            id: 8,
+                            name: 'Западно-Казахстанская область'
+                        },
+                        {
+                            id: 9,
+                            name: 'Карагандинская область'
+                        },
+                        {
+                            id: 10,
+                            name: 'Костанайская область'
+                        },
+                        {
+                            id: 11,
+                            name: 'Кызылординская область'
+                        },
+                        {
+                            id: 12,
+                            name: 'Мангистауская область'
+                        },
+                        {
+                            id: 13,
+                            name: 'Павлодарская область'
+                        },
+                        {
+                            id: 14,
+                            name: 'Северо-Казахстанская область'
+                        },
+                        {
+                            id: 15,
+                            name: 'Южно-Казахстанская область'
+                        }
+                    ]
+                }
+            ]
+        };
  
         // wrap in delayed observable to simulate server api call
         return Observable.of(null).mergeMap(() => {
@@ -476,8 +691,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                         });
                     }
                 });
-
                 return Observable.of(new HttpResponse({ status: 200, body: matched }));
+            }
+
+            if (request.url.endsWith('/api/address') && request.method === 'GET') {
+                // check for fake auth token in header and return users if valid, this security is implemented server side in a real application
+                return Observable.of(new HttpResponse({ status: 200, body: addresses }));
             }
  
             // pass through any requests not handled above
