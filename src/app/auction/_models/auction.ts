@@ -1,7 +1,7 @@
 import { AuctionType, AuctionComment, Category } from "./index";
 import { Product } from "../_interfaces";
 import { Model } from "../../_interfaces";
-import { User, Country, Region, City } from "../../_models";
+import { User } from "../../_models";
 import { environment } from "../../../environments/environment";
 
 export class Auction implements Model {
@@ -18,9 +18,6 @@ export class Auction implements Model {
     participantsCount: number;
     comments: AuctionComment[];
     category: Category;
-    country: Country;
-    region: Region;
-    city: City;
     createdBy: User;
     updatedBy: User;
     createdAt: string;

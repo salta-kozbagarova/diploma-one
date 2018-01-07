@@ -1,3 +1,4 @@
 export { AuthenticationService } from './authentication.service'
 export { UserService } from './user.service'
-export { AddressService } from './address.service'
+export { AdministrativeDivisionService } from './administrative-division.service'
+export { SearchRadiusService } from './search-radius.service'

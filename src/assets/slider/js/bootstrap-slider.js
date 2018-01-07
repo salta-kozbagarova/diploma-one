@@ -30,9 +30,9 @@
 						'</div>')
 							.insertBefore(this.element)
 							.append(this.element);
-		this.container = $('<div class="row"><div class="col-md-3"><input type="text" class="form-control form-control-sm slider-start-text"></div>'+
+		this.container = $('<div class="row"><div class="col-md-2">Цена: </div><div class="col-md-2"><input type="text" class="form-control form-control-sm slider-start-text"></div>'+
 						'<div class="col-md-6"><div class="picker"></div></div>'+
-						'<div class="col-md-3"><input type="text" class="form-control form-control-sm slider-end-text"></div>');
+						'<div class="col-md-2"><input type="text" class="form-control form-control-sm slider-end-text"></div>');
 		this.container.insertBefore(this.picker);
 		this.container.find('.picker').append(this.picker);
 		this.startInput = this.container.find('.slider-start-text');

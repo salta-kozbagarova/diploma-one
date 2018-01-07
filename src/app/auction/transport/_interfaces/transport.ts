@@ -1,4 +1,4 @@
-// import { User, Country, Region, City } from "../../../_models";
+// import { User } from "../../../_models";
 // import { ProductImage } from "../../_models";
 import { Product } from "../../_interfaces";
 
@@ -7,9 +7,6 @@ export interface Transport extends Product {
     // name: string;
     // description: string;
     // images: ProductImage[];
-    // country: Country;
-    // region: Region;
-    // city: City;
     // createdBy: User;
     // updatedBy: User;
     // createdAt: string;

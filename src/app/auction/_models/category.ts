@@ -6,8 +6,9 @@ export class Category implements Model {
     name: string;
     image: string;
     link: string;
-    parentId: number;
+    parent_id: number;
     subcategories: Category[];
+    level: number;
     createdBy: User;
     updatedBy: User;
     createdAt: string;

@@ -4,6 +4,7 @@ import { Auction } from './index';
 
 export class AuctionComment implements Model {
     id:number;
+    auction_id: number;
     auction: Auction;
     createdBy: User;
     updatedBy: User;

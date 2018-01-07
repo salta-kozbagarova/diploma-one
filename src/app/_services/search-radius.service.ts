@@ -3,26 +3,26 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Address } from '../_models';
+import { SearchRadius } from '../_models';
 
 @Injectable()
-export class AddressService {
+export class SearchRadiusService {
 
-  private addressUrl = '/api/address';  // URL to web api
+  private searchRaduisUrl = '/api/search-radius';  // URL to web api
 
   constructor(private http: HttpClient) { }
 
-  getAddressHierarchy(): Observable<Address> {
-    return this.http.get<Address>(this.addressUrl)
+  getSearchRadiuses(): Observable<SearchRadius[]>{
+    return this.http.get<SearchRadius[]>(this.searchRaduisUrl)
       .pipe(
-        tap(address => this.log(`fetched addresses`)),
-        catchError(this.handleError('getAddressHierarchy', null))
+        tap(searchRadiuses => this.log(`fetched adm searchRadiuses`)),
+        catchError(this.handleError('getSearchRadiuses', []))
       );
   }
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
-    console.log('AddressService: ' + message);
+    console.log('SearchRadiusService: ' + message);
   }
 
   /**
@@ -44,4 +44,5 @@ export class AddressService {
       return of(result as T);
     };
   }
+
 }

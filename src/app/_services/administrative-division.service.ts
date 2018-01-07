@@ -2,36 +2,27 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs/observable/of';
-import { Auction } from '../_models';
-import { Car } from '../transport/_models';
 import { catchError, map, tap } from 'rxjs/operators';
+import { AdministrativeDivision } from '../_models';
 
 @Injectable()
-export class AuctionService {
+export class AdministrativeDivisionService {
 
-  private auctionUrl = '/api/auction';  // URL to web api
+  private admUrl = '/api/administrative-division';  // URL to web api
 
   constructor(private http: HttpClient) { }
 
-  getTop(): Observable<Auction[]> {
-    return this.http.get<Auction[]>(this.auctionUrl+'/top')
+  getAdmDivisions(): Observable<AdministrativeDivision[]> {
+    return this.http.get<AdministrativeDivision[]>(this.admUrl)
       .pipe(
-        tap(heroes => this.log(`fetched top`)),
-        catchError(this.handleError('getTop', []))
-      );
-  }
-
-  getByParams(options: {}): Observable<Auction[]> {
-    return this.http.get<Auction[]>(this.auctionUrl, options)
-      .pipe(
-        tap(heroes => this.log(`fetched top`)),
-        catchError(this.handleError('getTop', []))
+        tap(adms => this.log(`fetched adm divisions`)),
+        catchError(this.handleError('getAdmDivisions', []))
       );
   }
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
-    console.log('AuctionService: ' + message);
+    console.log('AdministrativeDivisionService: ' + message);
   }
 
   /**
@@ -53,4 +44,5 @@ export class AuctionService {
       return of(result as T);
     };
   }
+
 }

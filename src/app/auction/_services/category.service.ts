@@ -2,36 +2,27 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs/observable/of';
-import { Auction } from '../_models';
-import { Car } from '../transport/_models';
+import { Category } from '../_models';
 import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable()
-export class AuctionService {
+export class CategoryService {
 
-  private auctionUrl = '/api/auction';  // URL to web api
+  private categoryUrl = '/api/category';  // URL to web api
 
   constructor(private http: HttpClient) { }
 
-  getTop(): Observable<Auction[]> {
-    return this.http.get<Auction[]>(this.auctionUrl+'/top')
+  getCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(this.categoryUrl)
       .pipe(
-        tap(heroes => this.log(`fetched top`)),
-        catchError(this.handleError('getTop', []))
-      );
-  }
-
-  getByParams(options: {}): Observable<Auction[]> {
-    return this.http.get<Auction[]>(this.auctionUrl, options)
-      .pipe(
-        tap(heroes => this.log(`fetched top`)),
-        catchError(this.handleError('getTop', []))
+        tap(categories => this.log(`fetched categories`)),
+        catchError(this.handleError('getCategories', []))
       );
   }
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
-    console.log('AuctionService: ' + message);
+    console.log('CategoryService: ' + message);
   }
 
   /**
