@@ -13,12 +13,14 @@ import { OthersComponent } from './others/others.component';
 import { CarsComponent } from './cars/cars.component';
 import { SafeUrlPipe, SortPipe } from '../../_pipes';
 import { TransportService } from './_services';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     TransportRoutingModule,
-    AuctionModule
+    AuctionModule,
+    FormsModule
   ],
   declarations: [
     TransportComponent, CategoriesComponent, TrucksComponent, UsedCarsComponent, CommonFilterComponent,

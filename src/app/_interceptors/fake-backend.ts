@@ -136,22 +136,27 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 participants: null,
                 participantsCount: 385,
                 comments: null,
-                country: {
-                    id: 1,
-                    name: 'Казахстан',
-                    regions: null
-                },
-                region: {
-                    id: 1,
-                    name: 'Акмолинская область',
-                    country: null,
-                    cities: null
-                },
-                city: {
-                    id: 1,
-                    name: 'Астана',
-                    region: null
-                },
+                addresses: [
+                    {
+                        id: 1,
+                        name: 'Казахстан',
+                        parent_id: null,
+                        administrative_level_id: 1
+                    },
+                    {
+                        id: 2,
+                        name: 'Акмолинская область',
+                        parent_id: 1,
+                        administrative_level_id: 2
+                    },
+                    {
+                        id: 3,
+                        name: 'Астана',
+                        parent_id: 2,
+                        administrative_level_id: 3
+                    }
+                ],
+                full_address: 'Казахстан, Акмолинская область, Астана',
                 createdBy: users[0], updatedBy: users[0], createdAt: '1513942687000', updatedAt: '1513942687000', isActive: true, isDeleted: false
             },
             {
@@ -180,22 +185,27 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 participants: null,
                 participantsCount: 0,
                 comments: null,
-                country: {
-                    id: 1,
-                    name: 'Казахстан',
-                    regions: null
-                },
-                region: {
-                    id: 1,
-                    name: 'Акмолинская область',
-                    country: null,
-                    cities: null
-                },
-                city: {
-                    id: 1,
-                    name: 'Астана',
-                    region: null
-                },
+                addresses: [
+                    {
+                        id: 1,
+                        name: 'Казахстан',
+                        parent_id: null,
+                        administrative_level_id: 1
+                    },
+                    {
+                        id: 2,
+                        name: 'Акмолинская область',
+                        parent_id: 1,
+                        administrative_level_id: 2
+                    },
+                    {
+                        id: 3,
+                        name: 'Астана',
+                        parent_id: 2,
+                        administrative_level_id: 3
+                    }
+                ],
+                full_address: 'Казахстан, Акмолинская область, Астана',
                 createdBy: users[0], updatedBy: users[0], createdAt: '1513942687000', updatedAt: '1513942687000', isActive: true, isDeleted: false
             },
             {
@@ -224,22 +234,27 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 participants: null,
                 participantsCount: 0,
                 comments: null,
-                country: {
-                    id: 1,
-                    name: 'Kazakhstan',
-                    regions: null
-                },
-                region: {
-                    id: 1,
-                    name: '',
-                    country: null,
-                    cities: null
-                },
-                city: {
-                    id: 1,
-                    name: 'Astana',
-                    region: null
-                },
+                addresses: [
+                    {
+                        id: 1,
+                        name: 'Казахстан',
+                        parent_id: null,
+                        administrative_level_id: 1
+                    },
+                    {
+                        id: 2,
+                        name: 'Акмолинская область',
+                        parent_id: 1,
+                        administrative_level_id: 2
+                    },
+                    {
+                        id: 3,
+                        name: 'Астана',
+                        parent_id: 2,
+                        administrative_level_id: 3
+                    }
+                ],
+                full_address: 'Казахстан, Акмолинская область, Астана',
                 createdBy: users[0], updatedBy: users[0], createdAt: '20171218T1345', updatedAt: '20171218T1345', isActive: true, isDeleted: false
             },
             {
@@ -268,22 +283,27 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 participants: null,
                 participantsCount: 0,
                 comments: null,
-                country: {
-                    id: 1,
-                    name: 'Kazakhstan',
-                    regions: null
-                },
-                region: {
-                    id: 1,
-                    name: '',
-                    country: null,
-                    cities: null
-                },
-                city: {
-                    id: 1,
-                    name: 'Astana',
-                    region: null
-                },
+                addresses: [
+                    {
+                        id: 1,
+                        name: 'Казахстан',
+                        parent_id: null,
+                        administrative_level_id: 1
+                    },
+                    {
+                        id: 2,
+                        name: 'Акмолинская область',
+                        parent_id: 1,
+                        administrative_level_id: 2
+                    },
+                    {
+                        id: 3,
+                        name: 'Астана',
+                        parent_id: 2,
+                        administrative_level_id: 3
+                    }
+                ],
+                full_address: 'Казахстан, Акмолинская область, Астана',
                 createdBy: users[0], updatedBy: users[0], createdAt: '1513942687000', updatedAt: '1513942687000', isActive: true, isDeleted: false
             },
             {
@@ -297,6 +317,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 startPrice: '4880000',
                 currentPrice: '5200000',
                 name: 'Волга 21',
+                category: {id: 8, name: 'Легковые новые'},
                 image: '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',
                 products: [
                     {
@@ -311,22 +332,27 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 participants: null,
                 participantsCount: 0,
                 comments: null,
-                country: {
-                    id: 1,
-                    name: 'Казахстан',
-                    regions: null
-                },
-                region: {
-                    id: 1,
-                    name: 'Акмолинская область',
-                    country: null,
-                    cities: null
-                },
-                city: {
-                    id: 1,
-                    name: 'Астана',
-                    region: null
-                },
+                addresses: [
+                    {
+                        id: 1,
+                        name: 'Казахстан',
+                        parent_id: null,
+                        administrative_level_id: 1
+                    },
+                    {
+                        id: 2,
+                        name: 'Акмолинская область',
+                        parent_id: 1,
+                        administrative_level_id: 2
+                    },
+                    {
+                        id: 3,
+                        name: 'Астана',
+                        parent_id: 2,
+                        administrative_level_id: 3
+                    }
+                ],
+                full_address: 'Казахстан, Акмолинская область, Астана',
                 createdBy: users[0], updatedBy: users[0], createdAt: '1513942687000', updatedAt: '1513942687000', isActive: true, isDeleted: false
             },
             {
@@ -340,6 +366,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 startPrice: '4880000',
                 currentPrice: '5200000',
                 name: 'Renault Captur',
+                category: {id: 10, name: 'Грузовые автомобили'},
                 image: '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',
                 products: [
                     {
@@ -354,22 +381,27 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 participants: null,
                 participantsCount: 0,
                 comments: null,
-                country: {
-                    id: 1,
-                    name: 'Казахстан',
-                    regions: null
-                },
-                region: {
-                    id: 1,
-                    name: 'Акмолинская область',
-                    country: null,
-                    cities: null
-                },
-                city: {
-                    id: 1,
-                    name: 'Астана',
-                    region: null
-                },
+                addresses: [
+                    {
+                        id: 1,
+                        name: 'Казахстан',
+                        parent_id: null,
+                        administrative_level_id: 1
+                    },
+                    {
+                        id: 2,
+                        name: 'Акмолинская область',
+                        parent_id: 1,
+                        administrative_level_id: 2
+                    },
+                    {
+                        id: 3,
+                        name: 'Астана',
+                        parent_id: 2,
+                        administrative_level_id: 3
+                    }
+                ],
+                full_address: 'Казахстан, Акмолинская область, Астана',
                 createdBy: users[0], updatedBy: users[0], createdAt: '1513942687000', updatedAt: '1513942687000', isActive: true, isDeleted: false
             }
         ];
@@ -687,37 +719,44 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             {
                 id: 1,
                 radius: 0,
-                metric: 'км'
+                metric: 'км',
+                name: '0км'
             },
             {
                 id: 2,
                 radius: 5,
-                metric: 'км'
+                metric: 'км',
+                name: '5км'
             },
             {
                 id: 3,
                 radius: 10,
-                metric: 'км'
+                metric: 'км',
+                name: '10км'
             },
             {
                 id: 4,
                 radius: 50,
-                metric: 'км'
+                metric: 'км',
+                name: '50км'
             },
             {
                 id: 5,
                 radius: 100,
-                metric: 'км'
+                metric: 'км',
+                name: '100км'
             },
             {
                 id: 6,
                 radius: 150,
-                metric: 'км'
+                metric: 'км',
+                name: '150км'
             },
             {
                 id: 7,
                 radius: 200,
-                metric: 'км'
+                metric: 'км',
+                name: '200км'
             }
         ];
  
@@ -821,9 +860,14 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return Observable.of(new HttpResponse({ status: 200, body: categories }));
             }
 
-            if (request.url.endsWith('/api/auction/transport/categories') && request.method === 'GET') {
+            if (request.url.match(/\/api\/category\/\d+$/) && request.method === 'GET') {
                 // check user credentials and return fake jwt token if valid
-                return Observable.of(new HttpResponse({ status: 200, body: transportCats }));
+                let urlParts = request.url.split('/');
+                let id = parseInt(urlParts[urlParts.length - 1]);
+                let cats = categories.filter(category => {
+                    return category.parent_id === id;
+                });
+                return Observable.of(new HttpResponse({ status: 200, body: cats }));
             }
 
             if (request.url.endsWith('/api/ad-banners') && request.method === 'GET') {
@@ -834,6 +878,64 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             if (request.url.endsWith('/api/auction/top') && request.method === 'GET') {
                 // get parameters from post request
                 return Observable.of(new HttpResponse({ status: 200, body: carAuctions }));
+            }
+            
+            if (request.url.endsWith('/api/auction') && request.method === 'GET') {
+                // check for fake auth token in header and return users if valid, this security is implemented server side in a real application
+                
+                var params = request.params.get('category');
+                var res = carAuctions.filter(auc => {
+                    console.log('param cat id');
+                    console.log(params.id);
+                    console.log(auc.category.id);
+                    console.log(auc.category.id === params.id);
+                    if(auc.category.id === params.id){
+                        let ids = []; 
+                        ids = auc.addresses.map((v,i,arr) => {
+                            return v.id;
+                        });
+                        console.log('we got address ids');
+                        console.log(ids);
+                        console.log('param adm id');
+                        console.log(request.params.get('location').id);
+                        console.log(ids.includes(request.params.get('location').id));
+                        if(ids.includes(request.params.get('location').id)){
+                            console.log('check price');
+                            console.log(auc.currentPrice);
+                            console.log(request.params.getAll('price')[0]);
+                            console.log();
+                            console.log(auc.currentPrice >= request.params.getAll('price')[0] && auc.currentPrice <= request.params.getAll('price')[1]);
+                            if(auc.currentPrice >= request.params.getAll('price')[0] && auc.currentPrice <= request.params.getAll('price')[1]){
+                                if(request.params.get('only_photo')){
+                                    if(!!auc.image && auc.image.length > 0){
+                                        if(auc.name.indexOf(request.params.get('q')) !== -1){
+                                            return auc;
+                                        }
+                                    }
+                                }else{
+                                    console.log('we r in q');
+                                    if(!!request.params.get('q') && request.params.get('q').length > 0){
+                                        if(auc.name.indexOf(request.params.get('q')) !== -1){
+                                            return auc;
+                                        }
+                                    }else{
+                                        return auc;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+                console.log('in request');
+                console.log(params);
+                console.log(res);
+                var resp;
+                if(request.params.get('only_quantity')){
+                    resp = res.length;
+                } else{
+                    resp = res;
+                }
+                return Observable.of(new HttpResponse({ status: 200, body: resp }));
             }
             
             if (request.url.endsWith('/api/auction/transport') && request.method === 'GET') {

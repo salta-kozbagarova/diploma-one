@@ -1,8 +1,9 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AdministrativeDivision, SearchRadius } from '../../../_models';
 import { AdministrativeDivisionService, SearchRadiusService } from '../../../_services';
-import { CategoryService } from '../../_services';
-import { Category } from '../../_models';
+import { CategoryService, AuctionService } from '../../_services';
+import { Category, CommonFilterForm } from '../../_models';
+import { Subject }    from 'rxjs/Subject';
 
 declare var $:any;
 @Component({
@@ -12,18 +13,23 @@ declare var $:any;
 })
 export class CommonFilterComponent implements OnInit, AfterViewInit {
 
-  tstarr = [0,1,23];
   admDivisions: AdministrativeDivision[];
+  commonFilterForm: CommonFilterForm;
+  private searchTerms = new Subject<CommonFilterForm>();
   searchRadiuses: SearchRadius[];
   categories: Category[];
   resultCount: number;
+  priceFilter: any;
   locationConatiner = '<div class="card" style="overflow-y:auto;"><ul class="list-group"></ul></div>';
   locationItem = '<li class="list-group-item list-group-item-action" style="padding:.3em .9em;font-size:.9em;cursor:pointer;"><span class="locationText"></span><i class="fa fa-chevron-right float-right text-primary mt-1" aria-hidden="true"></i></li>';
   categoryContainer = '<div class="card" style="overflow-y:auto;"><ul class="list-group"></ul></div>';
   categoryItem = '<li class="list-group-item list-group-item-action" style="padding:.3em .9em;font-size:.9em;cursor:pointer;"><span class="categoryText"></span><i class="fa fa-chevron-right float-right text-primary mt-1" aria-hidden="true"></i></li>';
   constructor(private admDivisionService: AdministrativeDivisionService,
               private searchRadiusService: SearchRadiusService,
-              private categoryService: CategoryService) { }
+              private categoryService: CategoryService,
+              private auctionService: AuctionService) {
+    this.commonFilterForm = new CommonFilterForm();
+  }
 
   ngOnInit() {
     this.getAdmDivisions();
@@ -32,14 +38,51 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(){
+    var that = this;
     $(document).ready(function(){
-      $('.priceFilter').slider({
+      var changePrice = function(){
+        that.commonFilterForm.price = that.priceFilter.getValue();
+        that.searchForCount();
+      }
+      that.priceFilter = $('.priceFilter').slider({
         min: 0,
         max: 85000000,
         step: 10000,
-        value: [0,85000000]
-      });
+        value: [!!that.commonFilterForm.price ? that.commonFilterForm.price[0] : 0, !!that.commonFilterForm.price ? that.commonFilterForm.price[1] : 85000000]
+      }).on('slideStop',changePrice).data('slider');
     });
+  }
+
+  searchForCount(): void {
+    console.log('searchForCount');
+    this.searchTerms.next(this.commonFilterForm);
+    this.auctionService.searchForCount(this.searchTerms).subscribe(count => {
+      this.resultCount = count;
+      console.log('got it');
+    });
+    // if(!term){
+    //   this.getTransports();
+    // }else{
+    //   this.searchTerms.next(term);
+    //   this.transportService.search(this.searchTerms).subscribe(data => this.transports = data);
+    // }
+  }
+
+  reset(){
+    this.commonFilterForm.reset();
+    this.priceFilter.setValue([0,85000000]);
+  }
+
+  onQueryChange(){
+    this.searchForCount();
+  }
+
+  onPhotoChange(){
+    this.searchForCount();
+  }
+
+  onSearchMoreChange(){
+    this.searchForCount();
   }
 
   getAdmDivisions(){
@@ -110,9 +153,10 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
         $('#locationModal .modal-content').width(newWidth + 'em');
       });
       $('body').on('click', '#locationModal li', function(){
-        $('#location').attr('data-id',$(this).data('id'));
-        $('#location').val($(this).find('.locationText').text());
+        that.commonFilterForm.location.id=$(this).data('id');
+        that.commonFilterForm.location.name=$(this).find('.locationText').text();
         $('#locationModal').modal('hide');
+        that.searchForCount();
       });
     });
   }
@@ -120,12 +164,11 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
   getSearchRadiuses(){
     this.searchRadiusService.getSearchRadiuses().subscribe(searchRadiuses => {
       this.searchRadiuses = searchRadiuses;
-      console.log(this.searchRadiuses);
-      this.searchRadiuses.forEach(searchRadius => {
-        $('#radius').append('<option value="' + searchRadius.radius + '">' + '+ ' + searchRadius.radius + searchRadius.metric + '</option>');
-      });
-      $('#radius').find('option').first().attr('selected',true);
     });
+  }
+
+  onRadiusChange(){
+    this.searchForCount();
   }
 
   getCategories(){
@@ -196,14 +239,20 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
         $('#categoryModal .modal-content').width(newWidth + 'em');
       });
       $('body').on('click', '#categoryModal li', function(){
-        $('#category').attr('data-id',$(this).data('id'));
-        $('#category').val($(this).find('.categoryText').text());
+        that.commonFilterForm.category.id=$(this).data('id');
+        that.commonFilterForm.category.name=$(this).find('.categoryText').text();
         $('#categoryModal').modal('hide');
+        that.searchForCount();
       });
     });
   }
 
   showResult(){
     console.log('this is result');
+    this.commonFilterForm.only_quantity = false;
+    console.log(this.commonFilterForm);
+    this.auctionService.getByParams(this.commonFilterForm).subscribe(data => {
+      console.log(data);
+    });
   }
 }

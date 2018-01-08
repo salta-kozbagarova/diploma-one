@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { TransportService } from '../_services';
+import { CategoryService } from '../../_services';
 import { Category } from '../../_models';
 
 declare var $:any;
@@ -12,14 +12,14 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
 
   categories: Category[];
 
-  constructor(private transportService: TransportService) { }
+  constructor(private categoryService: CategoryService) { }
 
   ngOnInit() {
     this.getCategories();
   }
 
   getCategories(){
-    this.transportService.getCategories().subscribe(categories => this.categories = categories);
+    this.categoryService.getSubcategories(this.categoryService.getCurrentCategory()).subscribe(categories => this.categories = categories);
   }
 
   ngAfterViewInit() {

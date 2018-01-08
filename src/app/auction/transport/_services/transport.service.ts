@@ -4,10 +4,7 @@ import { Observable } from 'rxjs';
 import { of } from 'rxjs/observable/of';
 import { Category, Auction } from '../../_models';
 import { catchError, map, tap } from 'rxjs/operators';
-
-import {
-  debounceTime, distinctUntilChanged, switchMap
-} from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class TransportService {
@@ -15,14 +12,6 @@ export class TransportService {
   private transportUrl = '/api/auction/transport';
 
   constructor(private http: HttpClient) { }
-
-  getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.transportUrl+'/categories')
-      .pipe(
-        tap(categories => this.log(`fetched categories for Transport`)),
-        catchError(this.handleError('getCategories', []))
-      );
-  }
 
   getTransports(): Observable<Auction[]> {
     return this.http.get<Auction[]>(this.transportUrl)

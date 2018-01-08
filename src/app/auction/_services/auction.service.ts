@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs/observable/of';
-import { Auction } from '../_models';
+import { Auction, CommonFilterForm } from '../_models';
 import { Car } from '../transport/_models';
 import { catchError, map, tap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class AuctionService {
@@ -21,11 +22,30 @@ export class AuctionService {
       );
   }
 
-  getByParams(options: {}): Observable<Auction[]> {
-    return this.http.get<Auction[]>(this.auctionUrl, options)
+  searchForCount(terms: Observable<CommonFilterForm>): Observable<number> {
+    return terms.pipe(
+      // wait 300ms after each keystroke before considering the term
+      debounceTime(300),
+      // ignore new term if same as previous term
+      distinctUntilChanged(),
+      // switch to new search observable each time the term changes
+      switchMap((term: CommonFilterForm) => this.getSearchResultCount(term))
+    );
+  }
+
+  getSearchResultCount(term: any): Observable<number>{
+    return this.http.get<number>(this.auctionUrl, {params: term})
       .pipe(
-        tap(heroes => this.log(`fetched top`)),
-        catchError(this.handleError('getTop', []))
+        tap(heroes => this.log(`fetched result count`)),
+        catchError(this.handleError('getSearchResultCount', term))
+      );
+  }
+
+  getByParams(options: any): Observable<Auction[]> {
+    return this.http.get<Auction[]>(this.auctionUrl, {params: options})
+      .pipe(
+        tap(heroes => this.log(`fetched by params`)),
+        catchError(this.handleError('getByParams', []))
       );
   }
 

@@ -1,4 +1,4 @@
-import { AuctionType, AuctionComment, Category } from "./index";
+import { AuctionType, AuctionComment, Category, AuctionAddress } from "./index";
 import { Product } from "../_interfaces";
 import { Model } from "../../_interfaces";
 import { User } from "../../_models";
@@ -18,6 +18,8 @@ export class Auction implements Model {
     participantsCount: number;
     comments: AuctionComment[];
     category: Category;
+    addresses: AuctionAddress[];
+    full_address: string;
     createdBy: User;
     updatedBy: User;
     createdAt: string;

@@ -26,6 +26,10 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
     });
   }
 
+  setCurrentCategory(category: number|Category){
+    this.categoryService.setCurrentCategory(category);
+  }
+
   ngAfterViewInit() {
     $(document).ready(function(){
       $('body').on('mouseenter', '.category', function() {

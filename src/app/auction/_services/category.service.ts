@@ -20,6 +20,35 @@ export class CategoryService {
       );
   }
 
+  getSubcategories(category: number|Category): Observable<Category[]> {
+    var cat = this.toCategory(category);
+    return this.http.get<Category[]>(this.categoryUrl+'/'+cat.id)
+      .pipe(
+        tap(categories => this.log(`fetched categories`)),
+        catchError(this.handleError('getSubcategories', []))
+      );
+  }
+
+  setCurrentCategory(category: number|Category){
+    var curCat = this.toCategory(category);
+    localStorage.setItem('category', JSON.stringify(curCat));
+  }
+
+  getCurrentCategory(): Category{
+    return JSON.parse(localStorage.getItem('category'));
+  }
+
+  toCategory(category: number|Category){
+    var _category = null;
+    if(typeof category === Number.name){
+      _category = new Category();
+      _category.id = category;
+    } else{
+      _category = category;
+    }
+    return _category;
+  }
+
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
     console.log('CategoryService: ' + message);
