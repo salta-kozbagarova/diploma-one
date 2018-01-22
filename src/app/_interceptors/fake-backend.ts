@@ -884,48 +884,48 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 // check for fake auth token in header and return users if valid, this security is implemented server side in a real application
                 
                 var params = request.params.get('category');
-                var res = carAuctions.filter(auc => {
-                    console.log('param cat id');
-                    console.log(params.id);
-                    console.log(auc.category.id);
-                    console.log(auc.category.id === params.id);
-                    if(auc.category.id === params.id){
-                        let ids = []; 
-                        ids = auc.addresses.map((v,i,arr) => {
-                            return v.id;
-                        });
-                        console.log('we got address ids');
-                        console.log(ids);
-                        console.log('param adm id');
-                        console.log(request.params.get('location').id);
-                        console.log(ids.includes(request.params.get('location').id));
-                        if(ids.includes(request.params.get('location').id)){
-                            console.log('check price');
-                            console.log(auc.currentPrice);
-                            console.log(request.params.getAll('price')[0]);
-                            console.log();
-                            console.log(auc.currentPrice >= request.params.getAll('price')[0] && auc.currentPrice <= request.params.getAll('price')[1]);
-                            if(auc.currentPrice >= request.params.getAll('price')[0] && auc.currentPrice <= request.params.getAll('price')[1]){
-                                if(request.params.get('only_photo')){
-                                    if(!!auc.image && auc.image.length > 0){
-                                        if(auc.name.indexOf(request.params.get('q')) !== -1){
-                                            return auc;
-                                        }
-                                    }
-                                }else{
-                                    console.log('we r in q');
-                                    if(!!request.params.get('q') && request.params.get('q').length > 0){
-                                        if(auc.name.indexOf(request.params.get('q')) !== -1){
-                                            return auc;
-                                        }
-                                    }else{
-                                        return auc;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
+                // var res = carAuctions.filter(auc => {
+                //     console.log('param cat id');
+                //     console.log(params.id);
+                //     console.log(auc.category.id);
+                //     console.log(auc.category.id === params.id);
+                //     if(auc.category.id === params.id){
+                //         let ids = []; 
+                //         ids = auc.addresses.map((v,i,arr) => {
+                //             return v.id;
+                //         });
+                //         console.log('we got address ids');
+                //         console.log(ids);
+                //         console.log('param adm id');
+                //         console.log(request.params.get('location').id);
+                //         console.log(ids.includes(request.params.get('location').id));
+                //         if(ids.includes(request.params.get('location').id)){
+                //             console.log('check price');
+                //             console.log(auc.currentPrice);
+                //             console.log(request.params.getAll('price')[0]);
+                //             console.log();
+                //             console.log(auc.currentPrice >= request.params.getAll('price')[0] && auc.currentPrice <= request.params.getAll('price')[1]);
+                //             if(auc.currentPrice >= request.params.getAll('price')[0] && auc.currentPrice <= request.params.getAll('price')[1]){
+                //                 if(request.params.get('only_photo')){
+                //                     if(!!auc.image && auc.image.length > 0){
+                //                         if(auc.name.indexOf(request.params.get('q')) !== -1){
+                //                             return auc;
+                //                         }
+                //                     }
+                //                 }else{
+                //                     console.log('we r in q');
+                //                     if(!!request.params.get('q') && request.params.get('q').length > 0){
+                //                         if(auc.name.indexOf(request.params.get('q')) !== -1){
+                //                             return auc;
+                //                         }
+                //                     }else{
+                //                         return auc;
+                //                     }
+                //                 }
+                //             }
+                //         }
+                //     }
+                // });
                 console.log('in request');
                 console.log(params);
                 console.log(res);
