@@ -15,4 +15,11 @@ export class Category implements Model {
     updatedAt: string;
     isActive: boolean;
     isDeleted: boolean;
+
+    constructor(params?: any){
+        if(params){
+            this.id = params.id;
+            this.name = params.name;
+        }
+    }
 }
