@@ -4,8 +4,8 @@
       <div class="card-body">
         <div class="row">
           <div class="col-md-2 text-center" *ngFor="let category of categories">
-            <a class="category" (click)="setCurrentCategory(category);" [routerLink]="['../'+category.link]">
-              <div><img src="data:image/png;base64,{{category.image}}" alt="..." class="rounded-circle icon-sm"></div>
+            <a class="category" (click)="setCurrentCategory(category);" [routerLink]="['../'+category.code]">
+              <div><img src="{{category.image}}" alt="..." class="rounded-circle icon-sm"></div>
               <div>{{category.name}}</div>
             </a>
           </div>

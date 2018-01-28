@@ -8,7 +8,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 @Injectable()
 export class CategoryService {
 
-  private categoryUrl = '/api/category';//'http://127.0.0.1:8000/categories';  // URL to web api
+  private categoryUrl = 'http://127.0.0.1:8000/categories';  // '/api/category'; // URL to web api
 
   constructor(private http: HttpClient) { }
 
@@ -20,7 +20,15 @@ export class CategoryService {
       );
   }
 
-  getSubcategories(category: number|Category): Observable<Category[]> {
+  getRootCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(this.categoryUrl+'/root-categories')
+      .pipe(
+        tap(categories => this.log(`fetched root categories`)),
+        catchError(this.handleError('getRootCategories', []))
+      );
+  }
+
+  getSubcategories(category: number|string|Category): Observable<Category[]> {
     var cat = this.toCategory(category);
     return this.http.get<Category[]>(this.categoryUrl+'/'+cat.id)
       .pipe(
@@ -38,11 +46,14 @@ export class CategoryService {
     return JSON.parse(localStorage.getItem('category'));
   }
 
-  toCategory(category: number|Category){
+  toCategory(category: number|string|Category){
     var _category = null;
     if(typeof category === Number.name){
       _category = new Category();
       _category.id = category;
+    } else if(typeof category === String.name){
+      _category = new Category();
+      _category.code = category;
     } else{
       _category = category;
     }

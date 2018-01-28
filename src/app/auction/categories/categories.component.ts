@@ -15,11 +15,11 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
   constructor(private categoryService: CategoryService) { }
   
   ngOnInit() {
-    this.getCategories();
+    this.getRootCategories();
   }
 
-  getCategories(){
-    this.categoryService.getCategories().subscribe(categories => {
+  getRootCategories(){
+    this.categoryService.getRootCategories().subscribe(categories => {
       this.categories = categories.filter(category => {
         return category.parent_id == null;
       });

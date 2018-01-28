@@ -3,6 +3,7 @@ import { User } from "../../_models";
 
 export class Category implements Model {
     id: number;
+    code: string;
     name: string;
     image: string;
     link: string;

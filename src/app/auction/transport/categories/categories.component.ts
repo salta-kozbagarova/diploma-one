@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CategoryService } from '../../_services';
 import { Category } from '../../_models';
+import { Router } from '@angular/router';
 
 declare var $:any;
 @Component({
@@ -12,14 +13,18 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
 
   categories: Category[];
 
-  constructor(private categoryService: CategoryService) { }
+  currCatCode: string;
+
+  constructor(private categoryService: CategoryService,
+              private router: Router) { }
 
   ngOnInit() {
+    this.currCatCode = this.router.url.split('/').pop();
     this.getCategories();
   }
 
   getCategories(){
-    this.categoryService.getSubcategories(this.categoryService.getCurrentCategory()).subscribe(categories => this.categories = categories);
+    this.categoryService.getSubcategories(this.currCatCode).subscribe(categories => this.categories = categories);
   }
 
   ngAfterViewInit() {
