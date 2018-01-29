@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-md-3" *ngFor="let category of categories">
             <a class="subcategory" [routerLink]="['../'+category.link]">
-              <div><img [src]="'data:image/svg+xml;base64,'+category.image | safeUrl" alt="..." class="rounded-circle icon-sm"></div>
+              <div><img [src]="category.image | safeUrl" alt="..." class="rounded-circle icon-sm"></div>
               <div>{{category.name}}</div>
             </a>
           </div>

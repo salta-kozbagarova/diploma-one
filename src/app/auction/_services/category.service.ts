@@ -13,7 +13,7 @@ export class CategoryService {
   constructor(private http: HttpClient) { }
 
   getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.categoryUrl)
+    return this.http.get<Category[]>(this.categoryUrl+'/categories/')
       .pipe(
         tap(categories => this.log(`fetched categories`)),
         catchError(this.handleError('getCategories', []))
@@ -21,18 +21,17 @@ export class CategoryService {
   }
 
   getRootCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.categoryUrl+'/root-categories')
+    return this.http.get<Category[]>(this.categoryUrl+'/categories/', {params: {"is_root": "true"}})
       .pipe(
         tap(categories => this.log(`fetched root categories`)),
         catchError(this.handleError('getRootCategories', []))
       );
   }
 
-  getSubcategories(category: number|string|Category): Observable<Category[]> {
-    var cat = this.toCategory(category);
-    return this.http.get<Category[]>(this.categoryUrl+'/'+cat.id)
+  getSubcategories(categoryCode: string): Observable<Category[]> {
+    return this.http.get<Category[]>(this.categoryUrl+'/categories/', {params: {"parent__code": categoryCode}})
       .pipe(
-        tap(categories => this.log(`fetched categories`)),
+        tap(categories => this.log(`fetched subcategories for ${categoryCode}`)),
         catchError(this.handleError('getSubcategories', []))
       );
   }

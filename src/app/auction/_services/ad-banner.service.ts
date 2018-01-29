@@ -9,11 +9,11 @@ import { AdBanner } from '../_models';
 @Injectable()
 export class AdBannerService {
 
-  private adBannerUrl = '/api/ad-banners';
+  private adBannerUrl = 'http://127.0.0.1:8000/ad-banners';//'/api/ad-banners';
 
   constructor(private http: HttpClient) { }
 
   getAdBanners(): Observable<AdBanner[]> {
-    return this.http.get<AdBanner[]>(this.adBannerUrl);
+    return this.http.get<AdBanner[]>(this.adBannerUrl+'/ad-banners');
   }
 }
