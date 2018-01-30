@@ -4,16 +4,16 @@
   <div class="col-md-3" *ngFor="let topAuction of topAuctions">
     <div class="card mt-1 auction-card">
       <div class="card-img d-flex justify-content-center align-items-center">
-          <img class="card-img-top" src="data:image/jpeg;base64,{{topAuction.image}}" class="img-fit">
+          <img class="card-img-top" src="{{topAuction.image}}" class="img-fit">
       </div>
       <div class="card-body">
         <b class="card-title mb-0">{{topAuction.name}}</b>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item"><span class="icon-kzt"></span><span class="ml-2">Текущая цена: <b>{{topAuction.currentPrice}}₸</b></span></li>
+        <li class="list-group-item"><span class="icon-kzt"></span><span class="ml-2">Текущая цена: <b>{{topAuction.current_price}}₸</b></span></li>
         <li class="list-group-item">
           <p class="text-center mb-1">До завершения торгов</p>
-          <app-countdown [deadline]="topAuction.endDate" [id]="topAuction.id"></app-countdown>
+          <app-countdown [deadline]="topAuction.end_date" [id]="topAuction.id"></app-countdown>
         </li>
       </ul>
       <div class="card-body">

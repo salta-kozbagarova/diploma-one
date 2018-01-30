@@ -6,16 +6,16 @@ import { environment } from "../../../environments/environment";
 
 export class Auction implements Model {
     id: number;
-    endDate: string;
-    auctionType: AuctionType;
-    startPrice: string;
-    currentPrice: string;
+    end_date: number;
+    bargain_type: AuctionType;
+    start_price: string;
+    current_price: string;
     name: string;
     image: string;
     products: Product[];
     seen: number;
     participants: User[];
-    participantsCount: number;
+    participants_count: number;
     comments: AuctionComment[];
     category: Category;
     addresses: AuctionAddress[];

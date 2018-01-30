@@ -10,12 +10,12 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 @Injectable()
 export class AuctionService {
 
-  private auctionUrl = '/api/auction';  // URL to web api
+  private auctionUrl = 'http://127.0.0.1:8000/bargains';  // '/api/auction';  // URL to web api
 
   constructor(private http: HttpClient) { }
 
   getTop(): Observable<Auction[]> {
-    return this.http.get<Auction[]>(this.auctionUrl+'/top')
+    return this.http.get<Auction[]>(this.auctionUrl+'/bargains')
       .pipe(
         tap(heroes => this.log(`fetched top`)),
         catchError(this.handleError('getTop', []))

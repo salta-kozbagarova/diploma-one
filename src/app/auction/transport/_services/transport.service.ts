@@ -9,12 +9,12 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 @Injectable()
 export class TransportService {
 
-  private transportUrl = '/api/auction/transport';
+  private transportUrl = 'http://127.0.0.1:8000/bargains';  // '/api/auction/transport';
 
   constructor(private http: HttpClient) { }
 
   getTransports(): Observable<Auction[]> {
-    return this.http.get<Auction[]>(this.transportUrl)
+    return this.http.get<Auction[]>(this.transportUrl+'/bargains/', {params: {"category__code": "transport"}})
       .pipe(
         tap(heroes => this.log(`fetched transports`)),
         catchError(this.handleError('getTransports', []))
