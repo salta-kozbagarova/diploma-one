@@ -8,12 +8,12 @@ import { AdministrativeDivision } from '../_models';
 @Injectable()
 export class AdministrativeDivisionService {
 
-  private admUrl = '/api/administrative-division';  // URL to web api
+  private admUrl = 'http://127.0.0.1:8000/administrative-divisions';//'/api/administrative-division';  // URL to web api
 
   constructor(private http: HttpClient) { }
 
   getAdmDivisions(): Observable<AdministrativeDivision[]> {
-    return this.http.get<AdministrativeDivision[]>(this.admUrl)
+    return this.http.get<AdministrativeDivision[]>(this.admUrl + '/administrative-divisions')
       .pipe(
         tap(adms => this.log(`fetched adm divisions`)),
         catchError(this.handleError('getAdmDivisions', []))

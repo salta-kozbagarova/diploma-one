@@ -91,66 +91,48 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
       $('#locationModal .card-group').append(
         this.locationConatiner
       );
-      var level = null;
-      var old_level = null;
       var lastColumn = $('#locationModal .list-group').last();
       this.admDivisions.forEach(admDivision => {
         if(admDivision.administrative_level_id === 1){
           lastColumn.append(this.locationItem);
           lastColumn.find('li').last().attr('data-id',admDivision.id);
           lastColumn.find('.locationText').last().text(admDivision.name);
-          level = admDivision.administrative_level_id;
         }
       });
-      $('#locationModal .card').last().attr('data-level',level);
-      old_level = level;
       var that = this;
       $('body').on('mouseover', '#locationModal li', function(){
-        let parent_id = $(this).data('id');
-        var level = null;
+        var admDivisionId = $(this).data('id');
         var card = null;
+        var cardToDel = [];
+        card = $(this).closest('.card');
+        while(card.next().length > 0){
+          cardToDel.push(card.next());
+          card = card.next();
+        }
+        var modContent = $('#locationModal .modal-content');
+        var newWidth = Math.round(modContent.width()/parseFloat($("body").css("font-size")))-(15*cardToDel.length);
+        $('#locationModal .modal-content').width(newWidth + 'em');
+        cardToDel.forEach(elToDel => elToDel.remove());
+        var subdivisions = [];
         that.admDivisions.forEach(admDivision => {
-          if(admDivision.parent_id === parent_id){
-            if(admDivision.administrative_level_id !== null){
-              level = admDivision.administrative_level_id;
-            }
+          if(admDivision.id === admDivisionId){
+            subdivisions = admDivision.subdivisions;
           }
         });
-        if(level === null){
-          if($(this).closest('.card').attr('data-level') != old_level){
-            card = $('#locationModal').find('[data-level="' + old_level + '"]');
-            if(card.length > 0){
-              let modContent = $('#locationModal .modal-content');
-              let newWidth = Math.round(modContent.width()/parseFloat($("body").css("font-size")))-15;
-              $('#locationModal .modal-content').width(newWidth + 'em');
-              card.remove();
-            }
-          }
-          return;
-        }
-        old_level = level;
-        card = $('#locationModal').find('[data-level="' + level + '"]');
-        if(card.length > 0){
-          let modContent = $('#locationModal .modal-content');
-          let newWidth = Math.round(modContent.width()/parseFloat($("body").css("font-size")))-15;
-          $('#locationModal .modal-content').width(newWidth + 'em');
-          card.remove();
-        }
-        $('#locationModal .card-group').append(
-          that.locationConatiner
-        );
-        var lastColumn = $('#locationModal .list-group').last();
-        that.admDivisions.forEach(admDivision => {
-          if(admDivision.parent_id === parent_id){
+        if(subdivisions.length > 0){
+          $('#locationModal .card-group').append(
+            that.locationConatiner
+          );
+          var lastColumn = $('#locationModal .list-group').last();
+          subdivisions.forEach(admDivision => {
             lastColumn.append(that.locationItem);
             lastColumn.find('li').last().attr('data-id',admDivision.id);
             lastColumn.find('.locationText').last().text(admDivision.name);
-          }
-        });
-        $('#locationModal .card').last().attr('data-level',level);
-        let modContent = $('#locationModal .modal-content');
-        let newWidth = Math.round(modContent.width()/parseFloat($("body").css("font-size")))+15;
-        $('#locationModal .modal-content').width(newWidth + 'em');
+          });
+          let modContent = $('#locationModal .modal-content');
+          let newWidth = Math.round(modContent.width()/parseFloat($("body").css("font-size")))+15;
+          $('#locationModal .modal-content').width(newWidth + 'em');
+        }
       });
       $('body').on('click', '#locationModal li', function(){
         that.commonFilterForm.location.id=$(this).data('id');
@@ -177,66 +159,48 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
       $('#categoryModal .card-group').append(
         this.categoryContainer
       );
-      var level = null;
-      var old_level = null;
       var lastColumn = $('#categoryModal .list-group').last();
       this.categories.forEach(category => {
-        if(category.level === 1){
+        if(category.parent_id === null){
           lastColumn.append(this.categoryItem);
           lastColumn.find('li').last().attr('data-id',category.id);
           lastColumn.find('.categoryText').last().text(category.name);
-          level = category.level;
         }
       });
-      $('#categoryModal .card').last().attr('data-level',level);
-      old_level = level;
       var that = this;
       $('body').on('mouseover', '#categoryModal li', function(){
-        let parent_id = $(this).data('id');
-        var level = null;
+        var categoryId = $(this).data('id');
         var card = null;
+        var cardToDel = [];
+        card = $(this).closest('.card');
+        while(card.next().length > 0){
+          cardToDel.push(card.next());
+          card = card.next();
+        }
+        var modContent = $('#categoryModal .modal-content');
+        var newWidth = Math.round(modContent.width()/parseFloat($("body").css("font-size")))-(15*cardToDel.length);
+        $('#categoryModal .modal-content').width(newWidth + 'em');
+        cardToDel.forEach(elToDel => elToDel.remove());
+        var subcategories = null;
         that.categories.forEach(category => {
-          if(category.parent_id === parent_id){
-            if(category.level !== null){
-              level = category.level;
-            }
+          if(category.id === categoryId){
+            subcategories = category.subcategories;
           }
         });
-        if(level === null){
-          if($(this).closest('.card').attr('data-level') != old_level){
-            card = $('#categoryModal').find('[data-level="' + old_level + '"]');
-            if(card.length > 0){
-              let modContent = $('#categoryModal .modal-content');
-              let newWidth = Math.round(modContent.width()/parseFloat($("body").css("font-size")))-15;
-              $('#categoryModal .modal-content').width(newWidth + 'em');
-              card.remove();
-            }
-          }
-          return;
-        }
-        old_level = level;
-        card = $('#categoryModal').find('[data-level="' + level + '"]');
-        if(card.length > 0){
-          let modContent = $('#categoryModal .modal-content');
-          let newWidth = Math.round(modContent.width()/parseFloat($("body").css("font-size")))-15;
-          $('#categoryModal .modal-content').width(newWidth + 'em');
-          card.remove();
-        }
-        $('#categoryModal .card-group').append(
-          that.categoryContainer
-        );
-        var lastColumn = $('#categoryModal .list-group').last();
-        that.categories.forEach(category => {
-          if(category.parent_id === parent_id){
+        if(subcategories.length > 0){
+          $('#categoryModal .card-group').append(
+            that.categoryContainer
+          );
+          var lastColumn = $('#categoryModal .list-group').last();
+          subcategories.forEach(category => {
             lastColumn.append(that.categoryItem);
             lastColumn.find('li').last().attr('data-id',category.id);
             lastColumn.find('.categoryText').last().text(category.name);
-          }
-        });
-        $('#categoryModal .card').last().attr('data-level',level);
-        let modContent = $('#categoryModal .modal-content');
-        let newWidth = Math.round(modContent.width()/parseFloat($("body").css("font-size")))+15;
-        $('#categoryModal .modal-content').width(newWidth + 'em');
+          });
+          modContent = $('#categoryModal .modal-content');
+          newWidth = Math.round(modContent.width()/parseFloat($("body").css("font-size")))+15;
+          $('#categoryModal .modal-content').width(newWidth + 'em');
+        }
       });
       $('body').on('click', '#categoryModal li', function(){
         that.commonFilterForm.category.id=$(this).data('id');

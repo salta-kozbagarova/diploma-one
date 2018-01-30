@@ -6,6 +6,7 @@ export class AdministrativeDivision {
     name: string;
     parent_id: number;
     administrative_level_id: number;
+    subdivisions: AdministrativeDivision[];
 
     constructor(params?: any){
         if(params){
