@@ -11,6 +11,7 @@ export class Auction implements Model {
     start_price: string;
     current_price: string;
     name: string;
+    description: string;
     image: string;
     products: Product[];
     seen: number;

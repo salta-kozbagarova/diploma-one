@@ -129,8 +129,8 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
         }
       });
       $('body').on('click', '#locationModal li', function(){
-        that.commonFilterForm.location.id=$(this).data('id');
-        that.commonFilterForm.location.name=$(this).find('.locationText').text();
+        that.commonFilterForm.address__id=$(this).data('id');
+        that.commonFilterForm.address__name=$(this).find('.locationText').text();
         $('#locationModal').modal('hide');
         that.searchForCount();
       });
@@ -197,8 +197,8 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
         }
       });
       $('body').on('click', '#categoryModal li', function(){
-        that.commonFilterForm.category.id=$(this).data('id');
-        that.commonFilterForm.category.name=$(this).find('.categoryText').text();
+        that.commonFilterForm.category__id=$(this).data('id');
+        that.commonFilterForm.category__name=$(this).find('.categoryText').text();
         $('#categoryModal').modal('hide');
         that.searchForCount();
       });

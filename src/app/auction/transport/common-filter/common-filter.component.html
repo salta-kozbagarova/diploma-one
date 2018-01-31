@@ -16,15 +16,15 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id=""><i class="fa fa-map-marker text-primary" aria-hidden="true" style="font-size:19px;font-weight:bold;"></i></span>
               </div>
-              <input readonly [(ngModel)]="commonFilterForm.location.name" [(attr.data-id)]="commonFilterForm.location.id" class="custom-select custom-select-sm col-md-8" id="location" data-toggle="modal" data-target="#locationModal">
-              <select class="custom-select custom-select-sm col-md-4" id="radius" [(ngModel)]="commonFilterForm.radius.id" (ngModelChange)="onRadiusChange();">
-                <option *ngFor="let searchRadius of searchRadiuses" [ngValue]="searchRadius.id"> + {{searchRadius.name}} </option>
+              <input readonly [(ngModel)]="commonFilterForm.address__name" [(attr.data-id)]="commonFilterForm.address__id" class="custom-select custom-select-sm col-md-8" id="location" data-toggle="modal" data-target="#locationModal">
+              <select class="custom-select custom-select-sm col-md-4" id="radius" [(ngModel)]="commonFilterForm.radius" (ngModelChange)="onRadiusChange();">
+                <option *ngFor="let searchRadius of searchRadiuses" [ngValue]="searchRadius.id"> + {{searchRadius.radius}} {{searchRadius.metric}} </option>
               </select>
             </div>
           </div>
           <div class="col-md-4">
             <div class="input-group input-group-sm mb-2">
-              <input class="custom-select custom-select-sm" id="category" data-toggle="modal" data-target="#categoryModal" [(ngModel)]="commonFilterForm.category.name" [(attr.data-id)]="commonFilterForm.category.id">
+              <input class="custom-select custom-select-sm" id="category" data-toggle="modal" data-target="#categoryModal" [(ngModel)]="commonFilterForm.category__name" [(attr.data-id)]="commonFilterForm.category__id">
               <div class="input-group-append">
                 <span class="input-group-text" id=""><i class="fa fa-bars text-primary" aria-hidden="true"></i></span>
               </div>
@@ -37,7 +37,7 @@
           </div>
           <div class="col-md-2">
             <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="photo" [(ngModel)]="commonFilterForm.only_photo" (ngModelChange)="onPhotoChange();">
+              <input type="checkbox" class="custom-control-input" id="photo" [(ngModel)]="commonFilterForm.only_with_image" (ngModelChange)="onPhotoChange();">
               <label class="custom-control-label" for="photo">Только с фото</label>
             </div>
           </div>

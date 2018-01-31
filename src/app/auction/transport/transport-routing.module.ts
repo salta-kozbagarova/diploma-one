@@ -14,7 +14,7 @@ const transportRoutes: Routes = [
         component: TransportComponent
     },
     {
-        path: 'cars',
+        path: 'new-cars',
         component: CarsComponent
     },
     {
@@ -30,11 +30,11 @@ const transportRoutes: Routes = [
         component: MototechnicsComponent
     },
     {
-        path: 'air-transports',
+        path: 'air-transport',
         component: AirTransportsComponent
     },
     {
-        path: 'others',
+        path: 'other',
         component: OthersComponent
     }
 ];

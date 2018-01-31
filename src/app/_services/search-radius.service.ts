@@ -8,12 +8,12 @@ import { SearchRadius } from '../_models';
 @Injectable()
 export class SearchRadiusService {
 
-  private searchRaduisUrl = '/api/search-radius';  // URL to web api
+  private searchRaduisUrl = 'http://127.0.0.1:8000/search-radiuses'; // '/api/search-radius';  // URL to web api
 
   constructor(private http: HttpClient) { }
 
   getSearchRadiuses(): Observable<SearchRadius[]>{
-    return this.http.get<SearchRadius[]>(this.searchRaduisUrl)
+    return this.http.get<SearchRadius[]>(this.searchRaduisUrl+'/search-radiuses')
       .pipe(
         tap(searchRadiuses => this.log(`fetched adm searchRadiuses`)),
         catchError(this.handleError('getSearchRadiuses', []))

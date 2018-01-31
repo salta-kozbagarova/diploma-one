@@ -34,7 +34,9 @@ export class AuctionService {
   }
 
   getSearchResultCount(term: any): Observable<number>{
-    return this.http.get<number>(this.auctionUrl, {params: term})
+    console.log('params');
+    console.log(term);
+    return this.http.get<number>(this.auctionUrl + '/bargains', {params: term})
       .pipe(
         tap(heroes => this.log(`fetched result count`)),
         catchError(this.handleError('getSearchResultCount', term))
@@ -42,7 +44,7 @@ export class AuctionService {
   }
 
   getByParams(options: any): Observable<Auction[]> {
-    return this.http.get<Auction[]>(this.auctionUrl, {params: options})
+    return this.http.get<Auction[]>(this.auctionUrl + '/bargains', {params: options})
       .pipe(
         tap(heroes => this.log(`fetched by params`)),
         catchError(this.handleError('getByParams', []))

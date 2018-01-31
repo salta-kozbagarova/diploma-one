@@ -3,43 +3,42 @@ import { Category } from "./";
 
 export class CommonFilterForm {
     q: string;
-    location: AdministrativeDivision;
-    radius: SearchRadius;
-    category: Category;
+    address__id: number;
+    address__name: string;
+    radius: number;
+    category__id: number;
+    category__name: string;
     price: number[];
-    only_photo: boolean;
+    only_with_image: boolean;
     header_and_description: boolean;
     only_quantity: boolean;
 
+
+
     constructor(){
-        this.location = new AdministrativeDivision();
-        this.location.id = 1;
-        this.location.name = 'Казахстан';
-        this.radius = new SearchRadius();
-        this.radius.id = 1;
-        this.radius.radius = 0;
-        this.radius.metric = 'км';
-        this.category = new Category();
-        this.category.id = 1;
-        this.category.name = 'Транспорт';
+        this.address__id = 1;
+        this.address__name = 'Казахстан';
+        this.radius = 1;
+        this.category__id = 1;
+        this.category__name = 'Транспорт';
         this.price = [0,85000000];
-        this.only_photo = false;
+        this.only_with_image = false;
         this.header_and_description = false;
         this.only_quantity = true;
     }
 
     reset(): void{
         this.q = null;
-        this.location = new AdministrativeDivision();
-        this.location.id = 1;
-        this.location.name = 'Казахстан';
-        this.radius = new SearchRadius();
-        this.radius.id = 1;
-        this.radius.radius = 0;
-        this.radius.metric = 'км';
+        this.address__id = 1;
+        this.address__name = 'Казахстан';
+        this.radius = 1;
         this.price = [0,85000000];
-        this.only_photo = false;
+        this.only_with_image = false;
         this.header_and_description = false;
         this.only_quantity = true;
+    }
+
+    get filterParams(){
+        return null;
     }
 }
