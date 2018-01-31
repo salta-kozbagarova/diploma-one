@@ -38,11 +38,6 @@ export class TopAuctionsComponent implements OnInit, AfterViewInit {
   }
 
   getTop(){
-    this.auctionService.getTop().subscribe(top => {
-      this.topAuctions = top;
-      this.topAuctions.forEach(topAuction => {
-        topAuction.end_date = new Date(topAuction.end_date).getTime();
-      })
-    });
+    this.auctionService.getTop().subscribe(top => this.topAuctions = top);
   }
 }

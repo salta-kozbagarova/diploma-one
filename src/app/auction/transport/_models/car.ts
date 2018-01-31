@@ -7,12 +7,12 @@ export class Car implements Transport {
     name: string;
     description: string;
     images: ProductImage[];
-    createdBy: User;
-    updatedBy: User;
-    createdAt: string;
-    updatedAt: string;
-    isActive: boolean;
-    isDeleted: boolean;
+    created_by: User;
+    updated_by: User;
+    created_at: string;
+    updated_at: string;
+    is_active: boolean;
+    is_deleted: boolean;
 
     getName(): string{
         return this.name;

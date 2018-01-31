@@ -60,12 +60,6 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
       this.resultCount = count;
       console.log('got it');
     });
-    // if(!term){
-    //   this.getTransports();
-    // }else{
-    //   this.searchTerms.next(term);
-    //   this.transportService.search(this.searchTerms).subscribe(data => this.transports = data);
-    // }
   }
 
   reset(){

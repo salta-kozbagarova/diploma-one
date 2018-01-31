@@ -10,12 +10,12 @@ export class Category implements Model {
     parent_id: number;
     subcategories: Category[];
     level: number;
-    createdBy: User;
-    updatedBy: User;
-    createdAt: string;
-    updatedAt: string;
-    isActive: boolean;
-    isDeleted: boolean;
+    created_by: User;
+    updated_by: User;
+    created_at: string;
+    updated_at: string;
+    is_active: boolean;
+    is_deleted: boolean;
 
     constructor(params?: any){
         if(params){

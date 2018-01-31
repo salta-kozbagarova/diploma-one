@@ -19,7 +19,6 @@ export class CommonFilterForm {
         this.radius.id = 1;
         this.radius.radius = 0;
         this.radius.metric = 'км';
-        this.radius.name = '0км';
         this.category = new Category();
         this.category.id = 1;
         this.category.name = 'Транспорт';
@@ -38,7 +37,6 @@ export class CommonFilterForm {
         this.radius.id = 1;
         this.radius.radius = 0;
         this.radius.metric = 'км';
-        this.radius.name = '0км';
         this.price = [0,85000000];
         this.only_photo = false;
         this.header_and_description = false;

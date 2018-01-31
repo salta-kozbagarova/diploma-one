@@ -40,15 +40,15 @@
                                     <i class="fa fa-map-marker text-primary" aria-hidden="true"></i> {{transport.full_address}}
                                 </div>
                                 <div class="card-text">
-                                    <i class="fa fa-calendar text-primary" aria-hidden="true"></i> Дата начала торгов: {{transport.createdAt | date:'dd.MM.yyyy HH:mm'}}
+                                    <i class="fa fa-calendar text-primary" aria-hidden="true"></i> Дата начала торгов: {{transport.created_at | date:'dd.MM.yyyy HH:mm'}}
                                 </div>
                                 <div class="card-text">
-                                    <i class="fa fa-calendar text-primary" aria-hidden="true"></i> Дата окончания торгов: {{transport.endDate | date:'dd.MM.yyyy HH:mm'}}
+                                    <i class="fa fa-calendar text-primary" aria-hidden="true"></i> Дата окончания торгов: {{transport.end_date | date:'dd.MM.yyyy HH:mm'}}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="card-text">
-                                    <i class="fa fa-users text-primary" aria-hidden="true"></i> Количество участников: {{transport.participantsCount}}
+                                    <i class="fa fa-users text-primary" aria-hidden="true"></i> Количество участников: {{transport.participants_count}}
                                 </div>
                                 <div class="card-text">
                                     <i class="fa fa-phone text-primary" aria-hidden="true"></i> {{transport.author}}
@@ -64,17 +64,17 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="card-text"><i class="fa fa-arrow-up text-primary" aria-hidden="true"></i>Аукцион {{transport.auctionType.name}}</div>
+                                <div class="card-text"><i class="fa fa-arrow-up text-primary" aria-hidden="true"></i>Аукцион {{transport.bargain_type.name}}</div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="card-text"><span class="icon-kzt"></span>Текущая цена: <b>{{transport.currentPrice}}₸</b></div>
+                                <div class="card-text"><span class="icon-kzt"></span>Текущая цена: <b>{{transport.current_price}}₸</b></div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <app-countdown [deadline]="transport.endDate" [id]="transport.id" [mini]="true" [color]="'green'"></app-countdown>
+                                <app-countdown [deadline]="transport.end_date" [id]="transport.id" [mini]="true" [color]="'green'"></app-countdown>
                             </div>
                         </div>
                         <div class="row">

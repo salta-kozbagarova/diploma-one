@@ -1,7 +1,7 @@
-import { AuctionType, AuctionComment, Category, AuctionAddress } from "./index";
+import { AuctionType, AuctionComment, Category } from "./index";
 import { Product } from "../_interfaces";
 import { Model } from "../../_interfaces";
-import { User } from "../../_models";
+import { User, AdministrativeDivision } from "../../_models";
 import { environment } from "../../../environments/environment";
 
 export class Auction implements Model {
@@ -18,17 +18,17 @@ export class Auction implements Model {
     participants_count: number;
     comments: AuctionComment[];
     category: Category;
-    addresses: AuctionAddress[];
+    address: AdministrativeDivision;
     full_address: string;
-    createdBy: User;
-    updatedBy: User;
-    createdAt: string;
-    updatedAt: string;
-    isActive: boolean;
-    isDeleted: boolean;
+    created_by: User;
+    updated_by: User;
+    created_at: string;
+    updated_at: string;
+    is_active: boolean;
+    is_deleted: boolean;
 
     get author(): User{
-        return this.createdBy;
+        return this.created_by;
     }
 
     hasPhoto(): boolean{

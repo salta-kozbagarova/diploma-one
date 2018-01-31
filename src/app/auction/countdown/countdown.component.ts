@@ -7,7 +7,7 @@ import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
 })
 export class CountdownComponent implements OnInit, AfterViewInit {
 
-  @Input() deadline: string;
+  @Input() deadline: any;
   @Input() id: string;
   @Input() color: string;
   @Input() mini: boolean;
@@ -56,7 +56,7 @@ export class CountdownComponent implements OnInit, AfterViewInit {
       var timeinterval = setInterval(updateClock, 1000);
     }
     
-    var deadline = new Date(parseInt(that.deadline));
+    var deadline = new Date(that.deadline);
     initializeClock('countdown', deadline);
   }
 }

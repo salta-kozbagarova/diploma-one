@@ -5,10 +5,10 @@ export class AdBanner implements Model {
     id: number;
     name: string;
     image: string;
-    createdBy: User;
-    updatedBy: User;
-    createdAt: string;
-    updatedAt: string;
-    isActive: boolean;
-    isDeleted: boolean;
+    created_by: User;
+    updated_by: User;
+    created_at: string;
+    updated_at: string;
+    is_active: boolean;
+    is_deleted: boolean;
 }

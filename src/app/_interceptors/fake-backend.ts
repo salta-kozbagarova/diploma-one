@@ -20,7 +20,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // array in local storage for registered users
         let users: any[] = [
-            { id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User', login: 'test', roles: 'admin', phonenumbers: [{user_id: 1, phone: '+77751112233', is_main: true}] }
+            { id: 1, username: 'test', password: 'test', first_name: 'Test', last_name: 'User', login: 'test', roles: 'admin', phonenumbers: [{user_id: 1, phone: '+77751112233', is_main: true}] }
         ];
         let categories: any[] = [
             {id: 1, name: 'Транспорт',
@@ -773,7 +773,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 if (filteredUsers.length) {
                     // if login details are valid return 200 OK with user details and fake jwt token
                     let user = filteredUsers[0];
-                    var authUser = new AuthUser(user.id, user.username, user.firstName, user.lastName, null, 'fake-jwt-token');
+                    var authUser = new AuthUser(user.id, user.username, user.first_name, user.last_name, null, 'fake-jwt-token');
  
                     return Observable.of(new HttpResponse({ status: 200, body: authUser }));
                 } else {
