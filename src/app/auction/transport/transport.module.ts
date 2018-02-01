@@ -4,6 +4,7 @@ import { TransportRoutingModule }        from './transport-routing.module';
 import { TransportComponent } from './transport.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { AuctionModule } from '../auction.module';
+import { PaginationModule } from '../../pagination/pagination.module';
 import { TrucksComponent } from './trucks/trucks.component';
 import { UsedCarsComponent } from './used-cars/used-cars.component';
 import { CommonFilterComponent } from './common-filter/common-filter.component';
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     TransportRoutingModule,
     AuctionModule,
-    FormsModule
+    FormsModule,
+    PaginationModule
   ],
   declarations: [
     TransportComponent, CategoriesComponent, TrucksComponent, UsedCarsComponent, CommonFilterComponent,

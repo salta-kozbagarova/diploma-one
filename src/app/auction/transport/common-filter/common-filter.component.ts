@@ -81,7 +81,7 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
 
   getAdmDivisions(){
     this.admDivisionService.getAdmDivisions().subscribe(admDivisions => {
-      this.admDivisions = admDivisions;
+      this.admDivisions = admDivisions.results;
       $('#locationModal .card-group').append(
         this.locationConatiner
       );
@@ -139,7 +139,7 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
 
   getSearchRadiuses(){
     this.searchRadiusService.getSearchRadiuses().subscribe(searchRadiuses => {
-      this.searchRadiuses = searchRadiuses;
+      this.searchRadiuses = searchRadiuses.results;
     });
   }
 
@@ -149,7 +149,7 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
 
   getCategories(){
     this.categoryService.getCategories().subscribe(categories => {
-      this.categories = categories;
+      this.categories = categories.results;
       $('#categoryModal .card-group').append(
         this.categoryContainer
       );
@@ -209,7 +209,7 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
     console.log('this is result');
     this.commonFilterForm.only_quantity = false;
     console.log(this.commonFilterForm);
-    this.auctionService.getByParams(this.commonFilterForm).subscribe(data => {
+    this.auctionService.getByParams(this.commonFilterForm.filterParams).subscribe(data => {
       console.log(data);
     });
   }

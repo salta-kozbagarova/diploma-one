@@ -88,3 +88,5 @@
         </div>
     </div>
 </div>
+
+<app-pagination [count]="count" [page]="page" [perPage]="limit" [pagesToShow]="5" [loading]="loading" (goPage)="goToPage($event)" (goNext)="onNext()" (goPrev)="onPrev()"></app-pagination>

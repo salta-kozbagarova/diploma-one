@@ -16,6 +16,11 @@ export class TransportComponent implements OnInit {
   sortParam: string;
   sortAsc = false;
 
+  loading = false;
+  count = 0;
+  page = 1;
+  limit = 10;
+
   constructor(private transportService: TransportService) { }
 
   ngOnInit() {
@@ -33,8 +38,29 @@ export class TransportComponent implements OnInit {
     }
   }
 
-  getTransports(){
-    this.transportService.getTransports().subscribe(data => this.transports = data);
+  getTransports(nextLink?){
+    this.loading = true;
+    this.transportService.getTransports(nextLink).subscribe(data => {
+      this.count = data.count;
+      this.transports = data.results;
+      this.loading = false;
+    });
+  }
+
+  goToPage(n: number): void {
+    this.page = n;
+    console.log('gotopage');
+    this.getTransports({limit: this.limit, offset: (this.page*10)-10});
+  }
+
+  onNext(): void {
+    this.page++;
+    this.getTransports({limit: this.limit, offset: (this.page*10)-10});
+  }
+
+  onPrev(): void {
+    this.page--;
+    this.getTransports({limit: this.limit, offset: (this.page*10)-10});
   }
 
   sort(param: string){

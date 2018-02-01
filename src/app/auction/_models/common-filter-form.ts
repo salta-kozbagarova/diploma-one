@@ -39,6 +39,12 @@ export class CommonFilterForm {
     }
 
     get filterParams(){
-        return null;
+        return [
+            this.address__id,
+            this.radius,
+            this.category__id,
+            this.price,
+            this.only_with_image
+        ]
     }
 }

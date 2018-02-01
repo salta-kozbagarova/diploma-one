@@ -24,7 +24,9 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
   }
 
   getCategories(){
-    this.categoryService.getSubcategories(this.currCatCode).subscribe(categories => this.categories = categories);
+    this.categoryService.getSubcategories(this.currCatCode).subscribe(categories => {
+      this.categories = categories.results;
+    });
   }
 
   ngAfterViewInit() {

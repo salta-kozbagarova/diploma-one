@@ -18,7 +18,8 @@ export class AdBannerComponent implements OnInit {
   }
 
   getAdBanners(){
-    this.adBannerService.getAdBanners()
-        .subscribe(adBanners => this.adBanners = adBanners);
+    this.adBannerService.getAdBanners().subscribe(adBanners => {
+      this.adBanners = adBanners.results;
+    });
   }
 }

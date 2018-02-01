@@ -10,11 +10,15 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 export class TransportService {
 
   private transportUrl = 'http://127.0.0.1:8000/bargains';  // '/api/auction/transport';
+  private paginationParams = {limit: 10, offset: 0}
 
   constructor(private http: HttpClient) { }
 
-  getTransports(): Observable<Auction[]> {
-    return this.http.get<Auction[]>(this.transportUrl+'/bargains/', {params: {"category__code": "transport"}})
+  getTransports(pageParams: {}): Observable<any> {
+    var params = pageParams ? pageParams : this.paginationParams;
+    Object.assign(params, {"category__code": "transport"});
+    var url = this.transportUrl+'/bargains/';
+    return this.http.get<Auction[]>(url, {params: params})
       .pipe(
         tap(heroes => this.log(`fetched transports`)),
         catchError(this.handleError('getTransports', []))

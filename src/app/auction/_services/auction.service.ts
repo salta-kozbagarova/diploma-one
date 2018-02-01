@@ -14,8 +14,8 @@ export class AuctionService {
 
   constructor(private http: HttpClient) { }
 
-  getTop(): Observable<Auction[]> {
-    return this.http.get<Auction[]>(this.auctionUrl+'/bargains')
+  getTop(): Observable<any> {
+    return this.http.get<any>(this.auctionUrl+'/bargains')
       .pipe(
         tap(heroes => this.log(`fetched top`)),
         catchError(this.handleError('getTop', []))
@@ -43,7 +43,7 @@ export class AuctionService {
       );
   }
 
-  getByParams(options: any): Observable<Auction[]> {
+  getByParams(options: any): Observable<any> {
     return this.http.get<Auction[]>(this.auctionUrl + '/bargains', {params: options})
       .pipe(
         tap(heroes => this.log(`fetched by params`)),

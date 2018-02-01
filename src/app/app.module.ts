@@ -28,7 +28,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     AdminComponent,
     HeaderComponent,
     FooterComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

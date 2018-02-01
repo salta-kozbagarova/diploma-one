@@ -12,7 +12,7 @@ export class AdministrativeDivisionService {
 
   constructor(private http: HttpClient) { }
 
-  getAdmDivisions(): Observable<AdministrativeDivision[]> {
+  getAdmDivisions(): Observable<any> {
     return this.http.get<AdministrativeDivision[]>(this.admUrl + '/adm-divisions')
       .pipe(
         tap(adms => this.log(`fetched adm divisions`)),

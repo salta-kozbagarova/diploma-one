@@ -13,7 +13,7 @@ export class AdBannerService {
 
   constructor(private http: HttpClient) { }
 
-  getAdBanners(): Observable<AdBanner[]> {
+  getAdBanners(): Observable<any> {
     return this.http.get<AdBanner[]>(this.adBannerUrl+'/ad-banners');
   }
 }

@@ -13,7 +13,7 @@ export class UserService {
         private authenticationService: AuthenticationService) {
     }
  
-    getUsers(): Observable<User[]> {
+    getUsers(): Observable<any> {
         // get users from api
         return this.http.get<User[]>('/api/users');
     }

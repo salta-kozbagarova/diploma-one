@@ -20,7 +20,7 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
 
   getRootCategories(){
     this.categoryService.getRootCategories().subscribe(categories => {
-      this.categories = categories.filter(category => {
+      this.categories = categories.results.filter(category => {
         return category.parent_id == null;
       });
     });

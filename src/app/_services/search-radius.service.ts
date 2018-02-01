@@ -12,7 +12,7 @@ export class SearchRadiusService {
 
   constructor(private http: HttpClient) { }
 
-  getSearchRadiuses(): Observable<SearchRadius[]>{
+  getSearchRadiuses(): Observable<any>{
     return this.http.get<SearchRadius[]>(this.searchRaduisUrl+'/search-radiuses')
       .pipe(
         tap(searchRadiuses => this.log(`fetched adm searchRadiuses`)),
