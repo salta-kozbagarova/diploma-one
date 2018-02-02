@@ -9,11 +9,13 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class CategoryService {
 
   private categoryUrl = 'http://127.0.0.1:8000/categories';  // '/api/category'; // URL to web api
+  private paginationParams = {limit: 100, offset: 0}
 
   constructor(private http: HttpClient) { }
 
-  getCategories(): Observable<any> {
-    return this.http.get<Category[]>(this.categoryUrl+'/categories/')
+  getCategories(pageParams?: {}): Observable<any> {
+    var params = pageParams ? pageParams : this.paginationParams;
+    return this.http.get<Category[]>(this.categoryUrl+'/categories/', {params: params})
       .pipe(
         tap(categories => this.log(`fetched categories`)),
         catchError(this.handleError('getCategories', []))

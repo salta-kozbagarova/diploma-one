@@ -14,7 +14,7 @@ export class TransportService {
 
   constructor(private http: HttpClient) { }
 
-  getTransports(pageParams: {}): Observable<any> {
+  getTransports(pageParams?: {}): Observable<any> {
     var params = pageParams ? pageParams : this.paginationParams;
     Object.assign(params, {"category__code": "transport"});
     var url = this.transportUrl+'/bargains/';
@@ -25,7 +25,7 @@ export class TransportService {
       );
   }
 
-  search(terms: Observable<string>): Observable<Auction[]> {
+  search(terms: Observable<string>): Observable<any> {
     return terms.pipe(
       // wait 300ms after each keystroke before considering the term
       debounceTime(300),
@@ -37,13 +37,13 @@ export class TransportService {
   }
 
   /* GET auctions whose name contains search term */
-  searchAuctions(term: string): Observable<Auction[]> {
+  searchAuctions(term: string): Observable<any> {
     console.log('searching');
     if (!term.trim()) {
       // if not search term, return empty hero array.
       return of([]);
     }
-    return this.http.get<Auction[]>(this.transportUrl + `?name=${term}`)
+    return this.http.get<Auction[]>(this.transportUrl + '/bargains/', {params: {"category__code": "transport", "name__icontains": term}})
       .pipe(
         tap(auctions => this.log(`found auctions matching "${term}"`)),
         catchError(this.handleError<Auction[]>('searchAuctions', []))

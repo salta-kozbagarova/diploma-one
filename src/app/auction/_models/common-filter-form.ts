@@ -44,7 +44,8 @@ export class CommonFilterForm {
             this.radius,
             this.category__id,
             this.price,
-            this.only_with_image
+            this.only_with_image,
+            this.only_quantity
         ]
     }
 }

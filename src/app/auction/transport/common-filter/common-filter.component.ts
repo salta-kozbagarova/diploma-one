@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { AdministrativeDivision, SearchRadius } from '../../../_models';
 import { AdministrativeDivisionService, SearchRadiusService } from '../../../_services';
 import { CategoryService, AuctionService } from '../../_services';
@@ -20,6 +20,7 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
   categories: Category[];
   resultCount: number;
   priceFilter: any;
+  @Output() getSearchResult: EventEmitter<any> = new EventEmitter();
   locationConatiner = '<div class="card" style="overflow-y:auto;"><ul class="list-group"></ul></div>';
   locationItem = '<li class="list-group-item list-group-item-action" style="padding:.3em .9em;font-size:.9em;cursor:pointer;"><span class="locationText"></span><i class="fa fa-chevron-right float-right text-primary mt-1" aria-hidden="true"></i></li>';
   categoryContainer = '<div class="card" style="overflow-y:auto;"><ul class="list-group"></ul></div>';
@@ -54,11 +55,9 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
   }
 
   searchForCount(): void {
-    console.log('searchForCount');
     this.searchTerms.next(this.commonFilterForm);
     this.auctionService.searchForCount(this.searchTerms).subscribe(count => {
       this.resultCount = count;
-      console.log('got it');
     });
   }
 
@@ -209,8 +208,10 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
     console.log('this is result');
     this.commonFilterForm.only_quantity = false;
     console.log(this.commonFilterForm);
-    this.auctionService.getByParams(this.commonFilterForm.filterParams).subscribe(data => {
+    this.auctionService.getByParams(this.commonFilterForm).subscribe(data => {
       console.log(data);
+      this.getSearchResult.emit(data);
+      this.commonFilterForm.only_quantity = true;
     });
   }
 }

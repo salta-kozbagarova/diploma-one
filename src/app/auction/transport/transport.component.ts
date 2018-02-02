@@ -34,7 +34,9 @@ export class TransportComponent implements OnInit {
       this.getTransports();
     }else{
       this.searchTerms.next(term);
-      this.transportService.search(this.searchTerms).subscribe(data => this.transports = data);
+      this.transportService.search(this.searchTerms).subscribe(data => {
+        this.transports = data.results;
+      });
     }
   }
 
@@ -45,6 +47,16 @@ export class TransportComponent implements OnInit {
       this.transports = data.results;
       this.loading = false;
     });
+  }
+
+  showResult(any){
+    console.log('getting res');
+    console.log(any);
+    this.loading = true;
+    this.page = 1;
+    this.count = any.count;
+    this.transports = any.results;
+    this.loading = false;
   }
 
   goToPage(n: number): void {
