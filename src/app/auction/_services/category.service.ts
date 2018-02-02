@@ -22,6 +22,14 @@ export class CategoryService {
       );
   }
 
+  getCategory(code?: string): Observable<any> {
+    return this.http.get<any>(this.categoryUrl+`/categories/${code}`)
+      .pipe(
+        tap(categories => this.log(`fetched categories`)),
+        catchError(this.handleError('getCategories', []))
+      );
+  }
+
   getRootCategories(): Observable<any> {
     return this.http.get<Category[]>(this.categoryUrl+'/categories/', {params: {"is_root": "true"}})
       .pipe(

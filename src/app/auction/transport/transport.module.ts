@@ -7,7 +7,6 @@ import { AuctionModule } from '../auction.module';
 import { PaginationModule } from '../../pagination/pagination.module';
 import { TrucksComponent } from './trucks/trucks.component';
 import { UsedCarsComponent } from './used-cars/used-cars.component';
-import { CommonFilterComponent } from './common-filter/common-filter.component';
 import { MototechnicsComponent } from './mototechnics/mototechnics.component';
 import { AirTransportsComponent } from './air-transports/air-transports.component';
 import { OthersComponent } from './others/others.component';
@@ -25,7 +24,7 @@ import { FormsModule } from '@angular/forms';
     PaginationModule
   ],
   declarations: [
-    TransportComponent, CategoriesComponent, TrucksComponent, UsedCarsComponent, CommonFilterComponent,
+    TransportComponent, CategoriesComponent, TrucksComponent, UsedCarsComponent,
     MototechnicsComponent, AirTransportsComponent, OthersComponent, CarsComponent, SafeUrlPipe, SortPipe ],
   providers: [
     TransportService

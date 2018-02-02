@@ -3,6 +3,7 @@ import { AuctionService } from '../_services';
 import { TransportService } from './_services';
 import { Auction } from '../_models';
 import { Subject }    from 'rxjs/Subject';
+import { CommonFilterForm } from '../_models';
 
 @Component({
   selector: 'app-transport',
@@ -24,7 +25,7 @@ export class TransportComponent implements OnInit {
   constructor(private transportService: TransportService) { }
 
   ngOnInit() {
-    this.getTransports();
+    //this.getTransports();
   }
 
   // Push a search term into the observable stream.
@@ -62,17 +63,23 @@ export class TransportComponent implements OnInit {
   goToPage(n: number): void {
     this.page = n;
     console.log('gotopage');
-    this.getTransports({limit: this.limit, offset: (this.page*10)-10});
+    let params = {limit: this.limit, offset: (this.page*10)-10};
+    Object.assign(params, CommonFilterForm.getInstance());
+    this.getTransports(params);
   }
 
   onNext(): void {
     this.page++;
-    this.getTransports({limit: this.limit, offset: (this.page*10)-10});
+    let params = {limit: this.limit, offset: (this.page*10)-10};
+    Object.assign(params, CommonFilterForm.getInstance());
+    this.getTransports(params);
   }
 
   onPrev(): void {
     this.page--;
-    this.getTransports({limit: this.limit, offset: (this.page*10)-10});
+    let params = {limit: this.limit, offset: (this.page*10)-10};
+    Object.assign(params, CommonFilterForm.getInstance());
+    this.getTransports(params);
   }
 
   sort(param: string){

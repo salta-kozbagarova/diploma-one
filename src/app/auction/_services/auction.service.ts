@@ -5,7 +5,6 @@ import { of } from 'rxjs/observable/of';
 import { Auction, CommonFilterForm } from '../_models';
 import { Car } from '../transport/_models';
 import { catchError, map, tap } from 'rxjs/operators';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class AuctionService {
@@ -22,19 +21,8 @@ export class AuctionService {
       );
   }
 
-  searchForCount(terms: Observable<CommonFilterForm>): Observable<number> {
-    return terms.pipe(
-      // wait 300ms after each keystroke before considering the term
-      debounceTime(300),
-      // ignore new term if same as previous term
-      distinctUntilChanged(),
-      // switch to new search observable each time the term changes
-      switchMap((term: CommonFilterForm) => this.getSearchResultCount(term))
-    );
-  }
-
   getSearchResultCount(term: any): Observable<number>{
-    console.log('params');
+    console.log('getSearchResultCount');
     console.log(term);
     return this.http.get<number>(this.auctionUrl + '/bargains', {params: term})
       .pipe(

@@ -13,9 +13,9 @@ export class CommonFilterForm {
     header_and_description: boolean;
     only_quantity: boolean;
 
+    private static instance: CommonFilterForm = new CommonFilterForm();
 
-
-    constructor(){
+    private constructor(){
         this.address__id = 1;
         this.address__name = 'Казахстан';
         this.radius = 1;
@@ -27,25 +27,28 @@ export class CommonFilterForm {
         this.only_quantity = true;
     }
 
-    reset(): void{
-        this.q = null;
-        this.address__id = 1;
-        this.address__name = 'Казахстан';
-        this.radius = 1;
-        this.price = [0,85000000];
-        this.only_with_image = false;
-        this.header_and_description = false;
-        this.only_quantity = true;
+    static getInstance(): CommonFilterForm{
+        if(!!localStorage.getItem('commonFilter')){
+            this.instance = this.getCommonFilter();
+        } else{
+            this.instance = new CommonFilterForm();
+        }
+        return this.instance;
     }
 
-    get filterParams(){
-        return [
-            this.address__id,
-            this.radius,
-            this.category__id,
-            this.price,
-            this.only_with_image,
-            this.only_quantity
-        ]
+    static reset(): void{
+        // this.q = null;
+        // this.address__id = 1;
+        // this.address__name = 'Казахстан';
+        // this.radius = 1;
+        // this.price = [0,85000000];
+        // this.only_with_image = false;
+        // this.header_and_description = false;
+        // this.only_quantity = true;
+        localStorage.removeItem('commonFilter');
+    }
+
+    static getCommonFilter(): CommonFilterForm{
+        return JSON.parse(localStorage.getItem('commonFilter'));
     }
 }

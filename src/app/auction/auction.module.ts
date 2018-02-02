@@ -9,6 +9,8 @@ import { AdBannerComponent } from './ad-banner/ad-banner.component';
 import { TopAuctionsComponent } from './top-auctions/top-auctions.component';
 import { CountdownComponent } from './countdown/countdown.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { CommonFilterComponent } from './common-filter/common-filter.component'
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,10 +19,12 @@ import { CategoriesComponent } from './categories/categories.component';
     AdBannerComponent,
     TopAuctionsComponent,
     CountdownComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    CommonFilterComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
     routing
   ],
   providers: [
@@ -29,6 +33,6 @@ import { CategoriesComponent } from './categories/categories.component';
     CategoryService
   ],
   bootstrap: [AuctionComponent],
-  exports: [AdBannerComponent, CountdownComponent]
+  exports: [AdBannerComponent, CountdownComponent, CommonFilterComponent]
 })
 export class AuctionModule { }
