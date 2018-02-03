@@ -8,16 +8,17 @@ import { User, SigninForm, AuthUser } from '../_models';
 @Injectable()
 export class AuthenticationService {
 
+  private authUrl = 'http://localhost:8000/api-token-auth/';
   @Output() currentUser: EventEmitter<AuthUser> = new EventEmitter();
 
   constructor(private http: HttpClient) { }
 
   login(signinForm: SigninForm): Observable<boolean> {
-    return this.http.post<any>('/api/authenticate', signinForm)
-      .map(user => {
+    return this.http.post<any>(this.authUrl, signinForm)
+      .map(data => {
         // login successful if there's a jwt token in the response
-        if (user && user.token) {
-          var authUser = user;
+        if (data.token && data.user) {
+          var authUser = data.user;
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('user', JSON.stringify(user));
           this.currentUser.emit(authUser);
