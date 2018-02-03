@@ -63,7 +63,7 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
     this.getSearchRadiuses();
     this.getCategories();
     this.searchForCount();
-    this.showResult();
+    //this.showResult();
   }
 
   ngAfterViewInit(){
