@@ -773,7 +773,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 if (filteredUsers.length) {
                     // if login details are valid return 200 OK with user details and fake jwt token
                     let user = filteredUsers[0];
-                    var authUser = new AuthUser(user.id, user.username, user.first_name, user.last_name, null, 'fake-jwt-token');
+                    var authUser = new AuthUser(user, 'fake-jwt-token');
  
                     return Observable.of(new HttpResponse({ status: 200, body: authUser }));
                 } else {

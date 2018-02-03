@@ -1,14 +1,11 @@
+import { User } from "./";
+
 export class AuthUser {
-    id: number;
-    username: string;
-    first_name: string;
-    last_name: string;
-    email: string;
+    user: User
     token: string;
 
-    constructor(id, username, firstname, lastname, email, token){
-        this.username = username;
-        this.email = email;
+    constructor(user, token){
+        this.user = user;
         this.token = token;
     }
 }
