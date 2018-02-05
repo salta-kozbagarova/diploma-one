@@ -61,9 +61,9 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="login">Имя пользователя или электронная почта</label>
-                            <input formControlName="login" id="login" class="form-control validation-field" placeholder="Имя пользователя или электронная почта" type="text">
-                            <small class="text-danger" *ngIf="signinForm.get('login').touched && signinForm.get('login').hasError('required')">Необходимо заполнить</small>
+                            <label for="username">Имя пользователя или электронная почта</label>
+                            <input formControlName="username" id="username" class="form-control validation-field" placeholder="Имя пользователя или электронная почта" type="text">
+                            <small class="text-danger" *ngIf="signinForm.get('username').touched && signinForm.get('username').hasError('required')">Необходимо заполнить</small>
                         </div>
                         <div class="form-group">
                             <label for="password">Пароль</label>
@@ -94,7 +94,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="username">Имя пользователя</label>
-                            <input formControlName="username" id="username" class="form-control validation-field" placeholder="Имя пользователя" type="text">
+                            <input formControlName="username" id="signupUsername" class="form-control validation-field" placeholder="Имя пользователя" type="text">
                             <small class="text-danger" *ngIf="signupForm.get('username').touched && signupForm.get('username').hasError('required')">Необходимо заполнить</small>
                         </div>
                         <div class="form-group">

@@ -21,14 +21,13 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   public email: AbstractControl;
   public password: AbstractControl;
   public passwordConfirm: AbstractControl;
-  public login: AbstractControl;
   public authUser: AuthUser;
 
   constructor(private router: Router,
               private authenticationService: AuthenticationService,
               private fb: FormBuilder) {
     this.signinForm = this.fb.group({
-      login: ['', Validators.compose([Validators.required])],
+      username: ['', Validators.compose([Validators.required])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(3)])]
     });
 
@@ -39,6 +38,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       passwordConfirm: ['', Validators.compose([Validators.required, Validators.minLength(3)])]
     }, this.passwordMatchValidator);
 
+    this.authUser = this.authenticationService.getCurrentUser();
     this.authenticationService.currentUser.subscribe(curUser => this.setCurrentUser(curUser));
   }
 
@@ -65,7 +65,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   public onSignin(values: SigninForm): void {
     if (this.signinForm.valid) {
-      this.authenticationService.login(values).subscribe(
+      this.authenticationService.authenticate(values).subscribe(
         data => {
           console.log('login ok');
           $("#authModal").modal('hide');

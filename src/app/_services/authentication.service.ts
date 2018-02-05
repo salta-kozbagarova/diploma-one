@@ -8,12 +8,12 @@ import { User, SigninForm, AuthUser } from '../_models';
 @Injectable()
 export class AuthenticationService {
 
-  private authUrl = 'http://localhost:8000/api-token-auth/';
+  private authUrl = 'http://127.0.0.1:8000/api-token-auth/';
   @Output() currentUser: EventEmitter<AuthUser> = new EventEmitter();
 
   constructor(private http: HttpClient) { }
 
-  login(signinForm: SigninForm): Observable<boolean> {
+  authenticate(signinForm: SigninForm): Observable<boolean> {
     return this.http.post<any>(this.authUrl, signinForm)
       .map(data => {
         // login successful if there's a jwt token in the response

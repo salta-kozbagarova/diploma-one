@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
     this.currentUser = this.authenticationService.getCurrentUser();
     if(this.currentUser){
       this.username = this.currentUser.user.username;
-      this.token = 'Bearer ' + this.currentUser.token;
+      this.token = 'JWT ' + this.currentUser.token;
     }
   }
 }
