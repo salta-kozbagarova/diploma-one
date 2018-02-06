@@ -50,35 +50,32 @@ export class TransportComponent implements OnInit {
     });
   }
 
-  showResult(any){
-    console.log('getting res');
-    console.log(any);
+  showResult(data: any){
     this.loading = true;
     this.page = 1;
-    this.count = any.count;
-    this.transports = any.results;
+    this.count = data.count;
+    this.transports = data.results;
     this.loading = false;
   }
 
   goToPage(n: number): void {
     this.page = n;
-    console.log('gotopage');
     let params = {limit: this.limit, offset: (this.page*10)-10};
-    Object.assign(params, CommonFilterForm.getInstance());
+    Object.assign(params, CommonFilterForm.getFilterParams());
     this.getTransports(params);
   }
 
   onNext(): void {
     this.page++;
     let params = {limit: this.limit, offset: (this.page*10)-10};
-    Object.assign(params, CommonFilterForm.getInstance());
+    Object.assign(params, CommonFilterForm.getFilterParams());
     this.getTransports(params);
   }
 
   onPrev(): void {
     this.page--;
     let params = {limit: this.limit, offset: (this.page*10)-10};
-    Object.assign(params, CommonFilterForm.getInstance());
+    Object.assign(params, CommonFilterForm.getFilterParams());
     this.getTransports(params);
   }
 

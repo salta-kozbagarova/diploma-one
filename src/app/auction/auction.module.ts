@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { routing }        from './auction.routing';
 
-import { AuctionService, AdBannerService, CategoryService } from './_services';
+import { AuctionService, AdBannerService, CategoryService, CommonFilterFormService } from './_services';
 import { AuctionComponent } from './auction.component';
 import { MainComponent } from './main/main.component';
 import { AdBannerComponent } from './ad-banner/ad-banner.component';
@@ -30,7 +30,8 @@ import { FormsModule } from '@angular/forms';
   providers: [
     AuctionService,
     AdBannerService,
-    CategoryService
+    CategoryService,
+    CommonFilterFormService
   ],
   bootstrap: [AuctionComponent],
   exports: [AdBannerComponent, CountdownComponent, CommonFilterComponent]

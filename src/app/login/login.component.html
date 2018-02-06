@@ -6,8 +6,8 @@
   <h2>Login</h2>
   <form [formGroup]="signinForm" (ngSubmit)="onSubmit(signinForm.value)" class="text-left mt-4">
     <div class="form-group">
-        <input [formControl]="login" class="form-control validation-field" placeholder="Имя пользователя" type="text">
-        <small class="text-danger" *ngIf="signinForm.get('login').touched && signinForm.get('login').hasError('required')">Необходимо заполнить</small>
+        <input [formControl]="username" class="form-control validation-field" placeholder="Имя пользователя" type="text">
+        <small class="text-danger" *ngIf="signinForm.get('username').touched && signinForm.get('username').hasError('required')">Необходимо заполнить</small>
     </div>
     <div class="form-group">
         <input [formControl]="password" class="form-control validation-field" placeholder="Пароль" type="password">

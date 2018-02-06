@@ -14,7 +14,7 @@ import { User, SigninForm } from '../_models';
 export class LoginComponent implements OnInit {
 
   public signinForm: FormGroup;
-  public login: AbstractControl;
+  public username: AbstractControl;
   public password: AbstractControl;
 
   constructor(
@@ -23,11 +23,11 @@ export class LoginComponent implements OnInit {
               private fb: FormBuilder) {
     this.router = router;
     this.signinForm = fb.group({
-        'login': ['', Validators.compose([Validators.required])],
+        'username': ['', Validators.compose([Validators.required])],
         'password': ['', Validators.compose([Validators.required, Validators.minLength(3)])]
     });
 
-    this.login = this.signinForm.controls['login'];
+    this.username = this.signinForm.controls['username'];
     this.password = this.signinForm.controls['password'];
   }
 
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
   
   public onSubmit(values: SigninForm): void {
     if (this.signinForm.valid) {
-      this.authenticationService.login(values).subscribe(
+      this.authenticationService.authenticate(values).subscribe(
         data => {
           console.log('login ok');
         this.router.navigate(['/']);

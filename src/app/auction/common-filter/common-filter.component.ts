@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { AdministrativeDivision, SearchRadius } from '../../_models';
 import { AdministrativeDivisionService, SearchRadiusService } from '../../_services';
-import { CategoryService, AuctionService } from '../_services';
+import { CategoryService, AuctionService, CommonFilterFormService } from '../_services';
 import { Category, CommonFilterForm } from '../_models';
 import { Subject }    from 'rxjs/Subject';
 import { Location } from '@angular/common';
@@ -21,7 +21,7 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
   admDivisions: AdministrativeDivision[];
   commonFilterForm: CommonFilterForm;
   count$: Observable<number>;
-  private searchTerms = new Subject<CommonFilterForm>();
+  private searchTerms = new Subject<any>();
   searchRadiuses: SearchRadius[];
   categories: Category[];
   resultCount: number;
@@ -39,15 +39,9 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
               private auctionService: AuctionService,
               private location: Location,
               private router: Router,
-              private route: ActivatedRoute) {
-    this.curCategoryCode = this.router.url.split('/').pop();
-    this.commonFilterForm = CommonFilterForm.getInstance();
-    this.categoryService.getCategory(this.curCategoryCode).subscribe(data => {
-      this.curCategory = data;
-      this.commonFilterForm.category__id = this.curCategory.id;
-      this.commonFilterForm.category__name = this.curCategory.name;
-      localStorage.setItem('commonFilter', JSON.stringify(this.commonFilterForm));
-    });
+              private route: ActivatedRoute,
+              private commonFilterFormService: CommonFilterFormService) {
+    this.commonFilterForm = this.commonFilterFormService.getCommonFilterForm();
   }
 
   ngOnInit() {
@@ -57,13 +51,12 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
       // ignore new term if same as previous term
       distinctUntilChanged(),
       // switch to new search observable each time the term changes
-      switchMap((term: CommonFilterForm) => this.auctionService.getSearchResultCount(term))
+      switchMap((term: any) => this.auctionService.getSearchResultCount(term))
     );
     this.getAdmDivisions();
     this.getSearchRadiuses();
     this.getCategories();
-    this.searchForCount();
-    //this.showResult();
+    this.showResult();
   }
 
   ngAfterViewInit(){
@@ -83,14 +76,11 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
   }
 
   searchForCount(): void {
-    console.log('search for count');
+    localStorage.setItem('commonFilter', JSON.stringify(this.commonFilterForm));
     this.count$.subscribe(count => {
-      console.log('sdvsddvsvsdvsd');
       this.resultCount = count;
-      console.log(this.resultCount);
-      localStorage.setItem('commonFilter', JSON.stringify(this.commonFilterForm));
     });
-    this.searchTerms.next(this.commonFilterForm);
+    this.searchTerms.next(CommonFilterForm.getFilterParamsWithCount());
   }
 
   reset(){
@@ -241,15 +231,10 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
   }
 
   showResult(){
-    console.log('this is result');
-    this.commonFilterForm.only_quantity = false;
     localStorage.setItem('commonFilter', JSON.stringify(this.commonFilterForm));
-    console.log(this.commonFilterForm);
-    this.auctionService.getByParams(this.commonFilterForm).subscribe(data => {
-      console.log(data);
+    this.auctionService.getByParams(CommonFilterForm.getFilterParams()).subscribe(data => {
       this.searchResult.emit(data);
-      this.commonFilterForm.only_quantity = true;
-      localStorage.setItem('commonFilter', JSON.stringify(this.commonFilterForm));
+      this.resultCount = data.count;
     });
   }
 }
