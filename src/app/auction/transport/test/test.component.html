@@ -1,0 +1,16 @@
+<form [formGroup]="carForm" (ngSubmit)="postTest(carForm.value)" class="text-left mt-4">
+    <div class="form-group">
+        <input formControlName="name" id="name" class="form-control" placeholder="Имя пользователя или электронная почта" type="text">
+    </div>
+    <div class="form-group">
+        <input formControlName="description" id="description" class="form-control" placeholder="Пароль" type="password">
+   </div>
+   <div class="form-group">
+    <input multiple formControlName="productimagerelated" id="productimage_related" class="form-control" (change)="onFileChange($event)" #fileInput type="file">
+</div>
+<div class="form-group">
+    <button class="btn btn-outline-primary" type="submit">Войти</button>
+    <!-- [disabled]="!carForm.valid"  -->
+    <!-- enctype="multipart/form-data" -->
+</div>
+    </form>

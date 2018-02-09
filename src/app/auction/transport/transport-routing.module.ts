@@ -7,11 +7,12 @@ import { TrucksComponent } from './trucks/trucks.component';
 import { MototechnicsComponent } from './mototechnics/mototechnics.component';
 import { AirTransportsComponent } from './air-transports/air-transports.component';
 import { OthersComponent } from './others/others.component';
+import { TestComponent } from './test/test.component';
 
 const transportRoutes: Routes = [
     {
         path: '',
-        component: TransportComponent
+        component: TestComponent
     },
     {
         path: 'new-cars',
@@ -36,6 +37,10 @@ const transportRoutes: Routes = [
     {
         path: 'other',
         component: OthersComponent
+    },
+    {
+        path: 'test',
+        component: TestComponent
     }
 ];
 

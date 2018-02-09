@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TransportRoutingModule }        from './transport-routing.module';
+import { TransportRoutingModule } from './transport-routing.module';
 import { TransportComponent } from './transport.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { AuctionModule } from '../auction.module';
@@ -14,6 +14,8 @@ import { CarsComponent } from './cars/cars.component';
 import { SafeUrlPipe, SortPipe } from '../../_pipes';
 import { TransportService } from './_services';
 import { FormsModule } from '@angular/forms';
+import { TestComponent } from './test/test.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -21,11 +23,12 @@ import { FormsModule } from '@angular/forms';
     TransportRoutingModule,
     AuctionModule,
     FormsModule,
-    PaginationModule
+    PaginationModule,
+    ReactiveFormsModule
   ],
   declarations: [
     TransportComponent, CategoriesComponent, TrucksComponent, UsedCarsComponent,
-    MototechnicsComponent, AirTransportsComponent, OthersComponent, CarsComponent, SafeUrlPipe, SortPipe ],
+    MototechnicsComponent, AirTransportsComponent, OthersComponent, CarsComponent, SafeUrlPipe, SortPipe, TestComponent ],
   providers: [
     TransportService
   ],

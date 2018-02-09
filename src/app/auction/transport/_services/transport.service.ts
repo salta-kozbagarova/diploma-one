@@ -50,6 +50,14 @@ export class TransportService {
       );
   }
 
+  postTest(params: any){
+    return this.http.post<any>('http://127.0.0.1:8000/transports/cars/', params)
+      .pipe(
+        tap(heroes => this.log(`fetched transports`)),
+        catchError(this.handleError('getTransports', []))
+      );
+  }
+
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
     console.log('TransportService: ' + message);
