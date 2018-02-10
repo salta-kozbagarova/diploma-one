@@ -12,7 +12,7 @@ import { TestComponent } from './test/test.component';
 const transportRoutes: Routes = [
     {
         path: '',
-        component: TestComponent
+        component: TransportComponent
     },
     {
         path: 'new-cars',

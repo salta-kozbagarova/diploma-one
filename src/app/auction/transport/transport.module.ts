@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TransportRoutingModule } from './transport-routing.module';
+import { TransportRoutingModule } from './transport.routing';//
 import { TransportComponent } from './transport.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { AuctionModule } from '../auction.module';

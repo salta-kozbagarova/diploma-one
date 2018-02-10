@@ -9,7 +9,7 @@ const auctionRoutes: Routes = [
         children: [
             { path: '', redirectTo: 'main', pathMatch: 'full' },
             { path: 'main', component: MainComponent },
-            { path: 'transport', pathMatch: 'full', loadChildren: 'app/auction/transport/transport.module#TransportModule' }
+            { path: 'transport', loadChildren: 'app/auction/transport/transport.module#TransportModule' }
         ]
     }
 ];
