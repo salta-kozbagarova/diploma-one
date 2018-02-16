@@ -49,7 +49,11 @@ export class TestComponent implements OnInit {
       this.productImage = files;
       //this.formData.append('productimage_related', file);
       for(let i=0; i<this.productImage.length; i++){
-          this.formData.append('productimage_related['+i+']', files[i]);
+        var f = new FormData();
+        f.append('image', files[i]);
+
+        var er = "{\"image\":"+files[i]+"}";
+        this.formData.append('productimage_related['+i+']', files[i]);
       }
       console.log(this.formData);
     }
