@@ -51,7 +51,7 @@ export class TransportService {
   }
 
   postTest(params: any){
-    return this.http.post<any>('http://127.0.0.1:8000/transports/cars/', params)
+    return this.http.post<any>('http://127.0.0.1:8000/transports/transport-test/', params)//'cars/'transport-test
       .pipe(
         tap(heroes => this.log(`fetched transports`)),
         catchError(this.handleError('getTransports', []))
