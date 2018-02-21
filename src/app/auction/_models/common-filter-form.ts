@@ -23,7 +23,7 @@ export class CommonFilterForm {
         this.category__id = 1;
         this.category__name = 'Транспорт';
         this.category__code = 'transport';
-        this.price = [0,85000000];
+        this.price = [0,850000000];
         this.only_with_image = false;
         this.header_and_description = false;
         this.only_quantity = false;
@@ -56,7 +56,8 @@ export class CommonFilterForm {
             address__id: this.instance.address__id,
             radius: this.instance.radius,
             category__code: this.instance.category__code,
-            price: this.instance.price,
+            current_price_min: this.instance.price[0],
+            current_price_max: this.instance.price[1],
             only_with_image: this.instance.only_with_image,
             header_and_description: this.instance.header_and_description,
             only_quantity: false
@@ -70,7 +71,8 @@ export class CommonFilterForm {
             address__id: this.instance.address__id,
             radius: this.instance.radius,
             category__code: this.instance.category__code,
-            price: this.instance.price,
+            current_price_min: this.instance.price[0],
+            current_price_max: this.instance.price[1],
             only_with_image: this.instance.only_with_image,
             header_and_description: this.instance.header_and_description,
             only_quantity: true

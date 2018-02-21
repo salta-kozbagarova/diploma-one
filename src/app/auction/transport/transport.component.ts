@@ -34,10 +34,10 @@ export class TransportComponent implements OnInit {
     if(!term){
       this.getTransports();
     }else{
-      this.searchTerms.next(term);
       this.transportService.search(this.searchTerms).subscribe(data => {
         this.transports = data.results;
       });
+      this.searchTerms.next(term);
     }
   }
 

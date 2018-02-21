@@ -68,7 +68,7 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
       }
       that.priceFilter = $('.priceFilter').slider({
         min: 0,
-        max: 85000000,
+        max: 850000000,
         step: 10000,
         value: [!!that.commonFilterForm.price ? that.commonFilterForm.price[0] : 0, !!that.commonFilterForm.price ? that.commonFilterForm.price[1] : 85000000]
       }).on('slideStop',changePrice).data('slider');
@@ -221,6 +221,7 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
       });
       $('body').on('click', '#categoryModal li', function(){
         that.commonFilterForm.category__id=$(this).data('id');
+        that.commonFilterForm.category__code=$(this).data('code');
         that.commonFilterForm.category__name=$(this).find('.categoryText').text();
         $('#categoryModal').modal('hide');
         that.searchForCount();
