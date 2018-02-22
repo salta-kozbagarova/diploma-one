@@ -10,7 +10,6 @@ export class CountdownComponent implements OnInit, AfterViewInit {
   @Input() deadline: any;
   @Input() id: string;
   @Input() color: string;
-  @Input() mini: boolean;
   finishing: boolean = false;
   constructor() { }
 
