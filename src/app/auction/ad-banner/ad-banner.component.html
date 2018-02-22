@@ -1,4 +1,4 @@
-<div id="bannerSlider" class="carousel slide" data-ride="carousel">
+<div id="bannerSlider" class="carousel slide" data-ride="carousel" *ngIf="adBanners">
   <div class="carousel-inner">
     <div class="carousel-item" *ngFor="let adBanner of adBanners; first as isFirst" [ngClass]="{active: isFirst}">
       <img class="d-block w-100" src="{{adBanner.image}}" alt="Fourth slide">

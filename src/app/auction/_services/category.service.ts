@@ -46,15 +46,6 @@ export class CategoryService {
       );
   }
 
-  setCurrentCategory(category: number|Category){
-    var curCat = this.toCategory(category);
-    localStorage.setItem('category', JSON.stringify(curCat));
-  }
-
-  getCurrentCategory(): Category{
-    return JSON.parse(localStorage.getItem('category'));
-  }
-
   toCategory(category: number|string|Category){
     var _category = null;
     if(typeof category === Number.name){

@@ -1,112 +1,23 @@
-/*LARGE RED*/
 .countdown{
 	font-family: sans-serif;
-	color: #fff;
-	display: inline-block;
-	font-weight: bold;
 	text-align: center;
-	font-size: 13px;
+	font-size: 0.8rem;
 }
-
-.countdown > div{
-	margin: 2px 2px;
-	padding: 3px;
-	border-radius: 3px;
-	background: rgb(230, 75, 75);
-	display: inline-block;
+.countdown>div{
+	border: 1px solid #28a745;
+	padding: 0;
 }
-
-.countdown div > span{
-	padding: 5px 15px;
-	border-radius: 3px;
-	background: rgb(206, 15, 15);
-	display: inline-block;
-}
-
 .smalltext{
-	padding-top: 1px;
-	font-size: 11px;
-}
-/*LARGE GREEN*/
-.countdown.green{
-	font-family: sans-serif;
+	font-size: 0.7rem;
+	background-color: #28a745;
 	color: #fff;
-	display: inline-block;
-	font-weight: bold;
-	text-align: center;
-	font-size: 13px;
 }
-
-.countdown.green > div{
-	margin: 2px 2px;
-	padding: 3px;
-	border-radius: 3px;
-	background: rgb(62, 188, 78);;
-	display: inline-block;
+.countdown.finishing>div{
+	border: 1px solid rgb(230, 75, 75);
+	padding: 0;
 }
-
-.countdown.green div > span{
-	padding: 5px 15px;
-	border-radius: 3px;
-	background: rgb(45, 155, 59);
-	display: inline-block;
-}
-
-.green .smalltext{
-	padding-top: 1px;
-	font-size: 11px;
-}
-/*MINI RED*/
-.mini.countdown{
-	font-family: sans-serif;
+.finishing .smalltext{
+	font-size: 0.7rem;
+	background-color: rgb(230, 75, 75);
 	color: #fff;
-	display: inline-block;
-	font-weight: bold;
-	text-align: center;
-	font-size: 13px;
-}
-.mini.countdown > div{
-	margin: 2px 2px;
-	padding: 3px;
-	border-radius: 3px;
-	background: rgb(230, 75, 75);
-	display: inline-block;
-	width: 2.9rem;
-}
-.mini.countdown div > span{
-	padding: 2px 8px;
-	border-radius: 3px;
-	background: rgb(206, 15, 15);
-	display: inline-block;
-}
-.mini .smalltext{
-	padding-top: 1px;
-	font-size: 11px;
-}
-/*MINI GREEN*/
-.mini.green.countdown{
-	font-family: sans-serif;
-	color: #fff;
-	display: inline-block;
-	font-weight: bold;
-	text-align: center;
-	font-size: 13px;
-}
-.mini.green.countdown > div{
-	margin: 2px 2px;
-	padding: 3px;
-	border-radius: 3px;
-	background: rgb(62, 188, 78);
-	display: inline-block;
-	width: 2.9rem;
-}
-.mini.green.countdown div > span{
-	padding: 2px 8px;
-	border-radius: 3px;
-	background: rgb(45, 155, 59);
-	display: inline-block;
-}
-.mini.green .smalltext{
-	padding-top: 1px;
-	font-size: 11px;
 }

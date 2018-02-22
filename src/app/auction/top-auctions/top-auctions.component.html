@@ -1,8 +1,11 @@
 <h5 class="mt-3">{{title}}</h5>
 <hr>
-<div class="row">
+<div class="row" *ngIf="topAuctions">
   <div class="col-md-3" *ngFor="let topAuction of topAuctions">
-    <div class="card mt-1 auction-card">
+    <div class="card mt-1 auction-card text-center">
+      <div class="ribbon top">
+        <span>Топ</span>
+      </div>
       <div class="card-img d-flex justify-content-center align-items-center">
           <img class="card-img-top" src="{{topAuction.image}}" class="img-fit">
       </div>
@@ -12,7 +15,7 @@
       <ul class="list-group list-group-flush">
         <li class="list-group-item"><span class="icon-kzt"></span><span class="ml-2">Текущая цена: <b>{{topAuction.current_price}}₸</b></span></li>
         <li class="list-group-item">
-          <p class="text-center mb-1">До завершения торгов</p>
+          <p class="mb-1">До завершения торгов</p>
           <app-countdown [deadline]="topAuction.end_date" [id]="topAuction.id"></app-countdown>
         </li>
       </ul>

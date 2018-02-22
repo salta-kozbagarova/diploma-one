@@ -11,6 +11,7 @@ export class CountdownComponent implements OnInit, AfterViewInit {
   @Input() id: string;
   @Input() color: string;
   @Input() mini: boolean;
+  finishing: boolean = false;
   constructor() { }
 
   ngOnInit() {
@@ -19,6 +20,10 @@ export class CountdownComponent implements OnInit, AfterViewInit {
     var that = this;
     function getTimeRemaining(endtime) {
       var t = Date.parse(endtime) - Date.parse(new Date().toString());
+      var diff = 3 * 86400000;
+      if(t <= diff){
+        that.finishing = true;
+      }
       var seconds = Math.floor((t / 1000) % 60);
       var minutes = Math.floor((t / 1000 / 60) % 60);
       var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
@@ -41,7 +46,7 @@ export class CountdownComponent implements OnInit, AfterViewInit {
     
       function updateClock() {
         var t = getTimeRemaining(endtime);
-    
+        
         daysSpan.innerHTML = t.days.toString();
         hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
         minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
