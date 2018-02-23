@@ -23,6 +23,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   public passwordConfirm: AbstractControl;
   public authUser: AuthUser;
 
+  public signInSubmitted: boolean = false;
+  public signUpSubmitted: boolean = false;
+
   constructor(private router: Router,
               private authenticationService: AuthenticationService,
               private fb: FormBuilder) {
@@ -75,12 +78,20 @@ export class HeaderComponent implements OnInit, AfterViewInit {
           console.log('login not ok');
         },
       );
+    } else{
+      this.signinForm.markAsTouched();
+      this.signInSubmitted = true;
     }
   }
 
   public onSignup(values: SignupForm): void {
-    $('#authModal').modal('hide');
-    this.router.navigate(['/']);
+    if (this.signupForm.valid) {
+      $('#authModal').modal('hide');
+    } else{
+      this.signupForm.markAsTouched();
+      this.signUpSubmitted = true;
+    }
+    //this.router.navigate(['/']);
   }
 
   public logout(): void {

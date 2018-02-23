@@ -1,130 +1,171 @@
 <header class="navbar navbar-expand-lg navbar-dark nav-color bd-navbar">
-    <a class="navbar-brand" href="#"><i class="material-icons">gavel</i></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" [routerLink]="['/']">Главная <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Какой-то пункт</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Торги
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Все торги</a>
-                    <a class="dropdown-item" [routerLink]="['/auction']">Открытые торги</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Закрытые торги</a>
-                </div>
-            </li>
-        </ul>
-        <ul class="navbar-nav mr-0">
-            <div *ngIf="authUser; else registerBlock">
+        <a class="navbar-brand" href="#"><i class="material-icons">gavel</i></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" [routerLink]="['/']">Главная <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Какой-то пункт</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons">person</i>
+                    Торги
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Мой профиль</a>
-                        <a class="dropdown-item" href="#">Мои аукционы</a>
-                        <a class="dropdown-item" href="#">Настройки</a>
-                        <a class="dropdown-item" (click)="logout()">Выйти</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Все торги</a>
+                        <a class="dropdown-item" [routerLink]="['/auction']">Открытые торги</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Закрытые торги</a>
                     </div>
                 </li>
-            </div>
-            <ng-template #registerBlock>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="modal" data-target="#authModal" style="cursor:pointer">Войти</a>
-                </li>
-            </ng-template>
-        </ul>
-    </div>
-</header>
-
-<!-- Modal -->
-<div class="modal fade" id="authModal" tabindex="-1" role="dialog" aria-labelledby="authModalLabel" aria-hidden="true">
-        <div class="modal-dialog model-sm" role="document">
-            <div class="modal-content">
-                <div id="signinForm">
-                    <form [formGroup]="signinForm" (ngSubmit)="onSignin(signinForm.value)" class="text-left mt-4">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="authModalLabel">Вход</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="username">Имя пользователя или электронная почта</label>
-                            <input formControlName="username" id="username" class="form-control validation-field" placeholder="Имя пользователя или электронная почта" type="text">
-                            <small class="text-danger" *ngIf="signinForm.get('username').touched && signinForm.get('username').hasError('required')">Необходимо заполнить</small>
+            </ul>
+            <ul class="navbar-nav mr-0">
+                <div *ngIf="authUser; else registerBlock">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">person</i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Мой профиль</a>
+                            <a class="dropdown-item" href="#">Мои аукционы</a>
+                            <a class="dropdown-item" href="#">Настройки</a>
+                            <a class="dropdown-item" (click)="logout()">Выйти</a>
                         </div>
-                        <div class="form-group">
-                            <label for="password">Пароль</label>
-                            <input formControlName="password" id="password" class="form-control validation-field" placeholder="Пароль" type="password">
-                            <small class="text-danger" *ngIf="signinForm.get('password').touched && signinForm.get('password').hasError('required')">Необходимо заполнить</small>
-                            <small class="text-danger" *ngIf="signinForm.get('password').touched && signinForm.get('password').hasError('minlength')">Требования к паролю: не менее 3 символов</small>
-                        </div>
-                        <div class="form-group">
-                            <a class="transition" href="javascript:void(0);">Забыли пароль?</a>
-                            <a class="transition" id="signup">Зарегистрироваться</a>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="form-group">
-                            <button [disabled]="!signinForm.valid" class="btn btn-outline-primary" type="submit">Войти</button>
-                        </div>
-                    </div>
-                    </form>
+                    </li>
                 </div>
-                <div id="signupForm">
-                    <form [formGroup]="signupForm" (ngSubmit)="onSignup(signupForm.value)" class="text-left mt-4">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="authModalLabel">Регистрация</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
+                <ng-template #registerBlock>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="modal" data-target="#authModal" style="cursor:pointer">Войти</a>
+                    </li>
+                </ng-template>
+            </ul>
+        </div>
+    </header>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="authModal" tabindex="-1" role="dialog" aria-labelledby="authModalLabel" aria-hidden="true">
+            <div class="modal-dialog model-sm" role="document">
+                <div class="modal-content">
+                    <div id="signinForm">
+                        <form [formGroup]="signinForm" (ngSubmit)="onSignin(signinForm.value)" [class.was-validated]="signInSubmitted" class="needs-validation mt-4" novalidate>
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="authModalLabel">Вход</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">@</span>
+                                </div>
+                                <input formControlName="username" id="username" type="text" class="form-control"
+                                        [class.is-invalid]="(signinForm.get('username').touched && signinForm.get('username').hasError('required')) || signInSubmitted"
+                                        placeholder="Имя пользователя или электронная почта" aria-label="Username" aria-describedby="basic-addon1">
+                                <div class="invalid-tooltip" *ngIf="signinForm.touched && signinForm.get('username').hasError('required')">
+                                    Необходимо заполнить
+                                </div>
+                            </div>
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon2"><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
+                                </div>
+                                <input formControlName="password" id="password" type="password" class="form-control"
+                                        [class.is-invalid]="(signinForm.get('password').touched && signinForm.get('password').hasError('required')) ||
+                                        (signinForm.get('password').touched && signinForm.get('password').hasError('minlength')) || signInSubmitted"
+                                        placeholder="Пароль" aria-label="password" aria-describedby="basic-addon2">
+                                <div class="invalid-tooltip" *ngIf="signinForm.touched && signinForm.get('password').hasError('required')">
+                                    Необходимо заполнить
+                                </div>
+                                <div class="invalid-tooltip" *ngIf="signinForm.touched && signinForm.get('password').hasError('minlength')">
+                                    Требования к паролю: не менее 3 символов
+                                </div>
+                            </div>
+                            <div class="input-group input-group-sm mb-3">
+                                <a class="transition" href="javascript:void(0);">Забыли пароль?</a>
+                                <a class="transition" id="signup">Зарегистрироваться</a>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-outline-primary btn-sm" type="submit">Войти</button>
+                        </div>
+                        </form>
                     </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="username">Имя пользователя</label>
-                            <input formControlName="username" id="signupUsername" class="form-control validation-field" placeholder="Имя пользователя" type="text">
-                            <small class="text-danger" *ngIf="signupForm.get('username').touched && signupForm.get('username').hasError('required')">Необходимо заполнить</small>
+                    <div id="signupForm">
+                        <form [formGroup]="signupForm" (ngSubmit)="onSignup(signupForm.value)" [class.was-validated]="signUpSubmitted" class="needs-validation mt-4">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="authModalLabel">Регистрация</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div class="form-group">
-                            <label for="email">Электронная почта</label>
-                            <input formControlName="email" type="email" class="form-control validation-field" id="email" placeholder="name@example.com">
-                            <small class="text-danger" *ngIf="signupForm.get('email').touched && signupForm.get('email').hasError('required')">Необходимо заполнить</small>
+                        <div class="modal-body">
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon3">@</span>
+                                </div>
+                                <input formControlName="username" id="signupUsername" type="text" class="form-control"
+                                        [class.is-invalid]="(signupForm.get('username').touched && signupForm.get('username').hasError('required')) || signUpSubmitted"
+                                        placeholder="Имя пользователя" aria-label="Username" aria-describedby="basic-addon3">
+                                <div class="invalid-tooltip" *ngIf="signupForm.touched && signupForm.get('username').hasError('required')">
+                                    Необходимо заполнить
+                                </div>
+                            </div>
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon4">@</span>
+                                </div>
+                                <input formControlName="email" id="email" type="email" class="form-control"
+                                        [class.is-invalid]="(signupForm.get('email').touched && signupForm.get('email').hasError('required')) || signUpSubmitted"
+                                        placeholder="name@example.com" aria-label="Username" aria-describedby="basic-addon4">
+                                <div class="invalid-tooltip" *ngIf="signupForm.touched && signupForm.get('email').hasError('required')">
+                                    Необходимо заполнить
+                                </div>
+                            </div>
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon5"><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
+                                </div>
+                                <input formControlName="password" id="signupPassword" type="password" class="form-control"
+                                        [class.is-invalid]="(signupForm.get('password').touched && signupForm.get('password').hasError('required')) ||
+                                        (signupForm.get('password').touched && signupForm.get('password').hasError('minlength')) || signUpSubmitted"
+                                        placeholder="Пароль" aria-label="password" aria-describedby="basic-addon5">
+                                <div class="invalid-tooltip" *ngIf="signupForm.touched && signupForm.get('password').hasError('required')">
+                                    Необходимо заполнить
+                                </div>
+                                <div class="invalid-tooltip" *ngIf="signupForm.touched && signupForm.get('password').hasError('minlength')">
+                                    Требования к паролю: не менее 3 символов
+                                </div>
+                            </div>
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon6"><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
+                                </div>
+                                <input formControlName="passwordConfirm" id="passwordConfirm" type="password" class="form-control"
+                                        [class.is-invalid]="(signupForm.get('passwordConfirm').touched && signupForm.get('passwordConfirm').hasError('required')) ||
+                                        (signupForm.get('passwordConfirm').touched && signupForm.get('passwordConfirm').hasError('minlength')) || signUpSubmitted"
+                                        placeholder="Пароль" aria-label="password" aria-describedby="basic-addon6">
+                                <div class="invalid-tooltip" *ngIf="signupForm.touched && signupForm.get('passwordConfirm').hasError('required')">
+                                    Необходимо заполнить
+                                </div>
+                                <div class="invalid-tooltip" *ngIf="signupForm.touched && signupForm.get('passwordConfirm').hasError('minlength')">
+                                    Требования к паролю: не менее 3 символов
+                                </div>
+                            </div>
+                            <div class="input-group input-group-sm mb-3">
+                                <a class="transition" id="signin">Я уже зарегистрирован(а)</a>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="password">Пароль</label>
-                            <input formControlName="password" id="signupPassword" class="form-control validation-field" placeholder="Пароль" type="password">
-                            <small class="text-danger" *ngIf="signupForm.get('password').touched && signupForm.get('password').hasError('required')">Необходимо заполнить</small>
-                            <small class="text-danger" *ngIf="signupForm.get('password').touched && signupForm.get('password').hasError('minlength')">Требования к паролю: не менее 6 символов</small>
+                        <div class="modal-footer">
+                            <button class="btn btn-outline-primary btn-sm" type="submit">Войти</button>
                         </div>
-                        <div class="form-group">
-                            <label for="passwordConfirm">Пароль</label>
-                            <input formControlName="passwordConfirm" id="passwordConfirm" class="form-control validation-field" placeholder="Пароль" type="password">
-                            <small class="text-danger" *ngIf="signupForm.get('passwordConfirm').touched && signupForm.get('passwordConfirm').hasError('required')">Необходимо заполнить</small>
-                            <small class="text-danger" *ngIf="signupForm.get('passwordConfirm').touched && signupForm.get('passwordConfirm').hasError('minlength')">Требования к паролю: не менее 6 символов</small>
-                        </div>
-                        <div class="form-group">
-                            <a class="transition" id="signin">Я уже зарегистрирован(а)</a>
-                        </div>
+                        </form>
                     </div>
-                    <div class="modal-footer">
-                        <div class="form-group">
-                            <button [disabled]="!signupForm.valid" class="btn btn-outline-primary" type="submit">Войти</button>
-                        </div>
-                    </div>
-                    </form>
                 </div>
             </div>
         </div>
-    </div>
