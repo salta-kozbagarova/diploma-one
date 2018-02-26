@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-12">
     <nav aria-label="Page navigation example" *ngIf="count > 0">
-      <ul class="pagination justify-content-center">
+      <ul class="pagination pagination-sm justify-content-center">
         <li class="page-item" [ngClass]="{'disabled': page === 1 || loading}">
           <a class="page-link" aria-label="Previous" (click)="onPrev()">
             <span aria-hidden="true">&laquo;</span>

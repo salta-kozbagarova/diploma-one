@@ -30,8 +30,8 @@ export class CommonFilterForm {
     }
 
     static getInstance(): CommonFilterForm{
-        if(!!localStorage.getItem('commonFilter')){
-            this.instance = this.getCommonFilter();
+        this.instance = this.getCommonFilter();
+        if(!!this.instance){
             if(this.instance.only_quantity == true){
                 this.instance.only_quantity = false;
             }
@@ -46,7 +46,13 @@ export class CommonFilterForm {
     }
 
     static getCommonFilter(): CommonFilterForm{
-        return JSON.parse(localStorage.getItem('commonFilter'));
+        let res = null;
+        try{
+            res = JSON.parse(localStorage.getItem('commonFilter'));
+        } catch(e){
+            return null;
+        }
+        return res;
     }
 
     static getFilterParams() {

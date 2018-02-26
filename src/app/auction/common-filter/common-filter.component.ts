@@ -26,9 +26,9 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
   categories: Category[];
   resultCount: number;
   priceFilter: any;
-  @Output() searchResult: EventEmitter<any> = new EventEmitter();
   curCategoryCode: string;
   curCategory: Category;
+  @Output() onLoad: EventEmitter<boolean> = new EventEmitter();
   locationConatiner = '<div class="card" style="overflow-y:auto;"><ul class="list-group"></ul></div>';
   locationItem = '<li class="list-group-item list-group-item-action" style="padding:.3em .9em;font-size:.9em;cursor:pointer;"><span class="locationText"></span><i class="fa fa-chevron-right float-right text-primary mt-1" aria-hidden="true"></i></li>';
   categoryContainer = '<div class="card" style="overflow-y:auto;"><ul class="list-group"></ul></div>';
@@ -42,6 +42,10 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
               private route: ActivatedRoute,
               private commonFilterFormService: CommonFilterFormService) {
     this.commonFilterForm = this.commonFilterFormService.getCommonFilterForm();
+    this.commonFilterFormService.commonFilterForm.subscribe(data => {
+      this.commonFilterForm = data;
+      this.searchForCount();
+    });
   }
 
   ngOnInit() {
@@ -56,6 +60,7 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
     this.getAdmDivisions();
     this.getSearchRadiuses();
     this.getCategories();
+    this.searchForCount();
     this.showResult();
   }
 
@@ -76,8 +81,8 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
   }
 
   searchForCount(): void {
-    localStorage.setItem('commonFilter', JSON.stringify(this.commonFilterForm));
     this.count$.subscribe(count => {
+      console.log('getting count');
       this.resultCount = count;
     });
     this.searchTerms.next(CommonFilterForm.getFilterParamsWithCount());
@@ -89,14 +94,17 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
   }
 
   onQueryChange(){
+    this.changeFilterForm();
     this.searchForCount();
   }
 
   onPhotoChange(){
+    this.changeFilterForm();
     this.searchForCount();
   }
 
   onSearchMoreChange(){
+    this.changeFilterForm();
     this.searchForCount();
   }
 
@@ -153,6 +161,7 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
         that.commonFilterForm.address__id=$(this).data('id');
         that.commonFilterForm.address__name=$(this).find('.locationText').text();
         $('#locationModal').modal('hide');
+        that.changeFilterForm();
         that.searchForCount();
       });
     });
@@ -165,6 +174,7 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
   }
 
   onRadiusChange(){
+    this.changeFilterForm();
     this.searchForCount();
   }
 
@@ -224,6 +234,7 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
         that.commonFilterForm.category__code=$(this).data('code');
         that.commonFilterForm.category__name=$(this).find('.categoryText').text();
         $('#categoryModal').modal('hide');
+        that.changeFilterForm();
         that.searchForCount();
         let urlString = that.router.serializeUrl(that.router.createUrlTree([$(this).data('code')], {relativeTo: that.route}));
         that.location.replaceState(urlString);
@@ -231,11 +242,12 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
     });
   }
 
+  changeFilterForm(){
+    this.commonFilterFormService.setCommonFilterForm(this.commonFilterForm);
+  }
+
   showResult(){
-    localStorage.setItem('commonFilter', JSON.stringify(this.commonFilterForm));
-    this.auctionService.getByParams(CommonFilterForm.getFilterParams()).subscribe(data => {
-      this.searchResult.emit(data);
-      this.resultCount = data.count;
-    });
+    this.auctionService.getByParams(CommonFilterForm.getFilterParams());
+    this.onLoad.emit(true);
   }
 }

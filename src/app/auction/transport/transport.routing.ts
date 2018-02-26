@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TransportComponent } from './transport.component';
-import { CarsComponent } from './cars/cars.component';
+import { NewCarsComponent } from './new-cars/new-cars.component';
 import { UsedCarsComponent } from './used-cars/used-cars.component';
 import { TrucksComponent } from './trucks/trucks.component';
 import { MototechnicsComponent } from './mototechnics/mototechnics.component';
@@ -15,29 +15,33 @@ const transportRoutes: Routes = [
         component: TransportComponent
     },
     {
-        path: 'new-cars',
-        component: CarsComponent
+        path: ':categoryCode',
+        component: TransportComponent
     },
-    {
-        path: 'used-cars',
-        component: UsedCarsComponent
-    },
-    {
-        path: 'trucks',
-        component: TrucksComponent
-    },
-    {
-        path: 'mototechnics',
-        component: MototechnicsComponent
-    },
-    {
-        path: 'air-transport',
-        component: AirTransportsComponent
-    },
-    {
-        path: 'other',
-        component: OthersComponent
-    },
+    // {
+    //     path: 'new-cars',
+    //     component: NewCarsComponent
+    // },
+    // {
+    //     path: 'used-cars',
+    //     component: UsedCarsComponent
+    // },
+    // {
+    //     path: 'trucks',
+    //     component: TrucksComponent
+    // },
+    // {
+    //     path: 'mototechnics',
+    //     component: MototechnicsComponent
+    // },
+    // {
+    //     path: 'air-transport',
+    //     component: AirTransportsComponent
+    // },
+    // {
+    //     path: 'other',
+    //     component: OthersComponent
+    // },
     {
         path: 'test',
         component: TestComponent

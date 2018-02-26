@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { AuctionService } from '../_services';
-import { TransportService } from './_services';
-import { Auction } from '../_models';
+import { AuctionService } from '../../_services';
+import { TransportService } from '../_services';
+import { Auction } from '../../_models';
 import { Subject }    from 'rxjs/Subject';
-import { CommonFilterForm } from '../_models';
+import { CommonFilterForm } from '../../_models';
 
 @Component({
-  selector: 'app-transport',
-  templateUrl: './transport.component.html',
-  styleUrls: ['./transport.component.css']
+  selector: 'app-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.css']
 })
-export class TransportComponent implements OnInit {
+export class MainComponent implements OnInit {
 
   transports: Auction[];
   private searchTerms = new Subject<string>();
@@ -22,10 +22,7 @@ export class TransportComponent implements OnInit {
   page = 1;
   limit = 10;
 
-  constructor(private transportService: TransportService,
-              private auctionService: AuctionService) {
-    this.auctionService.searchResult.subscribe(data => this.showResult(data));
-  }
+  constructor(private transportService: TransportService) { }
 
   ngOnInit() {
     //this.getTransports();
@@ -89,11 +86,5 @@ export class TransportComponent implements OnInit {
       this.sortAsc = this.sortAsc !== null ? !this.sortAsc : false;
     }
     this.sortParam = param;
-  }
-
-  onLoad(data: boolean){
-    if(data === true){
-      this.loading = true;
-    }
   }
 }

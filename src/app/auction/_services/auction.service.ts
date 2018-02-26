@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs/observable/of';
@@ -10,6 +10,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class AuctionService {
 
   private auctionUrl = 'http://127.0.0.1:8000/bargains';  // '/api/auction';  // URL to web api
+  @Output() searchResult: EventEmitter<any> = new EventEmitter();
 
   constructor(private http: HttpClient) { }
 
@@ -31,12 +32,14 @@ export class AuctionService {
       );
   }
 
-  getByParams(options: any): Observable<any> {
-    return this.http.get<Auction[]>(this.auctionUrl + '/bargains', {params: options})
+  getByParams(options: any) {
+    this.http.get<Auction[]>(this.auctionUrl + '/bargains', {params: options})
       .pipe(
         tap(heroes => this.log(`fetched by params`)),
         catchError(this.handleError('getByParams', []))
-      );
+      ).subscribe(data => {
+        this.searchResult.emit(data);
+      });
   }
 
   /** Log a HeroService message with the MessageService */

@@ -1,7 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { CategoryService } from '../../_services';
-import { Category } from '../../_models';
-import { Router } from '@angular/router';
+import { CategoryService, CommonFilterFormService, AuctionService } from '../../_services';
+import { Category, CommonFilterForm } from '../../_models';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 declare var $:any;
 @Component({
@@ -15,8 +16,21 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
 
   currCatCode: string;
 
+  commonFilterForm: CommonFilterForm;
+
   constructor(private categoryService: CategoryService,
-              private router: Router) { }
+              private router: Router,
+              private route: ActivatedRoute,
+              private location: Location,
+              private auctionService: AuctionService,
+              private commonFilterFormService: CommonFilterFormService) {
+    this.commonFilterForm = this.commonFilterFormService.getCommonFilterForm();
+    this.commonFilterFormService.commonFilterForm.subscribe(data => {
+      this.commonFilterForm = data;
+      this.currCatCode = this.commonFilterForm.category__code;
+      this.getCategories();
+    });
+  }
 
   ngOnInit() {
     this.currCatCode = this.router.url.split('/').pop();
@@ -38,5 +52,15 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
         $(this).find('.icon-sm').css({height: '30px',width: '30px'});
       });
     });
+  }
+
+  changeCategory(category){
+    let urlString = this.router.serializeUrl(this.router.createUrlTree([category.code], {relativeTo: this.route}));
+    this.location.replaceState(urlString);
+    this.commonFilterForm.category__id=category.id;
+    this.commonFilterForm.category__code=category.code;
+    this.commonFilterForm.category__name=category.name;
+    this.commonFilterFormService.setCommonFilterForm(this.commonFilterForm);
+    this.auctionService.getByParams(CommonFilterForm.getFilterParams());
   }
 }
