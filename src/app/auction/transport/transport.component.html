@@ -32,6 +32,9 @@
 <div class="row my-1" *ngFor="let transport of transports | sort:sortParam:sortAsc">
     <div class="col-md-12">
         <div class="card list-card">
+            <div class="ribbon top" *ngIf="transport.on_top">
+                <span>Топ</span>
+            </div>
             <div class="row">
                 <div class="col-md-2 d-flex justify-content-center align-items-center">
                     <img class="card-img-top" src="{{transport.image}}" alt="Card image cap">

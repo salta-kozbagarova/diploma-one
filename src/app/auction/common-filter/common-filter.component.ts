@@ -222,6 +222,7 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
             lastColumn.append(that.categoryItem);
             lastColumn.find('li').last().attr('data-id',category.id);
             lastColumn.find('li').last().attr('data-code',category.code);
+            lastColumn.find('li').last().attr('data-parent-id',category.parent_id);
             lastColumn.find('.categoryText').last().text(category.name);
           });
           modContent = $('#categoryModal .modal-content');
@@ -236,7 +237,15 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
         $('#categoryModal').modal('hide');
         that.changeFilterForm();
         that.searchForCount();
-        let urlString = that.router.serializeUrl(that.router.createUrlTree([$(this).data('code')], {relativeTo: that.route}));
+        let parent = $(this).data('parent-id');
+        console.log('parent idddd');
+        console.log(parent);
+        let urlString = null;
+        if(!parent){
+          urlString = that.router.serializeUrl(that.router.createUrlTree(['../../'+$(this).data('code')], {relativeTo: that.route}));
+        } else{
+          urlString = that.router.serializeUrl(that.router.createUrlTree([$(this).data('code')], {relativeTo: that.route}));
+        }
         that.location.replaceState(urlString);
       });
     });

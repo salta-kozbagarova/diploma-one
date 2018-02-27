@@ -43,3 +43,33 @@
 	width: 20px;
 	vertical-align: middle;
 }
+.ribbon{
+    position: absolute;
+    top: 15px;
+    left: -5px;
+    padding: 7px 15px;
+    z-index: 100;
+}
+.ribbon.top {
+    background: #dc3545;
+    color: #fff;
+    border-left: 5px solid #e97884;
+}
+.ribbon:before, .ribbon:after {
+    content: '';
+    position: absolute;
+    right: -9px;
+    border-right: 10px solid transparent;
+}
+.ribbon:before {
+    top: 0;
+}
+.ribbon:after {
+    bottom: 0;
+}
+.ribbon.top:before {
+    border-top: 27px solid #dc3545;
+}
+.ribbon.top:after {
+    border-bottom: 27px solid #dc3545;
+}

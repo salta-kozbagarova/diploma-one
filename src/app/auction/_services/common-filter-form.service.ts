@@ -22,7 +22,7 @@ export class CommonFilterFormService {
     this.curCategoryCode = this.router.url.split('/').pop();
     let commonFilterForm = CommonFilterForm.getInstance();
     commonFilterForm.category__code = this.curCategoryCode;
-
+    this.setCommonFilterForm(commonFilterForm);
     this.categoryService.getCategory(this.curCategoryCode).subscribe(data => {
       commonFilterForm.category__id = data.id;
       commonFilterForm.category__name = data.name;

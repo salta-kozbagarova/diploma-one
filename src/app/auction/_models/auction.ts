@@ -21,6 +21,7 @@ export class Auction implements Model {
     category: Category;
     address: AdministrativeDivision;
     full_address: string;
+    on_top: boolean;
     created_by: User;
     updated_by: User;
     created_at: string;
