@@ -4,7 +4,7 @@
       <div class="card-body">
         <div class="row">
           <div class="col-md-2 text-center" *ngFor="let category of categories">
-            <a class="category" [routerLink]="['../'+category.code]">
+            <a class="category" [routerLink]="['../cat/'+category.code]">
               <div><img src="{{category.image}}" alt="..." class="rounded-circle icon-sm"></div>
               <div>{{category.name}}</div>
             </a>

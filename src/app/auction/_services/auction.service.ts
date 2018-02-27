@@ -11,6 +11,7 @@ export class AuctionService {
 
   private auctionUrl = 'http://127.0.0.1:8000/bargains';  // '/api/auction';  // URL to web api
   @Output() searchResult: EventEmitter<any> = new EventEmitter();
+  private paginationParams = {limit: 10, offset: 0}
 
   constructor(private http: HttpClient) { }
 
@@ -33,16 +34,25 @@ export class AuctionService {
       );
   }
 
-  getByParams(options: any) {
+  emitByParams(options: any) {
     console.log('getByParams');
     console.log(options);
     this.http.get<Auction[]>(this.auctionUrl + '/bargains', {params: options})
       .pipe(
-        tap(heroes => this.log(`fetched by params`)),
-        catchError(this.handleError('getByParams', []))
+        tap(heroes => this.log(`emitted by params`)),
+        catchError(this.handleError('emitByParams', []))
       ).subscribe(data => {
         this.searchResult.emit(data);
       });
+  }
+
+  getByParams(options?: {}): Observable<any> {
+    var params = options ? options : this.paginationParams;
+    return this.http.get<Auction[]>(this.auctionUrl + '/bargains', {params: params})
+      .pipe(
+        tap(heroes => this.log(`fetched auctions by params`)),
+        catchError(this.handleError('getByParams', []))
+      );
   }
 
   /** Log a HeroService message with the MessageService */

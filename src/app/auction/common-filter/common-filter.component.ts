@@ -222,7 +222,7 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
             lastColumn.append(that.categoryItem);
             lastColumn.find('li').last().attr('data-id',category.id);
             lastColumn.find('li').last().attr('data-code',category.code);
-            lastColumn.find('li').last().attr('data-parent-id',category.parent_id);
+            lastColumn.find('li').last().attr('data-parent-code',category.parent_code);
             lastColumn.find('.categoryText').last().text(category.name);
           });
           modContent = $('#categoryModal .modal-content');
@@ -237,14 +237,12 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
         $('#categoryModal').modal('hide');
         that.changeFilterForm();
         that.searchForCount();
-        let parent = $(this).data('parent-id');
-        console.log('parent idddd');
-        console.log(parent);
+        let parent = $(this).data('parent-code');
         let urlString = null;
         if(!parent){
           urlString = that.router.serializeUrl(that.router.createUrlTree(['../../'+$(this).data('code')], {relativeTo: that.route}));
         } else{
-          urlString = that.router.serializeUrl(that.router.createUrlTree([$(this).data('code')], {relativeTo: that.route}));
+          urlString = that.router.serializeUrl(that.router.createUrlTree(['../../'+parent,$(this).data('code')], {relativeTo: that.route}));
         }
         that.location.replaceState(urlString);
       });
@@ -256,7 +254,7 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
   }
 
   showResult(){
-    this.auctionService.getByParams(CommonFilterForm.getFilterParams());
+    this.auctionService.emitByParams(CommonFilterForm.getFilterParams());
     this.onLoad.emit(true);
   }
 }

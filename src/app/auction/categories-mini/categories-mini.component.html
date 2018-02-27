@@ -1,0 +1,16 @@
+<div class="row" *ngIf="categories?.length">
+  <div class="col-md-12">
+    <div class="card mt-1 subcategories">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3" *ngFor="let category of categories">
+            <a class="subcategory" (click)="changeCategory(category)">
+              <div><img [src]="category.image | safeUrl" alt="..." class="rounded-circle icon-sm"></div>
+              <div>{{category.name}}</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

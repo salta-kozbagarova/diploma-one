@@ -11,6 +11,11 @@ import { CountdownComponent } from './countdown/countdown.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CommonFilterComponent } from './common-filter/common-filter.component'
 import { FormsModule } from '@angular/forms';
+import { AuctionListComponent } from './auction-list/auction-list.component';
+import { PaginationModule } from '../pagination/pagination.module';
+import { CategoriesMiniComponent } from './categories-mini/categories-mini.component';
+import { SafeUrlPipe, SortPipe } from '../_pipes';
+import { TransportService } from './_services';
 
 @NgModule({
   declarations: [
@@ -20,18 +25,24 @@ import { FormsModule } from '@angular/forms';
     TopAuctionsComponent,
     CountdownComponent,
     CategoriesComponent,
-    CommonFilterComponent
+    CommonFilterComponent,
+    AuctionListComponent,
+    CategoriesMiniComponent,
+    SafeUrlPipe,
+    SortPipe
   ],
   imports: [
     CommonModule,
     FormsModule,
-    routing
+    routing,
+    PaginationModule
   ],
   providers: [
     AuctionService,
     AdBannerService,
     CategoryService,
-    CommonFilterFormService
+    CommonFilterFormService,
+    TransportService
   ],
   bootstrap: [AuctionComponent],
   exports: [AdBannerComponent, CountdownComponent, CommonFilterComponent]

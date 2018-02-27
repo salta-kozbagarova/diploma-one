@@ -1,0 +1,75 @@
+.sort-block{
+    width: 100%;
+    border: .05rem solid #ccc;
+    border-bottom: none;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    padding: .5rem;
+}
+
+.sort-block .sort-text{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    cursor: pointer;
+}
+.list-card{
+    width: 100%;
+}
+.list-card .card-title{
+    font-weight: bold;
+    cursor: pointer;
+}
+.list-card .card-img-top{
+    max-height: 100%;
+    max-width: 100%;
+}
+.list-card .card-text{
+    font-size: 14px;
+}
+.list-card .third-col{
+    border-left: 1px solid rgba(0,0,0,.125);
+}
+.list-card .third-col i{
+    font-size: 25px;
+}
+.icon-kzt{
+    background-image: url("/assets/icons/coin4.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    background-size: 100%;
+    height: 20px;
+	width: 20px;
+	vertical-align: middle;
+}
+.ribbon{
+    position: absolute;
+    top: 15px;
+    left: -5px;
+    padding: 7px 15px;
+    z-index: 100;
+}
+.ribbon.top {
+    background: #dc3545;
+    color: #fff;
+    border-left: 5px solid #e97884;
+}
+.ribbon:before, .ribbon:after {
+    content: '';
+    position: absolute;
+    right: -9px;
+    border-right: 10px solid transparent;
+}
+.ribbon:before {
+    top: 0;
+}
+.ribbon:after {
+    bottom: 0;
+}
+.ribbon.top:before {
+    border-top: 27px solid #dc3545;
+}
+.ribbon.top:after {
+    border-bottom: 27px solid #dc3545;
+}
