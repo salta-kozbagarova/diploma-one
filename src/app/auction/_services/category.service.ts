@@ -8,7 +8,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 @Injectable()
 export class CategoryService {
 
-  private categoryUrl = 'http://127.0.0.1:8000/categories';  // '/api/category'; // URL to web api
+  private categoryUrl = 'http://127.0.0.1:8000/api/categories';  // '/api/category'; // URL to web api
   private paginationParams = {limit: 100, offset: 0}
 
   constructor(private http: HttpClient) { }

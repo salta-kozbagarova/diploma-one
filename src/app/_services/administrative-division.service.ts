@@ -8,7 +8,7 @@ import { AdministrativeDivision } from '../_models';
 @Injectable()
 export class AdministrativeDivisionService {
 
-  private admUrl = 'http://127.0.0.1:8000/administrative-divisions';//'/api/administrative-division';  // URL to web api
+  private admUrl = 'http://127.0.0.1:8000/api/administrative-divisions';//'/api/administrative-division';  // URL to web api
   private paginationParams = {limit: 100, offset: 0}
 
   constructor(private http: HttpClient) { }

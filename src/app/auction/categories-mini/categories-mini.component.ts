@@ -55,7 +55,7 @@ export class CategoriesMiniComponent implements OnInit, AfterViewInit {
   }
 
   changeCategory(category){
-    let urlString = this.router.serializeUrl(this.router.createUrlTree(['../../', category.parent_code, category.code], {relativeTo: this.route}));
+    let urlString = this.router.serializeUrl(this.router.createUrlTree(['../../../../', category.parent_code, category.code], {relativeTo: this.route}));
     this.location.replaceState(urlString);
     this.commonFilterForm.category__id=category.id;
     this.commonFilterForm.category__code=category.code;

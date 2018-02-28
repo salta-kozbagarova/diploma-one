@@ -8,7 +8,7 @@ import { SearchRadius } from '../_models';
 @Injectable()
 export class SearchRadiusService {
 
-  private searchRaduisUrl = 'http://127.0.0.1:8000/search-radiuses'; // '/api/search-radius';  // URL to web api
+  private searchRaduisUrl = 'http://127.0.0.1:8000/api/search-radiuses'; // '/api/search-radius';  // URL to web api
 
   constructor(private http: HttpClient) { }
 

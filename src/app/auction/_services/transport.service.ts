@@ -9,7 +9,7 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 @Injectable()
 export class TransportService {
 
-  private transportUrl = 'http://127.0.0.1:8000/bargains';  // '/api/auction/transport';
+  private transportUrl = 'http://127.0.0.1:8000/api/bargains';  // '/api/auction/transport';
   private paginationParams = {limit: 10, offset: 0}
 
   constructor(private http: HttpClient) { }

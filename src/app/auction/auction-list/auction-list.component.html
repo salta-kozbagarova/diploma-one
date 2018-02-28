@@ -8,7 +8,7 @@
         </div>
     </div>
 </div>
-<div class="row" *ngIf="auctions?.length > 0">
+<div class="row" *ngIf="auctions?.length > 0; else nothingFoundBlock">
     <div class="col-12">
         <div class="card sort-block">
             <div class="row">
@@ -99,3 +99,15 @@
 </div>
 
 <app-pagination [count]="count" [page]="page" [perPage]="limit" [pagesToShow]="5" [loading]="loading" (goPage)="goToPage($event)" (goNext)="onNext()" (goPrev)="onPrev()"></app-pagination>
+
+<ng-template #nothingFoundBlock>
+    <div class="row my-1">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    Ничего не найдено
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

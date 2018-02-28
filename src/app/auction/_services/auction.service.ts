@@ -9,7 +9,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 @Injectable()
 export class AuctionService {
 
-  private auctionUrl = 'http://127.0.0.1:8000/bargains';  // '/api/auction';  // URL to web api
+  private auctionUrl = 'http://127.0.0.1:8000/api/bargains';  // '/api/auction';  // URL to web api
   @Output() searchResult: EventEmitter<any> = new EventEmitter();
   private paginationParams = {limit: 10, offset: 0}
 
@@ -52,6 +52,14 @@ export class AuctionService {
       .pipe(
         tap(heroes => this.log(`fetched auctions by params`)),
         catchError(this.handleError('getByParams', []))
+      );
+  }
+
+  getAuction(id: number): Observable<any> {
+    return this.http.get<any>(this.auctionUrl+'/bargains/'+id)
+      .pipe(
+        tap(heroes => this.log(`fetched auction with id ${id}`)),
+        catchError(this.handleError('getAuction', []))
       );
   }
 
