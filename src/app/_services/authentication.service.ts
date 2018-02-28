@@ -1,5 +1,6 @@
-import { Injectable, Output, EventEmitter } from '@angular/core';
+import { Injectable, Output, EventEmitter, Optional, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { APP_BASE_HREF, isPlatformBrowser } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
@@ -11,7 +12,11 @@ export class AuthenticationService {
   private authUrl = 'http://127.0.0.1:8000/api-token-auth/';
   @Output() currentUser: EventEmitter<AuthUser> = new EventEmitter();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              @Optional() @Inject(APP_BASE_HREF) origin: string,
+              @Inject(PLATFORM_ID) private platformId: Object) {
+    this.authUrl = `${origin}${this.authUrl}`;
+  }
 
   authenticate(signinForm: SigninForm): Observable<boolean> {
     return this.http.post<any>(this.authUrl, signinForm)
@@ -20,7 +25,9 @@ export class AuthenticationService {
         if (data.token && data.user) {
           var authUser = data;
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('user', JSON.stringify(authUser));
+          //if(isPlatformBrowser(this.platformId)){
+            localStorage.setItem('user', JSON.stringify(authUser));
+          //}
           this.currentUser.emit(authUser);
           return true;
         } else {
@@ -33,11 +40,16 @@ export class AuthenticationService {
 
   logout(): void {
     // clear token remove user from local storage to log user out
-    localStorage.removeItem('user');
+    //if(isPlatformBrowser(this.platformId)){
+      localStorage.removeItem('user');
+    //}
     this.currentUser.emit(null);
   }
 
   getCurrentUser(): AuthUser {
-    return JSON.parse(localStorage.getItem('user'));
+    //if(isPlatformBrowser(this.platformId)){
+      return JSON.parse(localStorage.getItem('user'));
+    //}
+    //return null;
   }
 }

@@ -16,6 +16,7 @@ import { PaginationModule } from '../pagination/pagination.module';
 import { CategoriesMiniComponent } from './categories-mini/categories-mini.component';
 import { SafeUrlPipe, SortPipe } from '../_pipes';
 import { TransportService } from './_services';
+import { AuctionDetailComponent } from './auction-detail/auction-detail.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { TransportService } from './_services';
     AuctionListComponent,
     CategoriesMiniComponent,
     SafeUrlPipe,
-    SortPipe
+    SortPipe,
+    AuctionDetailComponent
   ],
   imports: [
     CommonModule,

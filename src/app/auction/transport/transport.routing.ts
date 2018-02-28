@@ -1,8 +1,6 @@
 import {NgModule} from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TransportComponent } from './transport.component';
-import { NewCarsComponent } from './new-cars/new-cars.component';
-import { UsedCarsComponent } from './used-cars/used-cars.component';
 import { TrucksComponent } from './trucks/trucks.component';
 import { MototechnicsComponent } from './mototechnics/mototechnics.component';
 import { AirTransportsComponent } from './air-transports/air-transports.component';

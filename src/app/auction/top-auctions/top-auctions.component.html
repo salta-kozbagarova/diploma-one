@@ -1,5 +1,5 @@
-<h5 class="mt-3">{{title}}</h5>
-<hr>
+<h5 class="mt-3" *ngIf="topAuctions">{{title}}</h5>
+<hr *ngIf="topAuctions">
 <div class="row" *ngIf="topAuctions">
   <div class="col-md-3" *ngFor="let topAuction of topAuctions">
     <div class="card mt-1 auction-card text-center">

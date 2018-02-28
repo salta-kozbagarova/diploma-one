@@ -1,4 +1,4 @@
-import { Injectable, Output, EventEmitter } from '@angular/core';
+import { Injectable, Output, EventEmitter, PLATFORM_ID, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs/observable/of';
@@ -7,6 +7,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { CategoryService } from '../_services';
 import { Router } from '@angular/router';
 import { CommonFilterForm } from '../_models';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable()
 export class CommonFilterFormService {
@@ -16,7 +17,8 @@ export class CommonFilterFormService {
 
   constructor(private http: HttpClient,
               private router: Router,
-              private categoryService: CategoryService) { }
+              private categoryService: CategoryService,
+              @Inject(PLATFORM_ID) private platformId: Object) { }
 
   getCommonFilterForm(): CommonFilterForm {
     this.curCategoryCode = this.router.url.split('/').pop();
@@ -32,7 +34,9 @@ export class CommonFilterFormService {
   }
 
   setCommonFilterForm(commonFilterForm: CommonFilterForm) {
-    localStorage.setItem('commonFilter', JSON.stringify(commonFilterForm));
+    //if (isPlatformBrowser(this.platformId)){
+      localStorage.setItem('commonFilter', JSON.stringify(commonFilterForm));
+    //}
     this.commonFilterForm.emit(commonFilterForm);
   }
 }

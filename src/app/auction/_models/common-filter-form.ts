@@ -1,5 +1,7 @@
 import { AdministrativeDivision, SearchRadius } from "../../_models";
 import { Category } from "./";
+import { PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 export class CommonFilterForm {
     q: string;
@@ -13,6 +15,7 @@ export class CommonFilterForm {
     only_with_image: boolean;
     header_and_description: boolean;
     only_quantity: boolean;
+    @Inject(PLATFORM_ID) private static platformId: Object;
 
     private static instance: CommonFilterForm = new CommonFilterForm();
 
@@ -42,13 +45,17 @@ export class CommonFilterForm {
     }
 
     static reset(): void{
-        localStorage.removeItem('commonFilter');
+        //if(isPlatformBrowser(this.platformId)){
+            localStorage.removeItem('commonFilter');
+        //}
     }
 
     static getCommonFilter(): CommonFilterForm{
         let res = null;
         try{
-            res = JSON.parse(localStorage.getItem('commonFilter'));
+            //if(isPlatformBrowser(this.platformId)){
+                res = JSON.parse(localStorage.getItem('commonFilter'));
+            //}
         } catch(e){
             return null;
         }

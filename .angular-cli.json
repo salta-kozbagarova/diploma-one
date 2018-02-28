@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "src",
-      "outDir": "dist",
+      "outDir": "dist/browser",
       "assets": [
         "assets",
         "favicon.ico"
@@ -30,6 +30,33 @@
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
       }
+    },
+    {
+      "platform": "server",
+      "root": "src",
+      "outDir": "dist/server",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.server.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.server.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "styles.css",
+        "assets/slider/css/slider.css"
+      ],
+      "scripts": [
+        "assets/slider/js/bootstrap-slider.js"
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": { 
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      } 
     }
   ],
   "e2e": {

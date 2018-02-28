@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AuctionListComponent implements OnInit {
 
-  transports: Auction[];
+  auctions: Auction[];
   private searchTerms = new Subject<string>();
   sortParam: string;
   sortAsc = false;
@@ -86,7 +86,7 @@ export class AuctionListComponent implements OnInit {
       this.getAuctions();
     }else{
       this.transportService.search(this.searchTerms).subscribe(data => {
-        this.transports = data.results;
+        this.auctions = data.results;
       });
       this.searchTerms.next(term);
     }
@@ -96,7 +96,7 @@ export class AuctionListComponent implements OnInit {
     this.loading = true;
     this.auctionService.getByParams(nextLink).subscribe(data => {
       this.count = data.count;
-      this.transports = data.results;
+      this.auctions = data.results;
       this.loading = false;
     });
   }
@@ -105,7 +105,7 @@ export class AuctionListComponent implements OnInit {
     this.loading = true;
     this.page = 1;
     this.count = data.count;
-    this.transports = data.results;
+    this.auctions = data.results;
     this.loading = false;
   }
 

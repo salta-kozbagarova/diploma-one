@@ -29,7 +29,7 @@
     </div>
 </div>
 
-<div class="row my-1" *ngFor="let transport of transports | sort:sortParam:sortAsc">
+<div class="row my-1" *ngFor="let transport of transports">
     <div class="col-md-12">
         <div class="card list-card">
             <div class="ribbon top" *ngIf="transport.on_top">

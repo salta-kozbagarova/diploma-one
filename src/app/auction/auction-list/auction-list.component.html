@@ -8,7 +8,7 @@
         </div>
     </div>
 </div>
-<div class="row" *ngIf="transports?.length > 0">
+<div class="row" *ngIf="auctions?.length > 0">
     <div class="col-12">
         <div class="card sort-block">
             <div class="row">
@@ -29,41 +29,41 @@
     </div>
 </div>
 
-<div class="row my-1" *ngFor="let transport of transports | sort:sortParam:sortAsc">
+<div class="row my-1" *ngFor="let auction of auctions | sort:sortParam:sortAsc">
     <div class="col-md-12">
         <div class="card list-card">
-            <div class="ribbon top" *ngIf="transport.on_top">
+            <div class="ribbon top" *ngIf="auction.on_top">
                 <span>Топ</span>
             </div>
             <div class="row">
                 <div class="col-md-2 d-flex justify-content-center align-items-center">
-                    <img class="card-img-top" src="{{transport.image}}" alt="Card image cap">
+                    <img class="card-img-top" src="{{auction.image}}" alt="Card image cap">
                 </div>
                 <div class="col-md-7">
                     <div class="card-body"> 
-                        <a class="card-title mb-0">{{transport.name}}</a>
+                        <a class="card-title mb-0">{{auction.name}}</a>
                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="card-text">
-                                    <i class="fa fa-map-marker text-primary" aria-hidden="true"></i> {{transport.full_address}}
+                                    <i class="fa fa-map-marker text-primary" aria-hidden="true"></i> {{auction.full_address}}
                                 </div>
                                 <div class="card-text">
-                                    <i class="fa fa-calendar text-primary" aria-hidden="true"></i> Дата начала торгов: {{transport.created_at | date:'dd.MM.yyyy HH:mm'}}
+                                    <i class="fa fa-calendar text-primary" aria-hidden="true"></i> Дата начала торгов: {{auction.created_at | date:'dd.MM.yyyy HH:mm'}}
                                 </div>
                                 <div class="card-text">
-                                    <i class="fa fa-calendar text-primary" aria-hidden="true"></i> Дата окончания торгов: {{transport.end_date | date:'dd.MM.yyyy HH:mm'}}
+                                    <i class="fa fa-calendar text-primary" aria-hidden="true"></i> Дата окончания торгов: {{auction.end_date | date:'dd.MM.yyyy HH:mm'}}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="card-text">
-                                    <i class="fa fa-users text-primary" aria-hidden="true"></i> Количество участников: {{transport.participants_count}}
+                                    <i class="fa fa-users text-primary" aria-hidden="true"></i> Количество участников: {{auction.participants_count}}
                                 </div>
                                 <div class="card-text">
-                                    <i class="fa fa-phone text-primary" aria-hidden="true"></i> {{transport.author}}
+                                    <i class="fa fa-phone text-primary" aria-hidden="true"></i> {{auction.author}}
                                 </div>
                                 <div class="card-text">
-                                    <i class="fa fa-eye text-primary" aria-hidden="true"></i> Просмотрено: {{transport.seen}}
+                                    <i class="fa fa-eye text-primary" aria-hidden="true"></i> Просмотрено: {{auction.seen}}
                                 </div>
                             </div>
                         </div>
@@ -73,22 +73,22 @@
                     <div class="card-body text-center">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="card-text"><i class="fa fa-arrow-up text-primary" aria-hidden="true"></i>Аукцион {{transport.bargain_type.name}}</div>
+                                <div class="card-text"><i class="fa fa-arrow-up text-primary" aria-hidden="true"></i>Аукцион {{auction.bargain_type.name}}</div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="card-text"><span class="icon-kzt"></span>Текущая цена: <b>{{transport.current_price}}₸</b></div>
+                                <div class="card-text"><span class="icon-kzt"></span>Текущая цена: <b>{{auction.current_price}}₸</b></div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <app-countdown [deadline]="transport.end_date" [id]="transport.id"></app-countdown>
+                                <app-countdown [deadline]="auction.end_date" [id]="auction.id"></app-countdown>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-auto ml-auto">
-                                <a [routerLink]="['../'+transport.category.code, transport.id]" class="btn btn-sm btn-outline-primary mt-1">Перейти</a>
+                                <a [routerLink]="['../../../../','det',auction.id]" class="btn btn-sm btn-outline-primary mt-1">Перейти</a>
                             </div>
                         </div>
                     </div>

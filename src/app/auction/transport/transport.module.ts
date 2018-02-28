@@ -6,17 +6,14 @@ import { CategoriesComponent } from './categories/categories.component';
 import { AuctionModule } from '../auction.module';
 import { PaginationModule } from '../../pagination/pagination.module';
 import { TrucksComponent } from './trucks/trucks.component';
-import { UsedCarsComponent } from './used-cars/used-cars.component';
 import { MototechnicsComponent } from './mototechnics/mototechnics.component';
 import { AirTransportsComponent } from './air-transports/air-transports.component';
 import { OthersComponent } from './others/others.component';
-import { NewCarsComponent } from './new-cars/new-cars.component';
 import { SafeUrlPipe, SortPipe } from '../../_pipes';
 import { TransportService } from './_services';
 import { FormsModule } from '@angular/forms';
 import { TestComponent } from './test/test.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MainComponent } from './main/main.component';
 
 @NgModule({
   imports: [
@@ -28,8 +25,8 @@ import { MainComponent } from './main/main.component';
     ReactiveFormsModule
   ],
   declarations: [
-    TransportComponent, CategoriesComponent, TrucksComponent, UsedCarsComponent,
-    MototechnicsComponent, AirTransportsComponent, OthersComponent, NewCarsComponent, SafeUrlPipe, SortPipe, TestComponent, MainComponent ],
+    TransportComponent, CategoriesComponent, TrucksComponent,
+    MototechnicsComponent, AirTransportsComponent, OthersComponent, TestComponent ],
   providers: [
     TransportService
   ],
