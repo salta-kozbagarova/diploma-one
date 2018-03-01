@@ -10,10 +10,7 @@ export class Auction implements Model {
     bargain_type: AuctionType;
     start_price: string;
     current_price: string;
-    name: string;
-    description: string;
-    image: string;
-    products: Product[];
+    product: Product;
     seen: number;
     participants: User[];
     participants_count: number;
@@ -31,10 +28,6 @@ export class Auction implements Model {
 
     get author(): User{
         return this.created_by;
-    }
-
-    hasPhoto(): boolean{
-        return this.image !== null;
     }
 
     // getFormattedDate?(date: string): string{

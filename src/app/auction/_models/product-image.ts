@@ -5,6 +5,7 @@ import { environment } from "../../../environments/environment";
 export class ProductImage implements Model {
     productId: number;
     image: string;
+    is_main: boolean;
     created_by: User;
     updated_by: User;
     created_at: string;

@@ -37,11 +37,11 @@
             </div>
             <div class="row">
                 <div class="col-md-2 d-flex justify-content-center align-items-center">
-                    <img class="card-img-top" src="{{auction.image}}" alt="Card image cap">
+                    <img class="card-img-top" src="{{auction.product.images[0]?.image}}" alt="Card image cap">
                 </div>
                 <div class="col-md-7">
                     <div class="card-body"> 
-                        <a class="card-title mb-0">{{auction.name}}</a>
+                        <a class="card-title mb-0">{{auction.product.name}}</a>
                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                         <div class="row">
                             <div class="col-md-6">

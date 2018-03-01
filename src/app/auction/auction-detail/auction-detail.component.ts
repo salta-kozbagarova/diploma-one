@@ -31,7 +31,9 @@ export class AuctionDetailComponent implements OnInit, AfterViewInit {
         },
         onNavigate: function(direction, itemIndex){
             console.log('Navigating '+direction+'. Current item: '+itemIndex);
-        }
+        },
+        maxWidth: 600,
+        maxHeight: 450
       });
     });
   }

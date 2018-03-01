@@ -7,10 +7,10 @@
         <span>Топ</span>
       </div>
       <div class="card-img d-flex justify-content-center align-items-center">
-          <img class="card-img-top" src="{{topAuction.image}}" class="img-fit">
+          <img class="card-img-top" src="{{topAuction.product.images[0].image}}" class="img-fit">
       </div>
       <div class="card-body">
-        <b class="card-title mb-0">{{topAuction.name}}</b>
+        <b class="card-title mb-0">{{topAuction.product.name}}</b>
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item"><span class="icon-kzt"></span><span class="ml-2">Текущая цена: <b>{{topAuction.current_price}}₸</b></span></li>
