@@ -6,7 +6,7 @@
           <li *ngFor="let image of auction.product.images; index as i; first as isFirst" data-target="#carouselExampleIndicators" data-slide-to="i" [ngClass]="{active: isFirst}"></li>
         </ol>
         <div class="carousel-inner">
-          <div class="carousel-item" *ngFor="let image of auction.product.images; first as isFirst" [ngClass]="{active: isFirst}">
+          <div class="carousel-item justify-content-center align-items-center" *ngFor="let image of auction.product.images; first as isFirst" [ngClass]="{active: isFirst}">
             <a [attr.data-remote]="image.image" data-toggle="lightbox" data-gallery="auction-gallery" data-type="image">
               <img src="{{image.image}}" class="card-img-top img-fit">
             </a>
@@ -25,6 +25,29 @@
         <h5 class="card-title">{{auction.product.name}}</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <app-countdown [deadline]="auction.end_date" [id]="auction.id"></app-countdown>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="card mt-1">
+          <div class="card-body">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="0 ₸" aria-label="bargain bet" aria-describedby="bargain bet">
+              <div class="input-group-append">
+                <button class="btn btn-success" type="button">Сделать ставку</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

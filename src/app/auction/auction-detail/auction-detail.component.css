@@ -1,7 +1,10 @@
 .img-fit{
     max-height: 100%;
     max-width: 100%;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
 }
-/* .carousel-item{
-    height: 12rem;
-} */
+.carousel-item{
+    height: 30rem;
+    /* width: 45.63rem; */
+}
