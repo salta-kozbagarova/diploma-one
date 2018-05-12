@@ -10,6 +10,7 @@ export class User {
     login: string;
     roles: Role[];
     phonenumbers: UserPhone[];
+    photo: string;
 
     get mainUserPhone(): UserPhone{
         var phone = this.phonenumbers.filter(obj => {return obj.is_main == true})[0];

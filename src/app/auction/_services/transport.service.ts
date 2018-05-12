@@ -43,7 +43,7 @@ export class TransportService {
       // if not search term, return empty hero array.
       return of([]);
     }
-    return this.http.get<Auction[]>(this.transportUrl + '/bargains/', {params: {"category__code": "transport", "name__icontains": term}})
+    return this.http.get<Auction[]>(this.transportUrl + '/bargains/', {params: {"category__code": "transport", "product__name__icontains": term}})
       .pipe(
         tap(auctions => this.log(`found auctions matching "${term}"`)),
         catchError(this.handleError<Auction[]>('searchAuctions', []))

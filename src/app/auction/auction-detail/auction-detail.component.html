@@ -49,6 +49,18 @@
           </div>
         </div>
       </div>
+      <div class="col-md-12">
+        <div class="card mt-1">
+          <div class="d-flex justify-content-center align-items-center">
+            <img class="card-img-top" src="{{auction.created_by.photo}}" style="width:200px;height:200px;">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{auction.created_by.username}}</h5>
+            <p class="card-text">Телефон: </p>
+            <p class="card-text">Почта: {{auction.created_by.email}}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

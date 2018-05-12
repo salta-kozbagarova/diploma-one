@@ -240,9 +240,9 @@ export class CommonFilterComponent implements OnInit, AfterViewInit {
         let parent = $(this).data('parent-code');
         let urlString = null;
         if(!parent){
-          urlString = that.router.serializeUrl(that.router.createUrlTree(['../../'+$(this).data('code')], {relativeTo: that.route}));
+          urlString = that.router.serializeUrl(that.router.createUrlTree(['../../../'+$(this).data('code')], {relativeTo: that.route}));
         } else{
-          urlString = that.router.serializeUrl(that.router.createUrlTree(['../../'+parent,$(this).data('code')], {relativeTo: that.route}));
+          urlString = that.router.serializeUrl(that.router.createUrlTree(['../../../'+parent,$(this).data('code')], {relativeTo: that.route}));
         }
         that.location.replaceState(urlString);
       });
