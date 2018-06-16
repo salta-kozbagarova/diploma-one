@@ -20,7 +20,8 @@
       "prefix": "app",
       "styles": [
         "styles.css",
-        "assets/slider/css/slider.css"
+        "assets/slider/css/slider.css",
+        "../node_modules/font-awesome/css/font-awesome.css"
       ],
       "scripts": [
         "assets/slider/js/bootstrap-slider.js"

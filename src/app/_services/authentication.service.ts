@@ -12,11 +12,13 @@ export class AuthenticationService {
   private authUrl = 'http://127.0.0.1:8000/api-token-auth/';
   @Output() currentUser: EventEmitter<AuthUser> = new EventEmitter();
 
-  constructor(private http: HttpClient,
-              @Optional() @Inject(APP_BASE_HREF) origin: string,
-              @Inject(PLATFORM_ID) private platformId: Object) {
-    this.authUrl = `${origin}${this.authUrl}`;
-  }
+  // constructor(private http: HttpClient,
+  //             @Optional() @Inject(APP_BASE_HREF) origin: string,
+  //             @Inject(PLATFORM_ID) private platformId: Object) {
+  //   this.authUrl = `${origin}${this.authUrl}`;
+  // }
+
+  constructor(private http: HttpClient) { }
 
   authenticate(signinForm: SigninForm): Observable<boolean> {
     return this.http.post<any>(this.authUrl, signinForm)

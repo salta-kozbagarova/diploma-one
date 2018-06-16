@@ -21,7 +21,7 @@ import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PLATFORM_ID, APP_ID, Inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-
+import { NgxGalleryModule } from 'ngx-gallery';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +37,8 @@ import { isPlatformBrowser } from '@angular/common';
     FormsModule,
     HttpClientModule,
     routing,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxGalleryModule
   ],
   providers: [
     AuthGuard,

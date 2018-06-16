@@ -17,7 +17,7 @@ import { CategoriesMiniComponent } from './categories-mini/categories-mini.compo
 import { SafeUrlPipe, SortPipe } from '../_pipes';
 import { TransportService } from './_services';
 import { AuctionDetailComponent } from './auction-detail/auction-detail.component';
-
+import { NgxGalleryModule } from 'ngx-gallery';
 @NgModule({
   declarations: [
     AuctionComponent,
@@ -37,7 +37,8 @@ import { AuctionDetailComponent } from './auction-detail/auction-detail.componen
     CommonModule,
     FormsModule,
     routing,
-    PaginationModule
+    PaginationModule,
+    NgxGalleryModule
   ],
   providers: [
     AuctionService,
